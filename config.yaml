@@ -1,0 +1,83 @@
+# Finance Radar configuration
+# Edit this file, not the code, for day-to-day changes.
+
+# ---------------------------------------------------------------- the analyst
+engine:
+  # Which model writes the daily analysis.
+  #   auto          try claude_cli, then anthropic_api, then gemini_cli
+  #   claude_cli    Claude Code CLI  — free with your Claude subscription
+  #                 install: npm install -g @anthropic-ai/claude-code
+  #   gemini_cli    Gemini CLI       — free tier (already installed here)
+  #   anthropic_api Claude API       — billed per token, needs ANTHROPIC_API_KEY
+  name: auto
+  model: null          # null = each engine's sensible default
+  timeout_seconds: 900
+
+# ------------------------------------------------------------------- gathering
+news:
+  window_hours: 30       # how far back to look for stories
+  per_source_cap: 12     # max stories kept per source before ranking
+  send_to_analyst: 70    # how many top-ranked stories the model actually reads
+
+markets:
+  include_global: true   # yfinance: FX, rates, commodities, indices
+  include_dse: true      # Dhaka Stock Exchange
+
+# -------------------------------------------------------------------- memory
+memory:
+  lookback_days: 7       # how many past days' conclusions the analyst re-reads
+
+# -------------------------------------------------------------------- outputs
+output:
+  brand: "60 SECOND FINANCE"     # printed on the social card
+  make_card: true
+  open_brief_when_done: false    # off for scheduled runs: the Windows notification
+                                 # is clickable and opens the brief when you are
+                                 # ready. Set true if you run it by hand.
+
+# --------------------------------------------------------------- notifications
+notify:
+  windows_toast: true
+
+  # Emails you the brief — readable on your phone without opening anything.
+  #
+  # ⚠️  DO NOT PUT YOUR PASSWORD IN THIS FILE. This file is committed to git,
+  #     so anything written here ends up on GitHub. Set these instead:
+  #       FINRADAR_SMTP_USER   your Gmail address
+  #       FINRADAR_SMTP_PASS   the 16-character App Password
+  #       FINRADAR_MAIL_TO     where to send it (optional)
+  #     In the cloud these come from GitHub Secrets. Locally, set them in your
+  #     terminal for the session. Email switches itself on when it finds them.
+  #
+  # Gmail will NOT accept your normal password. Create an App Password at
+  #   myaccount.google.com → Security → 2-Step Verification → App passwords
+  email:
+    enabled: false          # leave false — the env vars above turn it on
+    username: ""            # leave blank; use FINRADAR_SMTP_USER
+    app_password: ""        # leave blank; use FINRADAR_SMTP_PASS
+    to: ""                  # leave blank; use FINRADAR_MAIL_TO
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+  telegram:
+    # Optional but recommended — puts the brief on your phone.
+    # 1. Message @BotFather on Telegram, send /newbot, copy the token here.
+    # 2. Message your new bot once, then open
+    #    https://api.telegram.org/bot<TOKEN>/getUpdates to find your chat id.
+    bot_token: ""
+    chat_id: ""
+
+# --------------------------------------------------------------------- timing
+schedule:
+  # Used by install_schedule.ps1. 24-hour clock, Bangladesh time.
+  #
+  # 20:30 is the best single moment in the day to look:
+  #   - the DSE closed at 14:30, so the session is settled and final
+  #   - the Bangladeshi business dailies have filed the day's reporting
+  #   - London is an hour from its close, so Europe's day is essentially done
+  #   - New York is an hour into its session, so the global direction is visible
+  # The brief lands about 20:40, which leaves the evening free to read it.
+  #
+  # It cannot capture the US close (02:00 Bangladesh time) or a Fed decision
+  # (00:00). Those land in the next morning's brief instead, and the analyst's
+  # memory carries the thread across the two days.
+  daily_time: "20:30"

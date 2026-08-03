@@ -1,0 +1,15 @@
+# Virtual environment — rebuilt from requirements.txt
+.venv/
+__pycache__/
+*.pyc
+
+# Local secrets. NEVER commit these.
+.env
+config.local.yaml
+
+# Big or noisy run artefacts. The database and briefs ARE committed on
+# purpose: they are the analyst's memory and must survive between runs.
+logs/packet_*.md
+logs/raw_*.txt
+logs/probe.txt
+data/seed/

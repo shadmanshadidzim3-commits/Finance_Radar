@@ -1,0 +1,73 @@
+name: Finance Radar — daily brief
+
+# Runs on GitHub's free tier. A private repo gets 2,000 Actions minutes a
+# month; this job takes about 5, so roughly 150 a month. Nothing to pay.
+on:
+  schedule:
+    # GitHub cron is UTC only. 20:30 Bangladesh time = 14:30 UTC.
+    # GitHub queues scheduled jobs and can start them late under load, so
+    # treat this as "shortly after 20:30", not to the minute.
+    - cron: "30 14 * * *"
+  workflow_dispatch: {}        # lets you run it by hand from the Actions tab
+
+# The job commits the database and briefs back to the repo, which is how the
+# analyst's memory survives from one day to the next.
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build today's brief
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          FINRADAR_SMTP_USER: ${{ secrets.GMAIL_ADDRESS }}
+          FINRADAR_SMTP_PASS: ${{ secrets.GMAIL_APP_PASSWORD }}
+          FINRADAR_MAIL_TO: ${{ secrets.GMAIL_ADDRESS }}
+        run: python run_daily.py --engine gemini_api
+
+      - name: Save the brief and the memory back to the repo
+        run: |
+          git config user.name  "Finance Radar"
+          git config user.email "actions@github.com"
+          git add data/ logs/
+          if git diff --staged --quiet; then
+            echo "Nothing changed — not committing."
+          else
+            git commit -m "Brief for $(date -u +%Y-%m-%d)"
+            # Another run may have pushed while this one was working.
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+            git push
+          fi
+
+      # Keeps the brief downloadable from the Actions run even if the commit
+      # step fails, so a bad day never costs you the analysis.
+      - name: Attach the brief to this run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: brief
+          path: |
+            data/briefs/
+            data/dashboard.html
+            data/cards/
+            logs/error_*.txt
+          if-no-files-found: warn
+          retention-days: 30

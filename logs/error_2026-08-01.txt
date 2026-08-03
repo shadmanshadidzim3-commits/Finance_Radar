@@ -1,0 +1,14 @@
+EngineError: claude CLI failed (1): The command line is too long.
+
+
+Traceback (most recent call last):
+  File "D:\Projects\FinanceRadar\run_daily.py", line 129, in main
+    analysis, raw = analyze.analyse(eng, system_prompt, packet)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\FinanceRadar\radar\analyze.py", line 167, in analyse
+    raw = engine.run(system_prompt, packet)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\FinanceRadar\radar\engine.py", line 77, in run
+    raise EngineError(f"claude CLI failed ({proc.returncode}): "
+radar.engine.EngineError: claude CLI failed (1): The command line is too long.
+

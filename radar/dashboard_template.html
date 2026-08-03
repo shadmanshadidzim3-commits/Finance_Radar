@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — Archive</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  color-scheme:light;
+  --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#898781;
+  --grid:#e1e0d9; --axis:#c3c2b7; --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b; --up:#006300; --down:#be2d32;
+  --radius:14px; --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --page:#0d0d0d; --surface:#161b23; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+    --grid:#2c2c2a; --axis:#383835; --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#0ca30c; --down:#f87171;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --page:#0d0d0d; --surface:#161b23; --ink:#fff; --ink2:#c3c2b7; --muted:#898781;
+  --grid:#2c2c2a; --axis:#383835; --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+  --up:#0ca30c; --down:#f87171;
+}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:28px 20px 90px}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.brand{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:29px;margin:4px 0 2px;letter-spacing:-0.02em}
+.sub{font-size:13.5px;color:var(--muted)}
+.themeBtn{background:var(--surface);border:1px solid var(--line);color:var(--ink2);
+  border-radius:9px;padding:8px 13px;font:inherit;font-size:13.5px;cursor:pointer}
+
+/* search */
+.searchRow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.searchBox{flex:1;min-width:260px;position:relative}
+.searchBox input{
+  width:100%;background:var(--surface);border:1px solid var(--line);border-radius:11px;
+  padding:13px 15px 13px 42px;font:inherit;font-size:15.5px;color:var(--ink)}
+.searchBox input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.searchBox svg{position:absolute;left:14px;top:14px;opacity:.45}
+select{background:var(--surface);border:1px solid var(--line);border-radius:11px;
+  padding:13px 12px;font:inherit;font-size:14.5px;color:var(--ink)}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:12px;margin-bottom:26px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px}
+.tile .k{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.tile .v{font-size:30px;font-weight:700;line-height:1.15;margin-top:5px;letter-spacing:-0.02em}
+.tile .n{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* cards & sections */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-bottom:18px}
+.card h2{font-size:16px;margin:0 0 4px;letter-spacing:-0.01em}
+.card .hint{font-size:13px;color:var(--muted);margin:0 0 16px}
+.grid2{display:grid;gap:18px}
+@media(min-width:880px){.grid2{grid-template-columns:1fr 1fr}}
+
+/* calendar */
+.months{display:flex;gap:26px;flex-wrap:wrap}
+.month h3{font-size:12.5px;font-weight:700;color:var(--ink2);margin:0 0 8px;letter-spacing:.02em}
+.dow{display:grid;grid-template-columns:repeat(7,26px);gap:4px;margin-bottom:4px}
+.dow span{font-size:10px;color:var(--muted);text-align:center}
+.days{display:grid;grid-template-columns:repeat(7,26px);gap:4px}
+.day{width:26px;height:26px;border-radius:6px;background:transparent;border:1px solid var(--grid);
+  font-size:10.5px;color:var(--muted);display:grid;place-items:center;cursor:default;padding:0;font-family:inherit}
+.day.has{cursor:pointer;border-color:transparent;font-weight:700}
+.day.has:hover{outline:2px solid var(--accent);outline-offset:1px}
+.day.sel{outline:2.5px solid var(--accent);outline-offset:1px}
+.legend{display:flex;align-items:center;gap:7px;margin-top:16px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.sw{width:19px;height:13px;border-radius:3px;display:inline-block}
+
+/* charts */
+svg{display:block;max-width:100%;overflow:visible}
+.axisTx{font-size:11px;fill:var(--muted)}
+.gridline{stroke:var(--grid);stroke-width:1}
+.baseline{stroke:var(--axis);stroke-width:1}
+.barG rect{transition:opacity .12s}
+.barG:hover rect{opacity:.78}
+.chartLegend{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--ink2);margin-top:12px}
+.chartLegend i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
+
+/* tooltip */
+#tip{position:fixed;z-index:60;pointer-events:none;opacity:0;transition:opacity .1s;
+  background:var(--ink);color:var(--page);font-size:13px;line-height:1.5;padding:9px 12px;
+  border-radius:9px;box-shadow:0 8px 26px rgba(0,0,0,.3);max-width:270px}
+
+/* day list */
+.dayRow{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.dayRow:last-child{border-bottom:none}
+.dayRow:hover .dl{color:var(--accent)}
+.dayDate{flex:none;width:96px;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.dl{font-weight:600;font-size:15.5px;line-height:1.4;margin:0}
+.dayRow p{margin:4px 0 0;font-size:14px;color:var(--ink2)}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:20px;
+  border:1px solid;margin-left:8px;vertical-align:1px;font-variant-numeric:tabular-nums}
+mark{background:#fef08a;color:#0b0b0b;border-radius:3px;padding:0 2px}
+
+/* detail */
+.detail{border:1px solid var(--accent);background:var(--accent-soft)}
+.detail .close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--ink2);line-height:1}
+.st{display:flex;gap:11px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.st:last-child{border-bottom:none}
+.st b{flex:none;width:20px;color:var(--muted)}
+.chip{font-size:10.5px;font-weight:600;padding:1px 8px;border-radius:20px;white-space:nowrap}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+  border-radius:9px;padding:9px 16px;font-size:14px;font-weight:600;margin-top:14px}
+
+details{margin-top:14px}
+summary{cursor:pointer;color:var(--accent);font-size:13.5px;font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin-top:10px}
+th{text-align:left;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);
+  padding:7px 9px;border-bottom:1px solid var(--line)}
+td{padding:7px 9px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+.num{text-align:right}
+.up{color:var(--up);font-weight:600}.down{color:var(--down);font-weight:600}
+.empty{color:var(--muted);font-size:14px;padding:24px 0;text-align:center}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+</style>
+</head><body>
+<div class="wrap">
+
+<div class="top">
+  <div>
+    <div class="brand">Finance Radar</div>
+    <h1>Your archive</h1>
+    <div class="sub" id="sub"></div>
+  </div>
+  <button class="themeBtn" id="themeBtn">Switch theme</button>
+</div>
+
+<div class="searchRow">
+  <div class="searchBox">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search every brief — try “taka”, “cotton”, “rate cut”…" autocomplete="off">
+  </div>
+  <select id="cat"><option value="">All categories</option></select>
+  <select id="range">
+    <option value="0">All time</option>
+    <option value="7">Last 7 days</option>
+    <option value="30">Last 30 days</option>
+    <option value="90">Last 90 days</option>
+  </select>
+</div>
+
+<div class="tiles" id="tiles"></div>
+
+<div class="card">
+  <h2>Calendar</h2>
+  <p class="hint">Each square is a day you ran the model. Colour shows how the Dhaka
+     market moved — blue up, red down. Click any square to open that day.</p>
+  <div class="months" id="cal"></div>
+  <div class="legend" id="calLegend"></div>
+  <details>
+    <summary>Show as a table</summary>
+    <div style="overflow-x:auto"><table id="calTable"></table></div>
+  </details>
+</div>
+
+<div id="detail"></div>
+
+<div class="grid2">
+  <div class="card">
+    <h2>Market turnover</h2>
+    <p class="hint">How much money changed hands on the DSE each day, in crore taka.
+       Bar colour shows whether the market rose or fell that day.</p>
+    <div id="chartTurnover"></div>
+  </div>
+  <div class="card">
+    <h2>Sector performance</h2>
+    <p class="hint" id="sectorHint">Turnover-weighted move by sector.</p>
+    <div id="chartSectors"></div>
+  </div>
+</div>
+
+<div class="grid2">
+  <div class="card">
+    <h2>What the news is about</h2>
+    <p class="hint">Which themes dominate your briefs. This is the shape of your
+       financial year.</p>
+    <div id="chartCats"></div>
+  </div>
+  <div class="card">
+    <h2>Prediction scorecard</h2>
+    <p class="hint">Calls the analyst made, and how they turned out.</p>
+    <div id="chartPreds"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2 id="listTitle">All briefs</h2>
+  <p class="hint" id="listHint"></p>
+  <div id="list"></div>
+</div>
+
+<footer id="foot"></footer>
+</div>
+<div id="tip"></div>
+
+<script>
+window.__DATA__ = /*__DATA__*/;
+</script>
+<script>
+(function(){
+"use strict";
+var D = window.__DATA__, days = D.days, tip = document.getElementById('tip');
+var selected = days.length ? days[days.length-1].date : null;
+
+function dark(){
+  var t = document.documentElement.getAttribute('data-theme');
+  if(t) return t === 'dark';
+  return matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function pal(){ return dark() ? D.palette.dark : D.palette.light; }
+function div(){ return dark() ? D.diverging.dark : D.diverging.light; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){
+  return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+function pct(v){ return (v==null||isNaN(v)) ? '—' : (v>=0?'+':'') + Number(v).toFixed(2) + '%'; }
+function catColour(c){
+  var i = D.categories.indexOf(c);
+  if(i < 0 || i >= 8) return dark() ? '#7c8698' : '#898781';   // 9th+ folds to Other
+  return pal()[i];
+}
+// Diverging scale: 5 steps per arm, gray at zero. Clamped at +/-3%.
+function moveColour(v){
+  var d = div();
+  if(v == null || isNaN(v)) return 'transparent';
+  var a = Math.min(Math.abs(v)/3, 1), i = Math.min(Math.floor(a*5), 4);
+  if(Math.abs(v) < 0.05) return d.zero;
+  return (v > 0 ? d.pos : d.neg)[i];
+}
+// Round an axis maximum up to a readable number (500, 1,000, 2,500 …) so ticks
+// never read as 1,598.
+function niceMax(v){
+  if(!(v > 0)) return 1;
+  var mag = Math.pow(10, Math.floor(Math.log10(v)));
+  var n = v / mag;
+  var step = n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10;
+  return step * mag;
+}
+function showTip(e, html){
+  tip.innerHTML = html; tip.style.opacity = 1;
+  var r = tip.getBoundingClientRect();
+  var x = Math.min(e.clientX + 14, innerWidth - r.width - 10);
+  var y = e.clientY - r.height - 12;
+  tip.style.left = x + 'px';
+  tip.style.top = (y < 8 ? e.clientY + 18 : y) + 'px';
+}
+function hideTip(){ tip.style.opacity = 0; }
+
+/* ---------------- filtering ---------------- */
+function haystack(d){
+  if(d.__h) return d.__h;
+  var parts = [d.date, d.hook, d.takeaway, d.scenario];
+  d.stories.forEach(function(s){
+    parts.push(s.headline, s.plain, s.category, (s.tickers||[]).join(' '));
+  });
+  d.connections.forEach(function(c){ parts.push(c.title, c.so_what); });
+  if(d.dse) (d.dse.sectors||[]).forEach(function(s){ parts.push(s.name); });
+  d.__h = parts.join(' ').toLowerCase();
+  return d.__h;
+}
+function filtered(){
+  var q = document.getElementById('q').value.trim().toLowerCase();
+  var cat = document.getElementById('cat').value;
+  var days_back = +document.getElementById('range').value;
+  var cutoff = null;
+  if(days_back){
+    var dt = new Date(); dt.setDate(dt.getDate() - days_back);
+    cutoff = dt.toISOString().slice(0,10);
+  }
+  return days.filter(function(d){
+    if(cutoff && d.date < cutoff) return false;
+    if(cat && !d.stories.some(function(s){ return s.category === cat; })) return false;
+    if(q && haystack(d).indexOf(q) < 0) return false;
+    return true;
+  });
+}
+function hl(text, q){
+  if(!q) return esc(text);
+  var i = String(text).toLowerCase().indexOf(q);
+  if(i < 0) return esc(text);
+  return esc(text.slice(0,i)) + '<mark>' + esc(text.slice(i,i+q.length)) + '</mark>' + esc(text.slice(i+q.length));
+}
+
+/* ---------------- tiles ---------------- */
+function renderTiles(rows){
+  var withDse = rows.filter(function(d){ return d.dse && d.dse.turnover != null; });
+  var avgT = withDse.length
+    ? Math.round(withDse.reduce(function(a,d){ return a + d.dse.turnover; },0)/withDse.length) : null;
+  var stories = rows.reduce(function(a,d){ return a + (d.stories||[]).length; },0);
+  var sc = D.scorecard;
+  var hit = sc.hit_rate_pct == null ? '—' : sc.hit_rate_pct + '%';
+  var tiles = [
+    ['Days tracked', rows.length, rows.length === days.length ? 'every brief so far' : 'in this filter'],
+    ['Stories analysed', stories, 'ranked into the top ten'],
+    ['Avg DSE turnover', avgT == null ? '—' : 'Tk ' + avgT.toLocaleString(), 'crore per session'],
+    ['Prediction hit rate', hit, sc.scored ? sc.scored + ' calls scored, ' + sc.open + ' open'
+                                           : sc.open + ' open, none due yet']
+  ];
+  document.getElementById('tiles').innerHTML = tiles.map(function(t){
+    return '<div class="tile"><div class="k">'+esc(t[0])+'</div><div class="v">'+esc(t[1])+
+           '</div><div class="n">'+esc(t[2])+'</div></div>';
+  }).join('');
+}
+
+/* ---------------- calendar ---------------- */
+function renderCal(rows){
+  var byDate = {}; rows.forEach(function(d){ byDate[d.date] = d; });
+  if(!days.length){ document.getElementById('cal').innerHTML = '<p class="empty">No briefs yet.</p>'; return; }
+
+  var first = days[0].date, last = days[days.length-1].date;
+  var start = new Date(first + 'T00:00:00'), end = new Date(last + 'T00:00:00');
+  var months = [], cur = new Date(start.getFullYear(), start.getMonth(), 1);
+  while(cur <= end){ months.push(new Date(cur)); cur.setMonth(cur.getMonth()+1); }
+  if(months.length > 14) months = months.slice(-14);
+
+  document.getElementById('cal').innerHTML = months.map(function(m){
+    var y = m.getFullYear(), mo = m.getMonth();
+    var firstDow = (new Date(y, mo, 1).getDay() + 6) % 7;      // Monday-first
+    var ndays = new Date(y, mo+1, 0).getDate();
+    var cells = '';
+    for(var i=0;i<firstDow;i++) cells += '<span></span>';
+    for(var dnum=1; dnum<=ndays; dnum++){
+      var iso = y + '-' + String(mo+1).padStart(2,'0') + '-' + String(dnum).padStart(2,'0');
+      var d = byDate[iso];
+      if(d){
+        var mv = d.dse ? d.dse.move : null;
+        var bg = moveColour(mv);
+        var fg = (mv != null && Math.abs(mv) > 1.8) ? '#fff' : 'var(--ink)';
+        cells += '<button class="day has'+(iso===selected?' sel':'')+'" data-d="'+iso+'" '+
+                 'style="background:'+bg+';color:'+fg+'">'+dnum+'</button>';
+      } else {
+        cells += '<span class="day">'+dnum+'</span>';
+      }
+    }
+    return '<div class="month"><h3>'+m.toLocaleDateString('en-GB',{month:'long',year:'numeric'})+'</h3>'+
+      '<div class="dow"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>'+
+      '<div class="days">'+cells+'</div></div>';
+  }).join('');
+
+  var d0 = div();
+  document.getElementById('calLegend').innerHTML =
+    '<span>Market fell</span>' +
+    d0.neg.slice().reverse().map(function(c){ return '<i class="sw" style="background:'+c+'"></i>'; }).join('') +
+    '<i class="sw" style="background:'+d0.zero+'"></i>' +
+    d0.pos.map(function(c){ return '<i class="sw" style="background:'+c+'"></i>'; }).join('') +
+    '<span>Market rose</span><span style="margin-left:6px">(−3% to +3%)</span>';
+
+  document.querySelectorAll('.day.has').forEach(function(el){
+    el.addEventListener('click', function(){ selected = el.dataset.d; render();
+      document.getElementById('detail').scrollIntoView({behavior:'smooth', block:'center'}); });
+    el.addEventListener('mousemove', function(e){
+      var d = byDate[el.dataset.d];
+      showTip(e, '<b>'+esc(d.date)+'</b><br>'+ (d.dse
+        ? 'DSE ' + pct(d.dse.move) + ' · Tk ' + (d.dse.turnover||0).toLocaleString() + ' cr<br>' +
+          d.dse.adv + ' up / ' + d.dse.dec + ' down'
+        : 'no market data') + '<br>' + esc((d.hook||'').slice(0,90)));
+    });
+    el.addEventListener('mouseleave', hideTip);
+  });
+
+  document.getElementById('calTable').innerHTML =
+    '<thead><tr><th>Date</th><th class="num">DSE move</th><th class="num">Turnover (cr)</th>'+
+    '<th class="num">Up/Down</th><th>Headline</th></tr></thead><tbody>' +
+    rows.slice().reverse().map(function(d){
+      var m = d.dse ? d.dse.move : null;
+      return '<tr><td>'+esc(d.date)+'</td><td class="num '+(m>0?'up':m<0?'down':'')+'">'+pct(m)+
+        '</td><td class="num">'+(d.dse&&d.dse.turnover!=null?d.dse.turnover.toLocaleString():'—')+
+        '</td><td class="num">'+(d.dse?d.dse.adv+'/'+d.dse.dec:'—')+'</td><td>'+esc(d.hook||'')+'</td></tr>';
+    }).join('') + '</tbody>';
+}
+
+/* ---------------- turnover chart ---------------- */
+function renderTurnover(rows){
+  var data = rows.filter(function(d){ return d.dse && d.dse.turnover != null; });
+  var box = document.getElementById('chartTurnover');
+  if(data.length < 2){
+    box.innerHTML = '<p class="empty">Run the model on ' + Math.max(2 - data.length,1) +
+      ' more day' + (2-data.length===1?'':'s') + ' and this chart appears.</p>';
+    return;
+  }
+  var W = 520, H = 240, P = {t:12,r:12,b:34,l:52};
+  var iw = W - P.l - P.r, ih = H - P.t - P.b;
+  var raw = Math.max.apply(null, data.map(function(d){ return d.dse.turnover; })) * 1.1;
+  var max = niceMax(raw);
+  var bw = Math.max(3, Math.min(30, iw/data.length - 3));
+  var ticks = [0, max/2, max];
+
+  var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="DSE turnover by day">';
+  ticks.forEach(function(t){
+    var y = P.t + ih - (t/max)*ih;
+    svg += '<line class="'+(t===0?'baseline':'gridline')+'" x1="'+P.l+'" y1="'+y+'" x2="'+(W-P.r)+'" y2="'+y+'"/>';
+    svg += '<text class="axisTx" x="'+(P.l-8)+'" y="'+(y+4)+'" text-anchor="end">'+Math.round(t).toLocaleString()+'</text>';
+  });
+  data.forEach(function(d,i){
+    var x = P.l + (i + 0.5) * (iw/data.length) - bw/2;
+    var h = Math.max(2, (d.dse.turnover/max) * ih);
+    var y = P.t + ih - h;
+    svg += '<g class="barG" data-i="'+i+'"><rect x="'+x+'" y="'+y+'" width="'+bw+'" height="'+h+
+           '" rx="4" fill="'+moveColour(d.dse.move)+'"/>'+
+           '<rect x="'+(x-4)+'" y="'+P.t+'" width="'+(bw+8)+'" height="'+ih+'" fill="transparent"/></g>';
+  });
+  // Label only the endpoints — never a number on every bar. The unit lives in
+  // the card's hint text, so no axis unit label is needed here.
+  var lastD = data[data.length-1];
+  svg += '<text class="axisTx" x="'+P.l+'" y="'+(H-12)+'">'+data[0].date.slice(5)+'</text>';
+  if(data.length>1) svg += '<text class="axisTx" x="'+(W-P.r)+'" y="'+(H-12)+'" text-anchor="end">'+lastD.date.slice(5)+'</text>';
+  svg += '</svg>';
+  box.innerHTML = svg;
+
+  box.querySelectorAll('.barG').forEach(function(g){
+    var d = data[+g.dataset.i];
+    g.addEventListener('mousemove', function(e){
+      showTip(e, '<b>'+esc(d.date)+'</b><br>Tk '+d.dse.turnover.toLocaleString()+' crore<br>market '+
+        pct(d.dse.move)+'<br>'+esc(d.dse.verdict||''));
+    });
+    g.addEventListener('mouseleave', hideTip);
+    g.style.cursor = 'pointer';
+    g.addEventListener('click', function(){ selected = d.date; render();
+      document.getElementById('detail').scrollIntoView({behavior:'smooth',block:'center'}); });
+  });
+}
+
+/* ---------------- sector chart ---------------- */
+function renderSectors(){
+  var d = days.find(function(x){ return x.date === selected; }) || days[days.length-1];
+  var box = document.getElementById('chartSectors');
+  document.getElementById('sectorHint').textContent =
+    d && d.dse ? 'Turnover-weighted move by sector on ' + d.date + '.'
+               : 'Turnover-weighted move by sector.';
+  if(!d || !d.dse || !d.dse.sectors.length){
+    box.innerHTML = '<p class="empty">No sector data for this day.</p>'; return;
+  }
+  var s = d.dse.sectors.slice(0, 10);
+  var W = 520, rowH = 26, P = {t:8,r:56,b:26,l:150};
+  var H = P.t + s.length*rowH + P.b;
+  var iw = W - P.l - P.r;
+  var max = Math.max(1, Math.max.apply(null, s.map(function(x){ return Math.abs(x.move); })));
+  var zero = P.l + iw/2;
+
+  var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Sector performance">';
+  svg += '<line class="baseline" x1="'+zero+'" y1="'+P.t+'" x2="'+zero+'" y2="'+(P.t+s.length*rowH)+'"/>';
+  s.forEach(function(x,i){
+    var y = P.t + i*rowH + 4, h = rowH - 10;
+    var w = Math.abs(x.move)/max * (iw/2 - 6);
+    var bx = x.move >= 0 ? zero + 1 : zero - 1 - w;
+    svg += '<g class="barG" data-i="'+i+'">';
+    svg += '<rect x="'+bx+'" y="'+y+'" width="'+Math.max(w,1.5)+'" height="'+h+'" rx="4" fill="'+moveColour(x.move)+'"/>';
+    svg += '<text class="axisTx" x="'+(P.l-10)+'" y="'+(y+h/2+4)+'" text-anchor="end">'+esc(x.name.slice(0,22))+'</text>';
+    svg += '<text class="axisTx" x="'+(W-P.r+8)+'" y="'+(y+h/2+4)+'" style="font-variant-numeric:tabular-nums">'+pct(x.move)+'</text>';
+    svg += '<rect x="'+P.l+'" y="'+(y-3)+'" width="'+iw+'" height="'+(h+6)+'" fill="transparent"/></g>';
+  });
+  svg += '<text class="axisTx" x="'+zero+'" y="'+(H-8)+'" text-anchor="middle">0%</text>';
+  svg += '</svg>';
+  box.innerHTML = svg;
+
+  box.querySelectorAll('.barG').forEach(function(g){
+    var x = s[+g.dataset.i];
+    g.addEventListener('mousemove', function(e){
+      showTip(e, '<b>'+esc(x.name)+'</b><br>move '+pct(x.move)+'<br>'+x.share+'% of turnover'+
+        (x.pe ? '<br>median P/E '+x.pe : ''));
+    });
+    g.addEventListener('mouseleave', hideTip);
+  });
+}
+
+/* ---------------- category chart ---------------- */
+function renderCats(rows){
+  var counts = {};
+  rows.forEach(function(d){ d.stories.forEach(function(s){
+    if(s.category) counts[s.category] = (counts[s.category]||0) + 1; }); });
+  var items = Object.keys(counts).map(function(k){ return {k:k, v:counts[k]}; })
+                    .sort(function(a,b){ return b.v - a.v; });
+  var box = document.getElementById('chartCats');
+  if(!items.length){ box.innerHTML = '<p class="empty">No stories yet.</p>'; return; }
+  // Past 8 slots, fold the tail into "Other" rather than inventing a 9th hue.
+  if(items.length > 8){
+    var tail = items.slice(8).reduce(function(a,x){ return a + x.v; }, 0);
+    items = items.slice(0,8); items.push({k:'Other', v:tail});
+  }
+  var max = Math.max.apply(null, items.map(function(x){ return x.v; }));
+  var W = 520, rowH = 27, P = {t:6,r:44,b:6,l:150};
+  var H = P.t + items.length*rowH + P.b, iw = W - P.l - P.r;
+
+  var svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Story categories">';
+  items.forEach(function(x,i){
+    var y = P.t + i*rowH + 4, h = rowH - 10, w = Math.max(2, x.v/max * iw);
+    svg += '<g class="barG" data-i="'+i+'">';
+    svg += '<rect x="'+P.l+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="4" fill="'+catColour(x.k)+'"/>';
+    svg += '<text class="axisTx" x="'+(P.l-10)+'" y="'+(y+h/2+4)+'" text-anchor="end">'+esc(x.k)+'</text>';
+    svg += '<text class="axisTx" x="'+(P.l+w+8)+'" y="'+(y+h/2+4)+'" style="font-variant-numeric:tabular-nums">'+x.v+'</text>';
+    svg += '<rect x="'+P.l+'" y="'+(y-3)+'" width="'+iw+'" height="'+(h+6)+'" fill="transparent"/></g>';
+  });
+  svg += '</svg>';
+  box.innerHTML = svg;
+  box.querySelectorAll('.barG').forEach(function(g){
+    var x = items[+g.dataset.i];
+    g.addEventListener('mousemove', function(e){
+      showTip(e, '<b>'+esc(x.k)+'</b><br>'+x.v+' stories in this period'); });
+    g.addEventListener('mouseleave', hideTip);
+  });
+}
+
+/* ---------------- predictions ---------------- */
+function renderPreds(){
+  var sc = D.scorecard, box = document.getElementById('chartPreds');
+  var segs = [
+    {k:'Correct', v:sc.correct, c:'#0ca30c', icon:'✔'},
+    {k:'Partly right', v:sc.partial, c:'#fab219', icon:'◐'},
+    {k:'Wrong', v:sc.wrong, c:'#d03b3b', icon:'✕'},
+    {k:'Still open', v:sc.open, c:dark()?'#4a5364':'#c3c2b7', icon:'…'}
+  ].filter(function(s){ return s.v > 0; });
+  if(!segs.length){ box.innerHTML = '<p class="empty">No predictions recorded yet.</p>'; return; }
+
+  var total = segs.reduce(function(a,s){ return a + s.v; }, 0);
+  var W = 520, H = 34, gap = 2, x = 0, svg = '<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Prediction outcomes">';
+  segs.forEach(function(s){
+    var w = Math.max(4, (s.v/total) * (W - gap*(segs.length-1)));
+    svg += '<g class="barG"><rect x="'+x+'" y="4" width="'+w+'" height="'+(H-8)+'" rx="4" fill="'+s.c+'"/></g>';
+    x += w + gap;
+  });
+  svg += '</svg>';
+  // Status colours always ship with an icon and a label, never colour alone.
+  box.innerHTML = svg + '<div class="chartLegend">' + segs.map(function(s){
+    return '<span><i style="background:'+s.c+'"></i>'+s.icon+' '+esc(s.k)+' — <b>'+s.v+'</b></span>';
+  }).join('') + '</div>' +
+  (sc.scored ? '<p class="hint" style="margin:14px 0 0">Hit rate <b>'+sc.hit_rate_pct+
+     '%</b> across '+sc.scored+' scored calls. Partly-right counts as a half.</p>'
+             : '<p class="hint" style="margin:14px 0 0">Nothing has come due yet. The first calls resolve as their deadlines arrive.</p>');
+}
+
+/* ---------------- detail panel ---------------- */
+function renderDetail(){
+  var d = days.find(function(x){ return x.date === selected; });
+  var box = document.getElementById('detail');
+  if(!d){ box.innerHTML = ''; return; }
+  var pretty = new Date(d.date+'T00:00:00').toLocaleDateString('en-GB',
+      {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  var stories = d.stories.slice(0,5).map(function(s){
+    return '<div class="st"><b>'+s.rank+'</b><div>'+esc(s.plain || s.headline)+
+      ' <span class="chip" style="background:'+catColour(s.category)+'22;color:'+catColour(s.category)+
+      '">'+esc(s.category)+'</span></div></div>';
+  }).join('');
+  var mv = d.dse ? d.dse.move : null;
+  box.innerHTML = '<div class="card detail">'+
+    '<button class="close" id="closeD" aria-label="Close">×</button>'+
+    '<h2>'+esc(pretty)+'</h2>'+
+    '<p class="hint" style="margin-bottom:12px">'+
+      (d.dse ? 'DSE '+pct(mv)+' · Tk '+(d.dse.turnover||0).toLocaleString()+' crore · '+esc(d.dse.verdict) : 'no market data')+
+      ' · '+d.story_count+' stories read</p>'+
+    (d.hook ? '<p style="font-size:18px;font-weight:600;margin:0 0 14px">'+esc(d.hook)+'</p>' : '')+
+    stories+
+    (d.takeaway ? '<p style="margin-top:14px;color:var(--ink2)"><b>Takeaway:</b> '+esc(d.takeaway)+'</p>' : '')+
+    (d.brief ? '<a class="btn" href="'+esc(d.brief)+'">Open the full brief →</a>' : '')+
+    '</div>';
+  var c = document.getElementById('closeD');
+  if(c) c.addEventListener('click', function(){ selected = null; render(); });
+}
+
+/* ---------------- list ---------------- */
+function renderList(rows){
+  var q = document.getElementById('q').value.trim().toLowerCase();
+  var box = document.getElementById('list');
+  document.getElementById('listTitle').textContent =
+    q || document.getElementById('cat').value ? 'Matching briefs' : 'All briefs';
+  document.getElementById('listHint').textContent =
+    rows.length + (rows.length === 1 ? ' brief' : ' briefs') +
+    (q ? ' mentioning “' + q + '”' : '');
+  if(!rows.length){ box.innerHTML = '<p class="empty">Nothing matched. Try a different word.</p>'; return; }
+
+  box.innerHTML = rows.slice().reverse().map(function(d){
+    var mv = d.dse ? d.dse.move : null;
+    var pill = mv == null ? '' :
+      '<span class="pill" style="color:'+(mv>=0?'var(--up)':'var(--down)')+
+      ';border-color:currentColor">'+pct(mv)+'</span>';
+    var snippet = d.hook || (d.stories[0] && d.stories[0].plain) || '';
+    // If the match is deeper than the hook, show the line that actually matched.
+    if(q && snippet.toLowerCase().indexOf(q) < 0){
+      var hit = d.stories.find(function(s){
+        return (s.plain||'').toLowerCase().indexOf(q) >= 0 ||
+               (s.headline||'').toLowerCase().indexOf(q) >= 0; });
+      if(hit) snippet = hit.plain || hit.headline;
+      else if((d.scenario||'').toLowerCase().indexOf(q) >= 0){
+        var i = d.scenario.toLowerCase().indexOf(q);
+        snippet = '…' + d.scenario.slice(Math.max(0,i-70), i+110) + '…';
+      }
+    }
+    return '<div class="dayRow" data-d="'+d.date+'">'+
+      '<div class="dayDate">'+esc(d.date)+'</div>'+
+      '<div><p class="dl">'+hl(snippet, q)+pill+'</p>'+
+      '<p>'+d.stories.length+' stories · '+
+        esc(d.stories.slice(0,3).map(function(s){ return s.category; }).filter(Boolean).join(' · '))+
+      '</p></div></div>';
+  }).join('');
+
+  box.querySelectorAll('.dayRow').forEach(function(el){
+    el.addEventListener('click', function(){ selected = el.dataset.d; render();
+      document.getElementById('detail').scrollIntoView({behavior:'smooth',block:'center'}); });
+  });
+}
+
+/* ---------------- orchestration ---------------- */
+function render(){
+  var rows = filtered();
+  renderTiles(rows); renderCal(rows); renderDetail();
+  renderTurnover(rows); renderSectors(); renderCats(rows); renderPreds(); renderList(rows);
+}
+
+function init(){
+  document.getElementById('sub').textContent =
+    days.length + (days.length === 1 ? ' brief' : ' briefs') +
+    (days.length ? ' · ' + days[0].date + ' to ' + days[days.length-1].date : '') +
+    ' · updated ' + D.generated;
+  document.getElementById('foot').textContent =
+    'Finance Radar · generated ' + D.generated +
+    ' · Not investment advice. This page rebuilds itself every time the model runs.';
+  var sel = document.getElementById('cat');
+  D.categories.forEach(function(c){
+    var o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o);
+  });
+  ['q','cat','range'].forEach(function(id){
+    document.getElementById(id).addEventListener('input', render);
+  });
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    var isDark = dark();
+    document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    render();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+  render();
+}
+init();
+})();
+</script>
+</body></html>
