@@ -166,9 +166,27 @@ class GeminiAPIEngine(Engine):
     ENDPOINT = ("https://generativelanguage.googleapis.com/v1beta/models/"
                 "{model}:generateContent")
 
-    def __init__(self, model: str = "gemini-2.0-flash", timeout: int = 900):
+    # Which models a free key may use changes over time, and a model the key
+    # cannot use answers 429 exactly like a spent quota does. So try a few in
+    # order rather than betting the whole run on one name.
+    FALLBACKS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
+
+    def __init__(self, model: str | None = None, timeout: int = 900):
         self.model = model
         self.timeout = timeout
+
+    def list_models(self) -> list[str]:
+        """Ask the key what it is actually allowed to call."""
+        import requests
+        key = os.environ.get("GEMINI_API_KEY", "")
+        r = requests.get(
+            "https://generativelanguage.googleapis.com/v1beta/models",
+            headers={"x-goog-api-key": key}, timeout=60)
+        if not r.ok:
+            return []
+        return [m["name"].split("/")[-1]
+                for m in r.json().get("models", [])
+                if "generateContent" in m.get("supportedGenerationMethods", [])]
 
     def available(self) -> bool:
         return bool(os.environ.get("GEMINI_API_KEY"))
@@ -192,14 +210,33 @@ class GeminiAPIEngine(Engine):
                 "responseMimeType": "application/json",
             },
         }
-        r = requests.post(self.ENDPOINT.format(model=self.model),
-                          headers={"x-goog-api-key": key},
-                          json=body, timeout=self.timeout)
-        if r.status_code == 429:
-            raise EngineError("Gemini free-tier quota exhausted for now — "
-                              "the next scheduled run should succeed.")
-        if not r.ok:
-            raise EngineError(f"Gemini API {r.status_code}: {r.text[:400]}")
+        candidates = [self.model] if self.model else list(self.FALLBACKS)
+        problems: list[str] = []
+        r = None
+
+        for name in candidates:
+            r = requests.post(self.ENDPOINT.format(model=name),
+                              headers={"x-goog-api-key": key},
+                              json=body, timeout=self.timeout)
+            if r.ok:
+                self.model = name
+                break
+            # 429 here means EITHER a spent quota OR a model this key may not
+            # use — Google returns the same status for both, so keep Google's
+            # own message and try the next model rather than guessing.
+            problems.append(f"{name} -> {r.status_code}: {r.text[:300]}")
+            if r.status_code not in (400, 403, 404, 429):
+                break
+
+        if r is None or not r.ok:
+            allowed = self.list_models()
+            hint = (f"\nModels this key CAN use: {', '.join(allowed[:12])}"
+                    if allowed else
+                    "\nThe key could not list any models at all — check that "
+                    "GEMINI_API_KEY is correct and the Generative Language "
+                    "API is enabled for its project.")
+            raise EngineError("Gemini refused every model tried.\n  "
+                              + "\n  ".join(problems) + hint)
 
         data = r.json()
         try:
