@@ -17,8 +17,7 @@ on:
     - cron: "30 14 * * *"      # 20:30 Dhaka — the one we want
     - cron: "30 15 * * *"      # 21:30 — first safety net
     - cron: "30 16 * * *"      # 22:30
-    - cron: "30 18 * * *"      # 00:30
-    - cron: "30 3  * * *"      # 09:30 — last resort, still same news day
+    - cron: "30 17 * * *"      # 23:30 — last one still inside the same Dhaka day
   workflow_dispatch: {}        # lets you run it by hand from the Actions tab
 
 # The job commits the database and briefs back to the repo, which is how the
@@ -34,6 +33,14 @@ jobs:
   brief:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
+    # GitHub's runners are on UTC. Without this, a run that GitHub delays past
+    # 18:00 UTC computes yesterday's date in Dhaka terms, decides that brief
+    # already exists, and exits having done nothing — which is exactly how
+    # 2026-08-04 was lost. Dating the run in Dhaka time keeps the brief's date
+    # and the reader's day the same thing.
+    env:
+      TZ: Asia/Dhaka
 
     steps:
       - uses: actions/checkout@v4
