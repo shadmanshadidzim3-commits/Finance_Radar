@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-08-05</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Wednesday, 05 August 2026</h1>
+  <div class="meta">211 stories from 28 sources ·
+    96 Bangladesh · 115 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Your savings account is losing money every single day.</p>
+  <ol class="flash"><li>The US dollar got more expensive in Bangladesh today, making everything imported cost more for regular families.</li><li>Bangladeshi businesses are taking out fewer bank loans than at any time in three decades because they are afraid to expand.</li><li>The government collected far less tax money than planned, leaving a huge hole in the national budget.</li><li>Banks are paying lower interest on savings accounts, meaning your money loses value faster as prices rise.</li><li>Bangladesh made a deal with South Korea so almost all exports can enter the Korean market without extra taxes.</li></ol>
+  <div class="stats"><div class="stat"><b>DSE</b><span class="up">+1.37%</span> · Tk 1,075 cr</div><div class="stat"><b>Breadth</b>173 up / 171 down</div><div class="stat"><b>WTI Crude</b><span class="down">-5.85%</span></div><div class="stat"><b>Brent Crude</b><span class="down">-5.42%</span></div><div class="stat"><b>Natural Gas</b><span class="down">-3.74%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today highlighted the sharp divergence between global commodity relief and domestic structural paralysis. The dominant force was the taka&#x27;s single-session drop of 1.58% to Tk 123.47, driven by a record $4.49 billion external debt servicing bill and shrinking foreign aid commitments.</p><p>What changed versus recent days is that commercial banks have actively passed Bangladesh Bank&#x27;s 50bp policy rate cut onto depositors. Deposit rates dropped further below inflation, even as private credit growth hit a 33-year low and plastic factories cut output to 30% capacity due to gas shortages.</p><p>Investors must track whether lower crude prices ($79.23) offer sufficient fiscal headroom to import spot gas before industrial supply chains break further. The critical number to watch is DSE daily turnover; if it drops below Tk 800 crore as insurance speculation cools, equities will lack institutional support.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Negative Real Interest Rates (Financial Repression)</h3>
+    <div class="prose"><p>When the rate of inflation exceeds the interest rate paid on bank deposits, savers experience negative real interest rates. In Bangladesh today, inflation runs above 9%, while commercial banks are reducing deposit interest rates below 7% following the central bank&#x27;s policy rate cut. Financially, this functions as a hidden tax on cash savings.</p><p>Purchasing power moves away from household savers toward borrowers and banks. To avoid losing real wealth, rational savers reduce bank deposits and buy physical assets like land, gold, or foreign currency, or send money through informal hundi channels.</p></div>
+    <div class="quiz"><b>Test yourself</b>If a bank pays 6% interest on a fixed deposit while annual inflation is 9.5%, what is your real rate of return?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>USD/BDT jumped 1.58% to Tk 123.47 as central bank currency caps buckled under surging dollar demand.</h3>
+    <div class="plain"><b>In plain English</b>The US dollar got more expensive in Bangladesh today, making everything imported cost more for regular families.</div>
+    <p class="why prose">Bangladesh Bank allowed the currency to devalue to Tk 123.47 to reflect market realities. This adjustment responds to real effective exchange rate (REER) pressure — the inflation-adjusted value of a currency against its trading partners — as foreign exchange reserves remain under strain from import payments.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#047857">FX</span>
+      <span>hits Bangladesh directly</span>
+      <span>Bangladesh Bank, The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/banking/pressure-mounts-foreign-exchange-market-us-dollar-demand-surges-1506036" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Private sector credit growth plummeted to a 33-year low as businesses halted capital investment.</h3>
+    <div class="plain"><b>In plain English</b>Bangladeshi businesses are taking out fewer bank loans than at any time in three decades because they are afraid to expand.</div>
+    <p class="why prose">Weak private sector credit growth — the rate at which commercial bank lending to private businesses expands — signals a halt in corporate capital expenditure (CapEx). Without borrowing for factories and machinery, future economic growth slows down and job creation stalls.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/private-sector-credit-growth-falls-33-year-low-4240266" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>The NBR missed its annual tax collection target by Tk 88,000 crore for the tenth consecutive year.</h3>
+    <div class="plain"><b>In plain English</b>The government collected far less tax money than planned, leaving a huge hole in the national budget.</div>
+    <p class="why prose">The Tk 88,000 crore shortfall widens the fiscal deficit — the gap where government spending exceeds tax revenue. To cover this gap, the government must borrow heavily from commercial banks, which crowds out private sector borrowers.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/nbr-misses-revenue-target-10th-straight-year-4240256" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Commercial banks lowered deposit returns further below inflation following central bank rate cuts.</h3>
+    <div class="plain"><b>In plain English</b>Banks are paying lower interest on savings accounts, meaning your money loses value faster as prices rise.</div>
+    <p class="why prose">Lower deposit rates push the real rate of return — the nominal interest rate minus inflation — deeper into negative territory. When real returns are negative, bank deposits lose purchasing power, discouraging domestic savings and driving capital into unproductive physical assets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/banking/banks-push-deposit-returns-further-below-inflation-1505961" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Bangladesh signed a landmark CEPA trade deal with South Korea granting tariff preferences on 97% of exports.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh made a deal with South Korea so almost all exports can enter the Korean market without extra taxes.</div>
+    <p class="why prose">This preferential trade agreement — a treaty reducing import tariffs between partner nations — protects Bangladesh&#x27;s export competitiveness as it prepares to lose LDC trade benefits. It gives garment and leather exporters duty-free access to a major Asian market.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, Prothom Alo</span>
+      <a href="https://www.tbsnews.net/economy/dhaka-seoul-sign-cepa-97-bangladeshi-87-s-korean-goods-get-preferential-tariff-access-1506491" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>Brent crude prices fell 5.42% to $79.23 per barrel, easing Bangladesh&#x27;s energy import bill.</h3>
+    <div class="plain"><b>In plain English</b>Global oil prices dropped sharply today, giving Bangladesh a break on its fuel purchase bill.</div>
+    <p class="why prose">Cheaper crude lowers imported inflation — price increases caused by rising foreign input costs. Because Bangladesh imports almost all its petroleum, falling benchmark prices reduce dollar outflows and ease energy subsidy costs for the government treasury.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>hits Bangladesh directly</span>
+      <span>Global Market Data</span>
+      <a href="https://www.thedailystar.net/business/global-economy/news/chinas-ev-export-boom-hits-gasoline-demand-4240221" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Severe gas shortages reduced plastic factory operations to 30% of total plant capacity.</h3>
+    <div class="plain"><b>In plain English</b>Factories making plastic containers and packaging are running at less than one-third speed due to a lack of gas.</div>
+    <p class="why prose">A drop in the capacity utilization rate — the proportion of potential manufacturing output actually produced — raises unit costs for manufacturers. Because plastic products are crucial input packaging for RMG and food industries, this bottleneck slows down broader export supply chains.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/global-economy/news/plastic-factories-run-30-capacity-amid-energy-crisis-4240231" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Bangladesh Bank removed lending limits on five major branches of state-owned Sonali Bank.</h3>
+    <div class="plain"><b>In plain English</b>The central bank allowed Sonali Bank&#x27;s biggest branches to give out larger loans again to encourage corporate business spending.</div>
+    <p class="why prose">Lifting the credit ceiling — a regulatory limit on maximum loan volume a bank unit can issue — frees liquidity for state projects and corporate borrowers. However, doing this at a state bank carrying high non-performing loans carries credit quality risks.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/banking/bb-lifts-credit-ceilings-five-key-sonali-bank-branches-1506881" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>Foreign aid commitments dropped 37% while annual debt servicing reached a record $4.49 billion.</h3>
+    <div class="plain"><b>In plain English</b>Foreign partners promised less new loan money to Bangladesh just as old debt payments hit an all-time high.</div>
+    <p class="why prose">This squeeze lowers debt service coverage — the ratio of foreign currency earnings available to pay back external obligations. Higher debt payments combined with fewer incoming foreign loans drain net foreign exchange reserves and apply continuous pressure on the taka.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/news/bangladeshs-foreign-aid-commitments-fall-37-debt-servicing-rises-11-4240091" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>BGMEA and BTMA partnered to target $100 billion in apparel exports and secure Chinese investment.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh&#x27;s two main garment trade groups joined forces to attract foreign factory money and upgrade production.</div>
+    <p class="why prose">Collaborative technology upgrades strengthen backward linkage — domestic production of raw yarns and fabrics required for finished garment exports. Stronger local supply chains reduce import dependency and preserve foreign currency inside the country.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/industry/bgmea-btma-join-hands-achieve-100bn-apparel-export-target-1506491" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Fiscal Deficit and Central Bank Monetization</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#8</span><span>strong link</span>
+  </div>
+  <div class="chain prose">NBR tax revenue shortfall of Tk 88,000 crore → government forced to borrow from banking system → central bank lifts lending limits on state banks like Sonali Bank → monetary expansion risks eroding real deposit returns.</div>
+  <div class="sowhat prose"><b>So what</b>Government reliance on state bank credit threatens to crowd out private investment and fuel long-term inflation.</div>
+</article>
+<article class="card">
+  <h3>Energy Shortages and Industrial Capacity Bottlenecks</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#6</span><span class="chip" style="--chip:#475569">#7</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Lower global crude prices ($79.23) reduce import bill costs → domestic natural gas supply remains structurally constrained → plastic manufacturers operate at 30% capacity utilization → intermediate input shortages spread to RMG packaging and consumer manufacturing.</div>
+  <div class="sowhat prose"><b>So what</b>Global oil price declines cannot fix domestic gas infrastructure bottlenecks, capping manufacturing output.</div>
+</article>
+<article class="card">
+  <h3>External Financing Squeeze and Currency Depreciation</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#9</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Foreign loan commitments plummet 37% while external debt servicing hits $4.49B → foreign currency net outflows accelerate → Bangladesh Bank forced to adjust exchange rate → USD/BDT depreciates 1.58% to Tk 123.47.</div>
+  <div class="sowhat prose"><b>So what</b>Widening external financing gap forces continuous taka devaluation, raising landed import costs for all domestic industries.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Net interest margin</h4>
+  <p>The gap between what a bank earns lending money and what it pays savers. It is where nearly all bank profit comes from.</p>
+  <p>Commercial banks are cutting deposit rates faster than loan rates to protect their net interest margins after Bangladesh Bank reduced the policy rate.</p><span class="stick">Think of it as a store&#x27;s markup: the wider the gap between buying money and selling money, the more profit the bank keeps.</span>
+</div>
+<div class="term">
+  <h4>Real interest rate</h4>
+  <p>The interest rate you receive on savings after subtracting the inflation rate.</p>
+  <p>Banks pushed deposit returns further below inflation today, making real interest rates even more negative for Bangladeshi savers.</p><span class="stick">If your interest rate is lower than inflation, your bank account is losing purchasing power every month.</span>
+</div>
+<div class="term">
+  <h4>Private sector credit growth</h4>
+  <p>The speed at which businesses are taking out new bank loans to expand operations.</p>
+  <p>This metric hit a 33-year low today, proving that Bangladeshi companies are holding back on building new factories or buying equipment.</p><span class="stick">It is the economy&#x27;s confidence score: high borrowing means expansion, low borrowing means corporate retreat.</span>
+</div>
+<div class="term">
+  <h4>Fiscal deficit</h4>
+  <p>The shortfall when government spending exceeds tax revenues over a year.</p>
+  <p>The NBR missing its collection target by Tk 88,000 crore directly widens Bangladesh&#x27;s fiscal deficit.</p><span class="stick">When the government spends $100 but only collects $80 in taxes, the $20 gap is the fiscal deficit that must be borrowed.</span>
+</div>
+<div class="term">
+  <h4>Capacity utilization rate</h4>
+  <p>The percentage of a factory&#x27;s full production potential that is actually being used.</p>
+  <p>Plastic manufacturers reported running at just 30% capacity due to national gas supply shortages.</p><span class="stick">A low capacity utilization rate means expensive machines sit idle while fixed overhead costs eat up business profit.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Sectors, ranked by money traded</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Sector</th><th class="num">Move</th><th class="num">Share of turnover</th>
+    <th class="num">Up/Down</th><th class="num">Median P/E</th></tr></thead>
+    <tbody>
+<tr><td>Insurance</td>
+<td class="num up">+4.37%</td>
+<td class="num">20.9%</td>
+<td class="num">55/1</td>
+<td class="num">21.86</td></tr>
+<tr><td>Textile</td>
+<td class="num up">+0.04%</td>
+<td class="num">17.6%</td>
+<td class="num">15/31</td>
+<td class="num">24.91</td></tr>
+<tr><td>Engineering</td>
+<td class="num down">-0.52%</td>
+<td class="num">7.4%</td>
+<td class="num">12/25</td>
+<td class="num">35.46</td></tr>
+<tr><td>Mutual Funds</td>
+<td class="num up">+0.36%</td>
+<td class="num">7.2%</td>
+<td class="num">10/15</td>
+<td class="num">21.77</td></tr>
+<tr><td>Pharmaceuticals &amp; Chemicals</td>
+<td class="num down">-0.48%</td>
+<td class="num">6.8%</td>
+<td class="num">11/13</td>
+<td class="num">24.43</td></tr>
+<tr><td>Unclassified</td>
+<td class="num up">+2.60%</td>
+<td class="num">6.5%</td>
+<td class="num">7/12</td>
+<td class="num">—</td></tr>
+<tr><td>Miscellaneous</td>
+<td class="num up">+3.75%</td>
+<td class="num">6.5%</td>
+<td class="num">7/8</td>
+<td class="num">48.73</td></tr>
+<tr><td>Services &amp; Real Estate</td>
+<td class="num up">+1.13%</td>
+<td class="num">5.0%</td>
+<td class="num">4/4</td>
+<td class="num">27.98</td></tr>
+<tr><td>Bank</td>
+<td class="num up">+0.01%</td>
+<td class="num">4.6%</td>
+<td class="num">8/10</td>
+<td class="num">4.68</td></tr>
+<tr><td>Food &amp; Allied</td>
+<td class="num down">-0.25%</td>
+<td class="num">4.1%</td>
+<td class="num">6/14</td>
+<td class="num">42.76</td></tr></tbody>
+  </table></div>
+  <details>
+    <summary>Show blue-chip stocks</summary>
+    <div class="scroll" style="margin-top:12px"><table>
+      <thead><tr><th>Code</th><th>Sector</th><th class="num">Close (Tk)</th>
+      <th class="num">Move</th><th class="num">Turnover (Tk mn)</th></tr></thead>
+      <tbody>
+<tr><td><b>BEXIMCO</b></td>
+<td style="color:var(--faint)">Textile</td>
+<td class="num">23.1</td>
+<td class="num up">+3.59%</td>
+<td class="num">196</td></tr>
+<tr><td><b>BSRMLTD</b></td>
+<td style="color:var(--faint)">Engineering</td>
+<td class="num">101.2</td>
+<td class="num down">-2.03%</td>
+<td class="num">22</td></tr>
+<tr><td><b>SQUARETEXT</b></td>
+<td style="color:var(--faint)">Textile</td>
+<td class="num">50.7</td>
+<td class="num down">-1.17%</td>
+<td class="num">3</td></tr>
+<tr><td><b>IDLC</b></td>
+<td style="color:var(--faint)">Financial Institutions</td>
+<td class="num">45.6</td>
+<td class="num down">-0.87%</td>
+<td class="num">33</td></tr>
+<tr><td><b>NAVANACNG</b></td>
+<td style="color:var(--faint)">Engineering</td>
+<td class="num">23.3</td>
+<td class="num up">+0.87%</td>
+<td class="num">2</td></tr>
+<tr><td><b>IBNSINA</b></td>
+<td style="color:var(--faint)">Pharmaceuticals &amp; Chemicals</td>
+<td class="num">319.9</td>
+<td class="num down">-0.84%</td>
+<td class="num">8</td></tr>
+<tr><td><b>ACI</b></td>
+<td style="color:var(--faint)">Pharmaceuticals &amp; Chemicals</td>
+<td class="num">203.7</td>
+<td class="num down">-0.78%</td>
+<td class="num">6</td></tr>
+<tr><td><b>RENATA</b></td>
+<td style="color:var(--faint)">Pharmaceuticals &amp; Chemicals</td>
+<td class="num">473.2</td>
+<td class="num up">+0.57%</td>
+<td class="num">18</td></tr>
+<tr><td><b>BXPHARMA</b></td>
+<td style="color:var(--faint)">Pharmaceuticals &amp; Chemicals</td>
+<td class="num">145.0</td>
+<td class="num down">-0.55%</td>
+<td class="num">113</td></tr>
+<tr><td><b>GPHISPAT</b></td>
+<td style="color:var(--faint)">Engineering</td>
+<td class="num">19.3</td>
+<td class="num down">-0.52%</td>
+<td class="num">21</td></tr>
+<tr><td><b>ACMELAB</b></td>
+<td style="color:var(--faint)">Pharmaceuticals &amp; Chemicals</td>
+<td class="num">82.9</td>
+<td class="num down">-0.48%</td>
+<td class="num">23</td></tr>
+<tr><td><b>CONFIDCEM</b></td>
+<td style="color:var(--faint)">Cement</td>
+<td class="num">67.9</td>
+<td class="num down">-0.44%</td>
+<td class="num">10</td></tr></tbody>
+    </table></div>
+  </details>
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>USD/BDT</td>
+<td class="num">123.47</td>
+<td class="num up">+1.58%</td>
+<td class="num up">+1.30%</td>
+<td class="num up">+1.40%</td></tr>
+<tr><td>US Dollar Index</td>
+<td class="num">99.88</td>
+<td class="num down">-0.08%</td>
+<td class="num down">-1.48%</td>
+<td class="num down">-0.97%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">95.37</td>
+<td class="num down">-0.04%</td>
+<td class="num down">-0.42%</td>
+<td class="num up">+0.16%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1535</td>
+<td class="num down">-0.07%</td>
+<td class="num up">+1.46%</td>
+<td class="num up">+0.85%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.627</td>
+<td class="num down">-1.26%</td>
+<td class="num up">+0.50%</td>
+<td class="num up">+3.30%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">81.44</td>
+<td class="num up">+0.11%</td>
+<td class="num up">+2.82%</td>
+<td class="num up">+10.13%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">75.64</td>
+<td class="num down">-5.85%</td>
+<td class="num down">-4.57%</td>
+<td class="num up">+10.34%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">79.23</td>
+<td class="num down">-5.42%</td>
+<td class="num down">-5.78%</td>
+<td class="num up">+10.06%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">2.677</td>
+<td class="num down">-3.74%</td>
+<td class="num up">+0.56%</td>
+<td class="num down">-17.50%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">638.0</td>
+<td class="num down">-2.00%</td>
+<td class="num down">-3.70%</td>
+<td class="num up">+5.28%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,177.25</td>
+<td class="num up">+0.73%</td>
+<td class="num down">-2.87%</td>
+<td class="num down">-0.42%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,136.2</td>
+<td class="num up">+2.54%</td>
+<td class="num up">+2.48%</td>
+<td class="num down">-0.45%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,736.52</td>
+<td class="num up">+1.79%</td>
+<td class="num up">+4.14%</td>
+<td class="num up">+2.64%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">26,584.99</td>
+<td class="num up">+2.59%</td>
+<td class="num up">+6.87%</td>
+<td class="num up">+1.78%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">54,085.88</td>
+<td class="num up">+1.71%</td>
+<td class="num up">+2.54%</td>
+<td class="num up">+1.94%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,879.38</td>
+<td class="num up">+0.20%</td>
+<td class="num up">+0.08%</td>
+<td class="num up">+2.14%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">63,754.9</td>
+<td class="num down">-0.94%</td>
+<td class="num down">-1.81%</td>
+<td class="num down">-8.58%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">26,009.4</td>
+<td class="num up">+0.48%</td>
+<td class="num up">+3.18%</td>
+<td class="num up">+10.13%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">78,639.03</td>
+<td class="num up">+0.70%</td>
+<td class="num up">+2.35%</td>
+<td class="num up">+0.45%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">16.42</td>
+<td class="num up">+3.53%</td>
+<td class="num down">-9.83%</td>
+<td class="num up">+5.46%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">68%</div>
+  <div class="body">
+    <b>DSE insurance sector turnover share will fall below 12.0% of total daily market turnover within 5 trading sessions.</b>
+    <p>Insurance grabbed 20.9% of turnover on speculative momentum today, but insurance rallies without fundamental earnings expansion historically reverse within a week.</p>
+    <div class="badge">judged in 5 days · DSE</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>Commercial bank average weighted deposit rates will decline by at least 15 basis points in the next official Bangladesh Bank monthly report.</b>
+    <p>Banks are aggressively cutting deposit returns following the central bank policy rate cut and weak corporate borrowing demand.</p>
+    <div class="badge">judged in 14 days · Banking</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>The official USD/BDT exchange rate will trade above Tk 124.00 within 10 trading sessions.</b>
+    <p>Record $4.49 billion annual debt servicing paired with a 37% drop in foreign loan commitments maintains strong upward pressure on foreign exchange demand.</p>
+    <div class="badge">judged in 10 days · FX</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">100.0%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 5 correct, 0 wrong,
+    0 partial, 16 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Your savings account is losing money every single day.
+
+Banks in Bangladesh are cutting interest rates on savings accounts.
+With inflation running high, keeping cash in a bank account means losing buying power.
+At the same time, factory borrowing hit a 33-year low because businesses are afraid to expand.
+It is a double squeeze on household wealth and national industrial growth.
+
+When deposit returns stay below inflation, holding idle bank cash costs you real wealth.
+
+#BangladeshEconomy #BankingBD #Inflation #PersonalFinance</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 05 Aug 2026, 02:13 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Net interest margin", "plain": "The gap between what a bank earns lending money and what it pays savers. It is where nearly all bank profit comes from."}, {"term": "Real interest rate", "plain": "The interest rate you receive on savings after subtracting the inflation rate."}, {"term": "Private sector credit growth", "plain": "The speed at which businesses are taking out new bank loans to expand operations."}, {"term": "Fiscal deficit", "plain": "The shortfall when government spending exceeds tax revenues over a year."}, {"term": "Capacity utilization rate", "plain": "The percentage of a factory's full production potential that is actually being used."}];
+window.__POST__ = "Your savings account is losing money every single day.\n\nBanks in Bangladesh are cutting interest rates on savings accounts.\nWith inflation running high, keeping cash in a bank account means losing buying power.\nAt the same time, factory borrowing hit a 33-year low because businesses are afraid to expand.\nIt is a double squeeze on household wealth and national industrial growth.\n\nWhen deposit returns stay below inflation, holding idle bank cash costs you real wealth.\n\n#BangladeshEconomy #BankingBD #Inflation #PersonalFinance\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
