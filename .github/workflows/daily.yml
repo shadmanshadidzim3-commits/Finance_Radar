@@ -16,9 +16,13 @@ on:
     # does the work; the rest cost a few seconds each and nothing else.
     - cron: "30 14 * * *"      # 20:30 Dhaka — the one we want
     - cron: "30 15 * * *"      # 21:30 — first safety net
-    - cron: "30 16 * * *"      # 22:30
-    - cron: "30 17 * * *"      # 23:30 — last one still inside the same Dhaka day
-  workflow_dispatch: {}        # lets you run it by hand from the Actions tab
+    - cron: "30 16 * * *"      # 22:30 — last safety net
+  workflow_dispatch:           # lets you run it by hand from the Actions tab
+    inputs:
+      force:
+        description: "Rebuild today's brief even if one already exists"
+        type: boolean
+        default: false
 
 # The job commits the database and briefs back to the repo, which is how the
 # analyst's memory survives from one day to the next.
@@ -59,7 +63,21 @@ jobs:
           FINRADAR_SMTP_USER: ${{ secrets.GMAIL_ADDRESS }}
           FINRADAR_SMTP_PASS: ${{ secrets.GMAIL_APP_PASSWORD }}
           FINRADAR_MAIL_TO: ${{ secrets.GMAIL_ADDRESS }}
-        run: python run_daily.py --engine gemini_api
+        run: |
+          # A brief is meant to summarise a day that has actually happened.
+          # GitHub delays scheduled runs, and a firing that slips past midnight
+          # would otherwise date itself to the new day and report the previous
+          # day's news as if it were today's — which is exactly what happened
+          # at 02:13 on 2026-08-05. If a scheduled run lands before the evening,
+          # stop and leave the day's slot free for the 20:30 firing.
+          HOUR=$(date +%-H)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$HOUR" -lt 19 ]; then
+            echo "It is only ${HOUR}:00 in Dhaka — too early to summarise today."
+            echo "Leaving this day for the evening run."
+            exit 0
+          fi
+          python run_daily.py --engine gemini_api \
+            ${{ inputs.force && '--force' || '' }}
 
       - name: Save the brief and the memory back to the repo
         run: |
