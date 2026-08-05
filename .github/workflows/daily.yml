@@ -14,9 +14,17 @@ on:
     # brief for today already exists, run_daily.py logs that and exits in
     # seconds without calling the model. Whichever firing gets through first
     # does the work; the rest cost a few seconds each and nothing else.
-    - cron: "30 14 * * *"      # 20:30 Dhaka — the one we want
-    - cron: "30 15 * * *"      # 21:30 — first safety net
-    - cron: "30 16 * * *"      # 22:30 — last safety net
+    # GitHub's free scheduler has run this repo about 5.7 hours late, every
+    # time, so asking only for 20:30 reliably produced nothing that evening.
+    # Firing from 17:30 onward means a punctual run still lands after the DSE
+    # has closed and the day's reporting is in, while a delayed one is caught
+    # by the yesterday-sweep below.
+    - cron: "30 11 * * *"      # 17:30 Dhaka
+    - cron: "30 12 * * *"      # 18:30
+    - cron: "30 13 * * *"      # 19:30
+    - cron: "30 14 * * *"      # 20:30 — the time we actually want
+    - cron: "30 15 * * *"      # 21:30
+    - cron: "30 16 * * *"      # 22:30
     # Morning sweeps. These never touch the current day; they exist only to
     # catch up a previous day that every evening firing missed.
     - cron: "30 4  * * *"      # 10:30 Dhaka
@@ -81,7 +89,9 @@ jobs:
           # different question: did yesterday get its brief? If not, it builds
           # THAT. A 20:30 firing dragged to 00:30 therefore still produces the
           # right brief for the right day, just late.
-          if [ "${{ github.event_name }}" = "schedule" ] && [ "$HOUR" -lt 19 ]; then
+          # 17:00 is the earliest a brief is worth writing: the DSE closed at
+          # 14:30 and the Bangladeshi business desks have filed by then.
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$HOUR" -lt 17 ]; then
             if [ -f "data/briefs/${YESTERDAY}.html" ]; then
               echo "Only ${HOUR}:00 in Dhaka, and ${YESTERDAY} is already written."
               echo "Leaving today to the evening run."
