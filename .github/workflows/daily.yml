@@ -17,6 +17,10 @@ on:
     - cron: "30 14 * * *"      # 20:30 Dhaka — the one we want
     - cron: "30 15 * * *"      # 21:30 — first safety net
     - cron: "30 16 * * *"      # 22:30 — last safety net
+    # Morning sweeps. These never touch the current day; they exist only to
+    # catch up a previous day that every evening firing missed.
+    - cron: "30 4  * * *"      # 10:30 Dhaka
+    - cron: "30 7  * * *"      # 13:30 Dhaka
   workflow_dispatch:           # lets you run it by hand from the Actions tab
     inputs:
       force:
@@ -64,18 +68,31 @@ jobs:
           FINRADAR_SMTP_PASS: ${{ secrets.GMAIL_APP_PASSWORD }}
           FINRADAR_MAIL_TO: ${{ secrets.GMAIL_ADDRESS }}
         run: |
-          # A brief is meant to summarise a day that has actually happened.
-          # GitHub delays scheduled runs, and a firing that slips past midnight
-          # would otherwise date itself to the new day and report the previous
-          # day's news as if it were today's — which is exactly what happened
-          # at 02:13 on 2026-08-05. If a scheduled run lands before the evening,
-          # stop and leave the day's slot free for the 20:30 firing.
+          set -euo pipefail
           HOUR=$(date +%-H)
+          YESTERDAY=$(date -d yesterday +%F)
+
+          # A brief summarises a day that has actually happened, so the evening
+          # firing is the one that should write it. But GitHub delays scheduled
+          # runs unpredictably — we have measured six hours — so a firing can
+          # land after midnight, when "today" is a day with no news in it yet.
+          #
+          # Rather than skip (which loses the day outright), an early run asks a
+          # different question: did yesterday get its brief? If not, it builds
+          # THAT. A 20:30 firing dragged to 00:30 therefore still produces the
+          # right brief for the right day, just late.
           if [ "${{ github.event_name }}" = "schedule" ] && [ "$HOUR" -lt 19 ]; then
-            echo "It is only ${HOUR}:00 in Dhaka — too early to summarise today."
-            echo "Leaving this day for the evening run."
-            exit 0
+            if [ -f "data/briefs/${YESTERDAY}.html" ]; then
+              echo "Only ${HOUR}:00 in Dhaka, and ${YESTERDAY} is already written."
+              echo "Leaving today to the evening run."
+              exit 0
+            fi
+            echo "Only ${HOUR}:00 in Dhaka, but ${YESTERDAY} was never written."
+            echo "Catching that day up instead."
+            python run_daily.py --engine gemini_api --date "${YESTERDAY}"
+            exit $?
           fi
+
           python run_daily.py --engine gemini_api \
             ${{ inputs.force && '--force' || '' }}
 
