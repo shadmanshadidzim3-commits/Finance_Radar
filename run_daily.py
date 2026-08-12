@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from radar import analyze, card, collect, dashboard, dse as dse_mod, engine as engine_mod
-from radar import html_render, markets, notify, render
+from radar import fx_bd, html_render, markets, notify, render
 from radar.store import Store
 
 DATA = ROOT / "data"
@@ -88,6 +88,23 @@ def main() -> int:
         mkt = markets.collect()
         log(f"  {len(mkt.get('instruments', []))} instruments"
             if mkt.get("available") else f"  unavailable: {mkt.get('reason')}")
+        for s in mkt.get("stale_instruments", []):
+            log(f"  ⚠ suppressed stale feed: {s}")
+
+    # The taka gets its own cross-checked collector. Yahoo alone was wrong for
+    # six consecutive days in August 2026; the change is measured against our
+    # own last stored reading, never a provider's back series.
+    log("Collecting USD/BDT across providers…")
+    prev = store.last_fx(before=day)
+    fx = fx_bd.collect(prev_rate=prev["rate"] if prev else None,
+                       prev_date=prev["date"] if prev else None)
+    if fx.get("available"):
+        log(f"  Tk {fx['rate']:.2f} from {fx['source_count']} sources, "
+            f"spread {fx['spread_bdt']:.2f}, confidence {fx['confidence']}")
+        if not fx["sources_agree"]:
+            log(f"  ⚠ {fx.get('caveat', 'providers disagree')}")
+    else:
+        log(f"  unavailable: {fx.get('reason')}")
 
     if not news["articles"] and not dse_data.get("available"):
         log("No news and no market data — aborting rather than writing an empty brief.")
@@ -99,7 +116,8 @@ def main() -> int:
     packet = analyze.build_packet(
         store, news, dse_data, mkt, day,
         news_limit=cfg["news"]["send_to_analyst"],
-        lookback_days=cfg["memory"]["lookback_days"])
+        lookback_days=cfg["memory"]["lookback_days"],
+        fx=fx)
     (LOGS / f"packet_{day}.md").write_text(packet, encoding="utf8")
     log(f"  packet is {len(packet):,} characters "
         f"(~{len(packet)//4:,} tokens) → logs/packet_{day}.md")
@@ -126,7 +144,8 @@ def main() -> int:
     log(f"Analysing with {eng.name}… (this usually takes 1-3 minutes)")
     system_prompt = analyze.load_system_prompt(ROOT / "prompts" / "analyst.md")
     try:
-        analysis, raw = analyze.analyse(eng, system_prompt, packet)
+        analysis, raw = analyze.analyse(eng, system_prompt, packet,
+                                        articles=news.get("articles", []))
     except Exception as e:
         (LOGS / f"error_{day}.txt").write_text(
             f"{type(e).__name__}: {e}\n\n{traceback.format_exc()}", encoding="utf8")
@@ -141,10 +160,22 @@ def main() -> int:
         f"{len(analysis.get('predictions', []))} new calls · "
         f"{len(analysis.get('resolutions', []))} resolutions")
 
+    # Every link is checked against what we actually collected. A quiet report
+    # here is the difference between "10 sourced stories" and the August 2026
+    # briefs, where one link in six led to a page that never existed.
+    url_report = analysis.get("url_report") or []
+    if url_report:
+        for r in url_report:
+            log(f"  ⚠ link #{r['rank']} {r['action']} "
+                f"(headline match {r['match']}): {r['was'][:80]}")
+    else:
+        log("  all story links verified against the collected pool")
+
     # -------------------------------------------------------------- persist
     resolved = store.apply_resolutions(analysis.get("resolutions", []), day)
     saved = store.save_predictions(day, analysis.get("predictions", []))
-    market_snapshot = {"dse": dse_data, "global": mkt}
+    store.save_fx(day, fx)
+    market_snapshot = {"dse": dse_data, "global": mkt, "fx_bd": fx}
     store.save_run(day, analysis, market_snapshot, eng.name, raw,
                    news["counts"]["unique"])
     scorecard = store.scorecard()
@@ -156,7 +187,7 @@ def main() -> int:
     post_text = render.social_text(analysis, day)
 
     brief_md = render.brief_markdown(day, analysis, dse_data, mkt, news,
-                                     scorecard, eng.name)
+                                     scorecard, eng.name, fx=fx)
     md_path = DATA / "briefs" / f"{day}.md"
     md_path.parent.mkdir(parents=True, exist_ok=True)
     md_path.write_text(brief_md, encoding="utf8")
@@ -166,7 +197,8 @@ def main() -> int:
     brief_path.write_text(
         html_render.render(day, analysis, dse_data, mkt, news, scorecard,
                            eng.name, social_text=post_text,
-                           brand=cfg["output"].get("brand", "60 SECOND FINANCE")),
+                           brand=cfg["output"].get("brand", "60 SECOND FINANCE"),
+                           fx=fx),
         encoding="utf8")
 
     post_path = DATA / "briefs" / f"{day}_post.txt"

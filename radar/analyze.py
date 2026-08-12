@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 from datetime import date
+from difflib import SequenceMatcher
 from pathlib import Path
 
 from .engine import Engine, extract_json
@@ -75,16 +76,44 @@ def _fmt_markets(mkt: dict) -> str:
 def _fmt_news(articles: list[dict], limit: int) -> str:
     out = ["### Today's news pool",
            f"({len(articles)} unique stories after deduplication; "
-           f"showing the {min(limit, len(articles))} highest-ranked)\n"]
+           f"showing the {min(limit, len(articles))} highest-ranked)",
+           "",
+           "`carried by` is how many independent outlets ran the story — the "
+           "corroboration count. Three or more is well sourced; 1 means a single "
+           "outlet and nobody else has confirmed it yet.",
+           "",
+           "The line beginning `URL:` is the ONLY acceptable link for that story. "
+           "Copy it character for character if you select the story. Never "
+           "reconstruct, shorten, tidy or invent a URL — links are checked after "
+           "you reply and anything you did not copy exactly will be stripped.",
+           ""]
     for i, a in enumerate(articles[:limit], 1):
         scope = {"bd": "BD", "global": "GLOBAL", "macro": "MACRO"}.get(a["scope"], a["scope"])
+        n = a.get("corroboration", 1)
+        outlets = ", ".join(a.get("corroborating_outlets") or [a["source_name"]])
         out.append(f"[{i}] ({scope}) {a['title']}")
-        out.append(f"    source: {a['source_name']} | {a['published'][:16]}")
+        out.append(f"    carried by {n} outlet(s): {outlets} | {a['published'][:16]}")
         if a.get("summary"):
             out.append(f"    {a['summary'][:280]}")
-        out.append(f"    {a['url']}")
+        out.append(f"    URL: {a['url']}")
         out.append("")
     return "\n".join(out)
+
+
+def _fmt_corrections(path: Path) -> str:
+    """Published figures that were later found to be wrong.
+
+    Memory compounds — which is the point of this system, and also its main
+    hazard. The August 2026 taka error sat in seven days of stored scenarios,
+    so every later run read it as established fact and reasoned forward from
+    it. Corrections are injected ahead of memory so a bad number can be
+    retired instead of quietly hardening into a trend.
+    """
+    try:
+        text = Path(path).read_text(encoding="utf8").strip()
+    except Exception:
+        return ""
+    return (text + "\n\n---\n") if text else ""
 
 
 def _fmt_memory(store, today: str, lookback_days: int) -> str:
@@ -142,19 +171,42 @@ def _fmt_memory(store, today: str, lookback_days: int) -> str:
 
 
 def build_packet(store, news: dict, dse: dict, mkt: dict,
-                 today: str, news_limit: int = 70, lookback_days: int = 7) -> str:
+                 today: str, news_limit: int = 70, lookback_days: int = 7,
+                 fx: dict | None = None) -> str:
+    from .fx_bd import format_for_packet as _fmt_fx
+
+    counts = news.get("counts", {})
+    sourcing = ""
+    if counts.get("corroborated_3plus") is not None:
+        sourcing = (
+            "\n### How well sourced is today's pool\n"
+            f"- {counts.get('corroborated_3plus', 0)} stories carried by 3+ "
+            "independent newsrooms (well corroborated)\n"
+            f"- {counts.get('corroborated_2plus', 0)} stories carried by 2+\n"
+            f"- {counts.get('single_source', 0)} stories carried by a single "
+            "outlet (uncorroborated — attribute these explicitly, e.g. "
+            "\"according to The Daily Star\", and do not lead with one unless "
+            "it is genuinely the biggest story of the day)\n")
+
     return "\n\n".join([
         f"# Daily briefing packet — {today}",
+        _fmt_corrections(Path(__file__).resolve().parent.parent
+                         / "data" / "corrections.md"),
         _fmt_memory(store, today, lookback_days),
         _fmt_dse(dse),
+        _fmt_fx(fx) if fx else "",
         _fmt_markets(mkt),
-        _fmt_news(news.get("articles", []), news_limit),
+        _fmt_news(news.get("articles", []), news_limit) + sourcing,
         ("### Your task\n"
          "Produce today's note as a single JSON object exactly matching the schema "
          "in your instructions. Rank the ten stories by financial consequence for "
          "Bangladesh. Draw the connections between them. Judge your open "
          "predictions honestly, make new ones you could lose, and write the "
          "social post for a smart non-expert.\n\n"
+         "Before you output: every number you state must come from this packet, "
+         "and every link must be copied from a `URL:` line above. If a figure is "
+         "marked low-confidence, stale or uncorroborated, either say so in the "
+         "text or leave it out. Do not fill a gap with a plausible value.\n\n"
          "Output the JSON object only."),
     ])
 
@@ -162,7 +214,64 @@ def build_packet(store, news: dict, dse: dict, mkt: dict,
 REQUIRED = ("top_stories", "connections", "scenario", "social_post")
 
 
-def analyse(engine: Engine, system_prompt: str, packet: str) -> tuple[dict, str]:
+def _url_key(u: str) -> str:
+    return (u or "").split("?")[0].rstrip("/").lower()
+
+
+def verify_urls(data: dict, articles: list[dict]) -> list[dict]:
+    """Strip any link the model did not copy from the pool.
+
+    Between 31 July and 11 August 2026, 21 of 120 published links were dead.
+    They were not link rot. The model was reconstructing plausible-looking URLs
+    from memory: a Daily Star article path invented for a story that came from
+    the market snapshot, two different stories sharing one article ID, the same
+    story published twice under different IDs. Nothing checked them, so they
+    shipped.
+
+    A link is now only allowed through if it matches one we actually collected.
+    Anything else is matched back to the pool by headline, and dropped if no
+    match is found. A story with no link is a small loss; a confident link to a
+    page that never existed costs the reader's trust in everything else.
+    """
+    pool = {_url_key(a["url"]): a["url"] for a in articles if a.get("url")}
+    titles = {a["title"].lower(): a["url"] for a in articles if a.get("url")}
+    corroboration = {_url_key(a["url"]): a.get("corroboration", 1)
+                     for a in articles if a.get("url")}
+    report = []
+
+    for story in data.get("top_stories", []):
+        given = (story.get("url") or "").strip()
+        key = _url_key(given)
+
+        if key and key in pool:
+            story["url"] = pool[key]          # exact match — canonical form
+            story["corroboration"] = corroboration.get(key, 1)
+            continue
+
+        # Not from the pool. Try to recover the right link via the headline.
+        headline = (story.get("headline") or "").lower()
+        best, score = None, 0.0
+        for title, url in titles.items():
+            s = SequenceMatcher(None, headline[:120], title[:120]).ratio()
+            if s > score:
+                best, score = url, s
+
+        if best and score >= 0.55:
+            report.append({"rank": story.get("rank"), "action": "recovered",
+                           "was": given, "now": best, "match": round(score, 2)})
+            story["url"] = best
+            story["corroboration"] = corroboration.get(_url_key(best), 1)
+        else:
+            report.append({"rank": story.get("rank"), "action": "dropped",
+                           "was": given, "match": round(score, 2)})
+            story["url"] = ""
+            story["corroboration"] = 0
+
+    return report
+
+
+def analyse(engine: Engine, system_prompt: str, packet: str,
+            articles: list[dict] | None = None) -> tuple[dict, str]:
     """Run the engine and validate the shape of what comes back."""
     raw = engine.run(system_prompt, packet)
     data = extract_json(raw)
@@ -184,6 +293,9 @@ def analyse(engine: Engine, system_prompt: str, packet: str) -> tuple[dict, str]
         story.setdefault("rank", i)
         story.setdefault("tickers", [])
         story.setdefault("sources", [])
+
+    if articles:
+        data["url_report"] = verify_urls(data, articles)
     return data, raw
 
 

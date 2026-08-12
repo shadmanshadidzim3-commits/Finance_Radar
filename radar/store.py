@@ -62,6 +62,17 @@ CREATE TABLE IF NOT EXISTS predictions (
     lesson        TEXT
 );
 
+-- Our own taka series. Daily change is measured against these rows, never
+-- against a provider's history endpoint: in August 2026 those silently
+-- realigned by up to 2 taka and manufactured moves that never happened.
+CREATE TABLE IF NOT EXISTS fx_history (
+    as_of       TEXT PRIMARY KEY,      -- the run date this reading belongs to
+    rate        REAL NOT NULL,         -- median across providers, USD/BDT
+    quotes      TEXT,                  -- JSON: what each provider said
+    spread_bdt  REAL,
+    confidence  TEXT                   -- high|low
+);
+
 CREATE INDEX IF NOT EXISTS idx_pred_status ON predictions(status);
 CREATE INDEX IF NOT EXISTS idx_headlines_date ON headlines(run_date);
 """
@@ -122,6 +133,33 @@ class Store:
                 story.get("url", ""),
             ))
         self.db.commit()
+
+    def save_fx(self, as_of: str, fx: dict) -> None:
+        """Record today's cross-checked taka reading as our own series."""
+        if not fx.get("available"):
+            return
+        self.db.execute("""
+            INSERT INTO fx_history (as_of, rate, quotes, spread_bdt, confidence)
+            VALUES (?,?,?,?,?)
+            ON CONFLICT(as_of) DO UPDATE SET
+                rate=excluded.rate, quotes=excluded.quotes,
+                spread_bdt=excluded.spread_bdt, confidence=excluded.confidence
+        """, (as_of, fx["rate"],
+              json.dumps(fx.get("quotes", {}), default=str),
+              fx.get("spread_bdt"), fx.get("confidence")))
+        self.db.commit()
+
+    def last_fx(self, before: str) -> dict | None:
+        """The most recent taka reading we ourselves published before `before`.
+
+        Only corroborated readings are eligible as a baseline. Measuring today
+        against a low-confidence number would let one bad day poison the next.
+        """
+        row = self.db.execute(
+            "SELECT as_of, rate FROM fx_history "
+            "WHERE as_of < ? AND confidence='high' ORDER BY as_of DESC LIMIT 1",
+            (before,)).fetchone()
+        return {"date": row["as_of"], "rate": row["rate"]} if row else None
 
     def save_predictions(self, run_date: str, predictions: list[dict]) -> int:
         # Re-running a day (--force) replaces that day's brief, so the calls

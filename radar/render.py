@@ -10,7 +10,8 @@ def _pct(v):
 
 
 def brief_markdown(day: str, analysis: dict, dse: dict, mkt: dict,
-                   news: dict, scorecard: dict, engine_name: str) -> str:
+                   news: dict, scorecard: dict, engine_name: str,
+                   fx: dict | None = None) -> str:
     L: list[str] = []
     add = L.append
 
@@ -156,6 +157,27 @@ def brief_markdown(day: str, analysis: dict, dse: dict, mkt: dict,
         add(f"> DSE data was unavailable: {dse.get('reason', 'unknown')}")
         add("")
 
+    if fx and fx.get("available"):
+        add("### USD/BDT — the taka")
+        add("")
+        chg = (f"{_pct(fx['change_pct'])} {fx.get('change_label', '')}"
+               if fx.get("change_pct") is not None else fx.get("change_label", ""))
+        add(f"**Tk {fx['rate']:.2f}** per USD · {chg}")
+        add("")
+        add(f"*{'Verified across' if fx.get('sources_agree') else 'LOW CONFIDENCE —'} "
+            f"{fx['source_count']} source(s), spread {fx['spread_bdt']:.2f} taka: "
+            + ", ".join(f"{k} {v:.2f}" for k, v in sorted(fx["quotes"].items())) + "*")
+        if fx.get("caveat"):
+            add("")
+            add(f"> ⚠ {fx['caveat']}")
+        add("")
+    elif fx:
+        add("### USD/BDT — the taka")
+        add("")
+        add(f"> Unavailable today ({fx.get('reason', 'unknown')}). "
+            "No rate is shown rather than an unverified one.")
+        add("")
+
     if mkt.get("available"):
         add("### Global movers")
         add("")
@@ -165,6 +187,10 @@ def brief_markdown(day: str, analysis: dict, dse: dict, mkt: dict,
             add(f"| {r['name']} | {r['last']:,} | {_pct(r['change_pct_1d'])} | "
                 f"{_pct(r['change_pct_1w'])} | {_pct(r['change_pct_1m'])} |")
         add("")
+        if mkt.get("stale_instruments"):
+            add(f"*Suppressed as stale: {', '.join(mkt['stale_instruments'])}. "
+                "A frozen feed is reported as no data, never as a move.*")
+            add("")
 
     # ----------------------------------------------------------- predictions
     res = analysis.get("resolutions") or []

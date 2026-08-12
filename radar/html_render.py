@@ -455,11 +455,51 @@ def _dse_tables(dse: dict) -> str:
 </div>"""
 
 
+def _fx_card(fx: dict) -> str:
+    """The taka, shown with its own provenance.
+
+    It is the single most consequential number in the brief, so it carries how
+    many providers were asked, how far apart they were, and what it is being
+    compared against — not just a level and a percentage.
+    """
+    if not fx or not fx.get("available"):
+        reason = (fx or {}).get("reason", "not collected")
+        return f"""
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <p class="muted">Unavailable today ({_e(reason)}). No rate is shown rather
+  than an unverified one.</p>
+</div>"""
+
+    chg = fx.get("change_pct")
+    chg_html = (f'<span class="{_cls(chg)}">{_pct(chg)}</span> '
+                f'<span class="muted">{_e(fx.get("change_label", ""))}</span>'
+                if chg is not None
+                else f'<span class="muted">{_e(fx.get("change_label", ""))}</span>')
+    quotes = ", ".join(f"{_e(k)} {v:.2f}" for k, v in sorted(fx.get("quotes", {}).items()))
+    warn = ""
+    if fx.get("caveat"):
+        warn = (f'<p class="muted" style="margin-top:10px">⚠ {_e(fx["caveat"])}</p>')
+    badge = ("verified across "
+             f"{fx['source_count']} sources · spread {fx['spread_bdt']:.2f} taka"
+             if fx.get("sources_agree") else
+             f"LOW CONFIDENCE · {fx['source_count']} source(s) · "
+             f"spread {fx['spread_bdt']:.2f} taka")
+    return f"""
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk {fx['rate']:.2f}</div>
+  <div style="margin-top:6px">{chg_html}</div>
+  <p class="muted" style="margin-top:10px">{_e(badge)}<br>{quotes}</p>
+  {warn}
+</div>"""
+
+
 def _global_table(mkt: dict) -> str:
     if not mkt.get("available"):
         return ""
     rows = "".join(f"""
-<tr><td>{_e(r['name'])}</td>
+<tr><td>{_e(r['name'])}{'  <span class="muted">(stale — suppressed)</span>' if r.get('stale') else ''}</td>
 <td class="num">{r['last']:,}</td>
 <td class="num {_cls(r['change_pct_1d'])}">{_pct(r['change_pct_1d'])}</td>
 <td class="num {_cls(r['change_pct_1w'])}">{_pct(r['change_pct_1w'])}</td>
@@ -516,7 +556,8 @@ def _predictions(analysis: dict, scorecard: dict) -> str:
 
 def render(day: str, analysis: dict, dse: dict, mkt: dict,
            news: dict, scorecard: dict, engine_name: str,
-           social_text: str = "", brand: str = "60 SECOND FINANCE") -> str:
+           social_text: str = "", brand: str = "60 SECOND FINANCE",
+           fx: dict | None = None) -> str:
     sp = analysis.get("social_post", {}) or {}
     stories = analysis.get("top_stories", []) or []
 
@@ -595,6 +636,7 @@ def render(day: str, analysis: dict, dse: dict, mkt: dict,
 <section>
   <h2>The numbers</h2>
   {_dse_tables(dse)}
+  {_fx_card(fx)}
   {_global_table(mkt)}
 </section>
 

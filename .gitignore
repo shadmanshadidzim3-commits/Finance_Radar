@@ -13,3 +13,7 @@ logs/packet_*.md
 logs/raw_*.txt
 logs/probe.txt
 data/seed/
+
+# Local DB snapshots taken before a destructive correction. Kept on disk for
+# rollback, never pushed — the cloud runner's copy is the source of truth.
+data/radar.db.backup-*

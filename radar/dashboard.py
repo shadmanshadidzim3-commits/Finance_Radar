@@ -67,6 +67,7 @@ def build_payload(store, brief_dir: Path) -> dict:
             snapshot = {}
         dse = snapshot.get("dse") or {}
         glob = snapshot.get("global") or {}
+        fx = snapshot.get("fx_bd") or {}
         stories = json.loads(r["top_stories"] or "[]")
         connections = json.loads(r["connections"] or "[]")
         social = json.loads(r["social_post"] or "{}")
@@ -110,9 +111,18 @@ def build_payload(store, brief_dir: Path) -> dict:
             } if dse.get("available") else None,
             "globals": [
                 {"name": g["name"], "d1": g.get("change_pct_1d"),
-                 "last": g.get("last"), "group": g.get("group", "")}
+                 "last": g.get("last"), "group": g.get("group", ""),
+                 "stale": g.get("stale", False)}
                 for g in (glob.get("instruments") or [])
             ],
+            # The taka moved out of the Yahoo instrument list into its own
+            # cross-checked collector, so it is carried separately here.
+            # Older rows predate fx_bd and simply have no entry.
+            "fx": ({"rate": fx.get("rate"), "d1": fx.get("change_pct"),
+                    "confidence": fx.get("confidence"),
+                    "sources": fx.get("source_count"),
+                    "spread": fx.get("spread_bdt")}
+                   if isinstance(fx, dict) and fx.get("available") else None),
         }
         days.append(day)
 
