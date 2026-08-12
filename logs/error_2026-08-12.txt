@@ -1,0 +1,21 @@
+TimeoutExpired: Command '['C:\\Users\\User\\AppData\\Roaming\\npm\\claude.CMD', '-p', '--output-format', 'text', '--model', 'claude-sonnet-5', '--system-prompt-file', 'C:\\Users\\User\\AppData\\Local\\Temp\\tmp3n34f7l_.md']' timed out after 900 seconds
+
+Traceback (most recent call last):
+  File "D:\Projects\FinanceRadar\run_daily.py", line 147, in main
+    analysis, raw = analyze.analyse(eng, system_prompt, packet,
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\FinanceRadar\radar\analyze.py", line 276, in analyse
+    raw = engine.run(system_prompt, packet)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\FinanceRadar\radar\engine.py", line 84, in run
+    proc = subprocess.run(cmd, input=user, capture_output=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\User\AppData\Local\Programs\Python\Python312\Lib\subprocess.py", line 1628, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['C:\\Users\\User\\AppData\\Roaming\\npm\\claude.CMD', '-p', '--output-format', 'text', '--model', 'claude-sonnet-5', '--system-prompt-file', 'C:\\Users\\User\\AppData\\Local\\Temp\\tmp3n34f7l_.md']' timed out after 900 seconds

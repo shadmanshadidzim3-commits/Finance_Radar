@@ -204,7 +204,13 @@ class GeminiAPIEngine(Engine):
             "contents": [{"role": "user", "parts": [{"text": user}]}],
             "generationConfig": {
                 "temperature": 0.4,
-                "maxOutputTokens": 16000,
+                # A full note — 10 stories with plain_english and why_it_matters,
+                # connections, market_read, scenario, jargon, teaching note,
+                # resolutions and new predictions — lands near 12-15k tokens.
+                # 16000 left almost no headroom: on 2026-08-12 the response was
+                # cut off mid-sentence and surfaced as "could not parse JSON",
+                # which looks like a model fault rather than a budget one.
+                "maxOutputTokens": 32000,
                 # The analyst prompt demands JSON; asking for it at the API
                 # level stops the model wrapping the object in prose.
                 "responseMimeType": "application/json",
@@ -240,10 +246,25 @@ class GeminiAPIEngine(Engine):
 
         data = r.json()
         try:
-            parts = data["candidates"][0]["content"]["parts"]
+            cand = data["candidates"][0]
+            parts = cand["content"]["parts"]
         except (KeyError, IndexError) as e:
             fb = data.get("promptFeedback") or data
             raise EngineError(f"Gemini returned no candidates: {str(fb)[:300]}") from e
+
+        # Say what actually went wrong. A truncated response produces valid
+        # JSON that simply stops, so the parser reports malformed JSON and the
+        # real cause — the output budget — stays hidden.
+        reason = cand.get("finishReason")
+        if reason and reason not in ("STOP", "FINISH_REASON_STOP"):
+            usage = data.get("usageMetadata", {})
+            raise EngineError(
+                f"Gemini stopped early: finishReason={reason}. "
+                f"Output used {usage.get('candidatesTokenCount', '?')} of "
+                f"{body['generationConfig']['maxOutputTokens']} allowed tokens. "
+                "If this is MAX_TOKENS the note was cut off mid-write — raise "
+                "maxOutputTokens in GeminiAPIEngine rather than retrying.")
+
         return "".join(p.get("text", "") for p in parts)
 
 
