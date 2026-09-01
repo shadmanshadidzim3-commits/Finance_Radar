@@ -1,0 +1,808 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-08-31</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Monday, 31 August 2026</h1>
+  <div class="meta">203 stories from 29 sources ·
+    91 Bangladesh · 112 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Government borrowing from banks just blew past targets by Tk 47,500 crore.</p>
+  <ol class="flash"><li>Middle East military clashes pushed global oil prices higher, threatening to raise fuel import costs for Bangladesh.</li><li>The government borrowed far more money from local banks than planned because tax collections missed targets.</li><li>Lower US tariffs on Bangladeshi clothes give local factories a small cost advantage against major Asian rivals.</li><li>A $1.0 billion foreign loan will fund an oil refinery expansion to cut refined fuel imports.</li><li>Small companies will no longer pay income tax on sales if they do not make actual profits.</li></ol>
+  <div class="stats"><div class="stat"><b>DSE</b><span class="up">+2.02%</span> · Tk 98 cr</div><div class="stat"><b>Breadth</b>344 up / 17 down</div><div class="stat"><b>VIX (volatility)</b><span class="up">+2.83%</span></div><div class="stat"><b>Cotton</b><span class="up">+1.98%</span></div><div class="stat"><b>Wheat</b><span class="up">+1.85%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by severe equity turnover exhaustion colliding with renewed external energy price pressure. The dominant force was the geopolitical spike in global crude oil above $91 per barrel, which immediately complicates domestic fiscal and monetary balances. While local stock prices staged a technical bounce with 344 advancers, total DSE turnover withered to just Tk 98.2 crore, revealing an absence of genuine institutional buying conviction.</p><p>What changed versus recent sessions is the mounting evidence of structural fiscal distress. Government bank borrowing overshot its FY26 target by Tk 47,500 crore to reach Tk 165,538 crore, validating earlier central bank warnings that sovereign expenditure is vastly outrunning revenue mobilization. In the foreign exchange market, cross-checked USD/BDT closed at an approximate median of Tk 123.13 with a wide 0.72 taka provider spread, confirming nominal exchange rate stability but reflecting low data feed reliability that demands continued cautious pricing.</p><p>What to watch next is whether the Bangladesh Petroleum Corporation seeks another emergency sovereign liquidity injection as imported crude stays elevated against frozen domestic retail pump prices. The single number to watch is global NYBot cotton futures: if prices sustain above 90.00 cents per pound, spinning mill working capital demand will squeeze textile operating margins across the fourth quarter.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Fiscal Crowding Out</h3>
+    <div class="prose"><p>When a government runs a large budget deficit — spending more than it collects in taxes — it must borrow money to bridge the gap. In Bangladesh, where foreign loans are constrained, the state borrows directly from domestic commercial banks by selling Treasury bills and bonds. Because banks have a finite pool of customer deposits, every taka lent to the government is a taka unavailable to lend to private factories, real estate, or small businesses.</p><p>This is called &#x27;crowding out.&#x27; Because lending to the sovereign is risk-free for banks, commercial lenders prefer holding government paper over making riskier commercial loans. As a result, private companies face higher interest rates and credit shortages, curbing private sector investment and employment.</p></div>
+    <div class="quiz"><b>Test yourself</b>Why might a surge in government Treasury bond issuance cause loan interest rates for local manufacturers to rise?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Crude oil jumped above $91 per barrel following US-Iran clashes around the Strait of Hormuz.</h3>
+    <div class="plain"><b>In plain English</b>Middle East military clashes pushed global oil prices higher, threatening to raise fuel import costs for Bangladesh.</div>
+    <p class="why prose">Higher oil prices directly inflate Bangladesh&#x27;s import bill, draining foreign exchange reserves — the central bank&#x27;s stock of foreign currency used to settle international trade. This widens the current account deficit, which measures the gap between foreign currency inflows and outflows from trade and transfers. It also forces the government to choose between widening the fiscal deficit or passing price hikes to consumers.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, Fibre2Fashion, The Wall Street Journal</span>
+      <a href="https://www.thedailystar.net/business/global-economy/news/oil-rises-over-3-9125-4261511" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Government net bank borrowing reached Tk 165,538 crore in FY26, overshooting its target by Tk 47,500 crore.</h3>
+    <div class="plain"><b>In plain English</b>The government borrowed far more money from local banks than planned because tax collections missed targets.</div>
+    <p class="why prose">Excessive sovereign borrowing causes bank disintermediation and credit crowding-out — where public debt absorbs loanable bank funds, leaving less credit for private businesses. It forces Bangladesh Bank to manage liquidity strain across commercial lenders through repo facilities, the short-term central bank lending window that provides cash against government securities.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/govts-bank-borrowing-exceeds-fy26-target-over-tk-47500cr-4261546" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Bangladesh secures a slight effective tariff advantage over China and Vietnam in US apparel exports.</h3>
+    <div class="plain"><b>In plain English</b>Lower US tariffs on Bangladeshi clothes give local factories a small cost advantage against major Asian rivals.</div>
+    <p class="why prose">Garment manufacturing generates over 80% of Bangladesh&#x27;s export earnings. An effective tariff margin against competing exporters protects volume demand in the United States, supporting the trade balance — the net difference between export receipts and import payments. However, rising cotton input costs could quickly erode this nominal tariff edge.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/bangladesh-get-slight-tariff-edge-over-china-vietnam-us-4261556" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>The government will sign a $1.0 billion IsDB loan agreement on September 3 for the Eastern Refinery unit 2 expansion.</h3>
+    <div class="plain"><b>In plain English</b>A $1.0 billion foreign loan will fund an oil refinery expansion to cut refined fuel imports.</div>
+    <p class="why prose">Domestic crude refining capacity substitutes expensive refined fuel imports with cheaper unrefined crude. This long-term capital expenditure project will ease future balance of payments pressure. Concessional external financing from multilateral lenders also supplies foreign exchange without depleting domestic banking liquidity.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Financial Express</span>
+      <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxPZmhuVWdOVUJGakRNdzAzMHNKRkFtQ3J2YjVIOUhFeWhud3p4cjBIb0pCanlpWkNDbGZXYVU3UURtVDdNLUtaUV9Femtvb3E4d2IxZ0NncGFsYUlkUUJpaDZRMGV4VUNuOW54SWd0LWl0eks0QWlBSVVuRlg1dkRlUDVrVlRSMjlnTWNZREF5cGtVX1NxeWRndlI1UjdKUWdfVlE?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>The NBR exempted firms with annual turnover up to Tk 2 crore from the minimum turnover tax.</h3>
+    <div class="plain"><b>In plain English</b>Small companies will no longer pay income tax on sales if they do not make actual profits.</div>
+    <p class="why prose">Minimum turnover tax is an advance levy calculated as a percentage of gross sales regardless of net profit. Eliminating it for small enterprises relieves operating cash flow stress. However, it slightly narrows the National Board of Revenue&#x27;s direct tax base during a period of acute fiscal deficit pressure.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Business Standard</span>
+      <a href="https://www.thedailystar.net/business/tax-and-customs/news/tax-relief-firms-turnover-tk-2cr-4261476" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>The government kept domestic retail fuel prices unchanged for September, marking four consecutive months of fixed rates.</h3>
+    <div class="plain"><b>In plain English</b>The government decided not to raise domestic petrol and diesel prices despite higher global crude costs.</div>
+    <p class="why prose">Holding domestic retail fuel prices steady shields transport and industrial consumers from immediate imported inflation. However, with Brent crude hovering near $89, freezing pump prices increases the operating losses of state-owned Bangladesh Petroleum Corporation. This creates an unbudgeted energy subsidy liability for the treasury.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>Bangladesh Post, The Business Standard, Bonik Barta</span>
+      <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQNkVkSlRnSUZvWDVJMmtJLXlHRkhqeTE1bkxKZjdKMV94X2ROSW5JU002OUVZdENHMDM5N3FzMjZveXhnLTJIZUI5MDloNk9ZZFd1ZVFfcWdqZl9GWVg0WWpCR1c1X1ZTUmhLcmxjQS1tNVVYQXBoQ29DNXVma2M5UVNjSVQ0czRzaVA4Rw?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Sammilito Islami Bank will resume operations on September 1 and start depositor refunds on September 7.</h3>
+    <div class="plain"><b>In plain English</b>A restructured Islamic bank will allow customers to withdraw their locked savings starting next week.</div>
+    <p class="why prose">Restoring depositor withdrawals tests the liquidity adequacy of distressed lenders undergoing central bank restructuring. Allowing withdrawals prevents bank run contagion across the Islamic banking segment. However, full early deposit liquidations will forfeit accrued profit shares under central bank directives.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Financial Express, The Business Standard, Prothom Alo</span>
+      <a href="https://www.thedailystar.net/business/organisation-news/news/sammilito-banks-depositors-can-withdraw-money-sept-7-4261516" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>BSEC announced plans to mandate stock market listing for public interest companies and introduce a direct listing framework.</h3>
+    <div class="plain"><b>In plain English</b>The market regulator wants large private and state firms to list shares directly on the stock exchange.</div>
+    <p class="why prose">The Dhaka Stock Exchange suffers from shallow market capitalisation — the aggregate market value of all listed shares. Direct listings bypass traditional initial public offering syndication to bring large profitable corporations to the exchange quickly. This aims to dilute the dominance of speculative low-float stocks.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Financial Express</span>
+      <a href="https://www.thedailystar.net/business/economy/news/bsec-make-listing-mandatory-public-interest-firms-4261541" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>The interim government approved the National Pay Scale 2026 to revise public sector compensation.</h3>
+    <div class="plain"><b>In plain English</b>The government approved a new salary structure for state employees to offset inflation.</div>
+    <p class="why prose">Public sector wage revisions increase the sovereign current expenditure budget, expanding fixed government payroll costs. This structural expenditure expansion will increase the fiscal deficit unless matched by higher tax revenue mobilization. It also injects consumer purchasing power that can sustain headline inflation.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, Prothom Alo</span>
+      <a href="https://news.google.com/rss/articles/CBMimwFBVV95cUxPaTlwRjJoTU5WUE5hTWNyeHdEeWpHWVR2dWNQTklYanNSUjZLY3dpU1kxTlRmRzJEdlBrZlQ1VUoxdktxTGlmMU12VlhlYjBFMnZSYWxMUWF4d2NpdFdYc2d0OXMwOV9RUjVZMXN1azYxRE13NmVrSkJ4MHRhcG9iRGlneEQ1WjdVc2NfelRkdlJtbGEyUU53b1ktRQ?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>US 10-year Treasury yields rose to 4.758% as Middle East oil risks triggered global rate hike expectations.</h3>
+    <div class="plain"><b>In plain English</b>US bond interest rates climbed, making global dollar borrowing more expensive for emerging markets.</div>
+    <p class="why prose">The 10-year US Treasury yield serves as the global risk-free discount rate. When it climbs, global portfolio capital retreats from emerging markets to dollar assets, putting depreciation pressure on frontier currencies like the taka. It also increases external debt servicing costs for dollar-denominated sovereign and corporate loans.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>The Wall Street Journal</span>
+      <a href="https://www.wsj.com/finance/investing/asia-u-s-bond-yields-rise-as-oil-prices-stoke-inflation-fears-e56e99d7?mod=rss_markets_main" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Energy Shock to Fiscal Deficit Transmission</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#6</span><span class="chip" style="--chip:#475569">#2</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Hormuz geopolitical conflict pushes crude above $91/bbl → Bangladesh freezes domestic fuel prices for September → BPC import losses expand → Sovereign budget absorbs unbudgeted energy subsidies → Government bank borrowing exceeds targets by Tk 47,500cr.</div>
+  <div class="sowhat prose"><b>So what</b>State energy subsidies are directly driving excessive bank borrowing, reducing loanable liquidity available for the private corporate sector.</div>
+</article>
+<article class="card">
+  <h3>US Apparel Competitiveness vs Input Inflation</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#10</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">US tariffs grant slight relative edge over China and Vietnam → NYBot cotton rallies to 91.7 c/lb (+12.7% in a month) while US yields rise → RMG working capital import financing costs escalate → Net manufacturing profit margins compress despite tariff advantage.</div>
+  <div class="sowhat prose"><b>So what</b>Apparel makers gain an export price advantage in the US, but rising fiber and dollar debt costs threaten to erase the margin gain.</div>
+</article>
+<article class="card">
+  <h3>Public Sector Wage Hike and Sovereign Debt Spiral</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#9</span><span class="chip" style="--chip:#475569">#2</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">National Pay Scale 2026 approved → Government payroll expenditure expands structurally → Tax revenues fail to keep pace due to turnover tax relief → Treasury issues more debt to commercial banks → Net government bank borrowing escalates further above target.</div>
+  <div class="sowhat prose"><b>So what</b>Fiscal expansion through civil service wage increases will maintain upward pressure on domestic treasury yields and bank lending spreads.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Current account deficit</h4>
+  <p>The gap when a country spends more foreign currency on imports and overseas services than it earns from exports and remittances.</p>
+  <p>Spiking oil prices and rising cotton costs widen Bangladesh&#x27;s import bill, deepening balance of payments stress.</p><span class="stick">Think of it as a national overdraft: spending more abroad than you bring in from outside.</span>
+</div>
+<div class="term">
+  <h4>Crowding-out effect</h4>
+  <p>When heavy government borrowing from commercial banks uses up available credit, leaving little money for private businesses to borrow.</p>
+  <p>The government borrowed Tk 165,538 crore from domestic banks, Tk 47,500 crore above plan, constraining private loan growth.</p><span class="stick">When the government takes the biggest seat at the bank counter, private borrowers get pushed out the door.</span>
+</div>
+<div class="term">
+  <h4>Turnover tax</h4>
+  <p>A mandatory tax charged directly on a company&#x27;s total gross sales, regardless of whether the business generated a profit or suffered a loss.</p>
+  <p>The NBR exempted firms with turnover under Tk 2 crore from this levy to support small business cash flows.</p><span class="stick">A tax on top-line revenue that bites even when you are losing money.</span>
+</div>
+<div class="term">
+  <h4>Direct listing</h4>
+  <p>A process where an established company lists its existing shares on the stock exchange without issuing new shares or hiring underwriters.</p>
+  <p>BSEC is preparing direct listing rules to force large public interest companies onto the Dhaka bourse quickly.</p><span class="stick">Opening the front door to the stock market without running an expensive IPO sales roadshow.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Sectors, ranked by money traded</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Sector</th><th class="num">Move</th><th class="num">Share of turnover</th>
+    <th class="num">Up/Down</th><th class="num">Median P/E</th></tr></thead>
+    <tbody>
+<tr><td>Textile</td>
+<td class="num up">+1.51%</td>
+<td class="num">28.8%</td>
+<td class="num">49/3</td>
+<td class="num">24.82</td></tr>
+<tr><td>Pharmaceuticals &amp; Chemicals</td>
+<td class="num up">+2.91%</td>
+<td class="num">12.2%</td>
+<td class="num">25/0</td>
+<td class="num">23.07</td></tr>
+<tr><td>Insurance</td>
+<td class="num up">+2.23%</td>
+<td class="num">10.3%</td>
+<td class="num">54/4</td>
+<td class="num">21.0</td></tr>
+<tr><td>Unclassified</td>
+<td class="num up">+3.52%</td>
+<td class="num">10.0%</td>
+<td class="num">23/0</td>
+<td class="num">—</td></tr>
+<tr><td>Bank</td>
+<td class="num up">+0.69%</td>
+<td class="num">5.7%</td>
+<td class="num">22/2</td>
+<td class="num">4.54</td></tr>
+<tr><td>Engineering</td>
+<td class="num up">+1.30%</td>
+<td class="num">5.4%</td>
+<td class="num">34/2</td>
+<td class="num">33.06</td></tr>
+<tr><td>Food &amp; Allied</td>
+<td class="num up">+2.07%</td>
+<td class="num">4.9%</td>
+<td class="num">18/3</td>
+<td class="num">41.3</td></tr>
+<tr><td>Mutual Funds</td>
+<td class="num up">+3.60%</td>
+<td class="num">4.8%</td>
+<td class="num">27/0</td>
+<td class="num">6.09</td></tr>
+<tr><td>Financial Institutions</td>
+<td class="num up">+2.26%</td>
+<td class="num">3.9%</td>
+<td class="num">17/1</td>
+<td class="num">12.17</td></tr>
+<tr><td>Services &amp; Real Estate</td>
+<td class="num up">+1.43%</td>
+<td class="num">3.0%</td>
+<td class="num">8/0</td>
+<td class="num">27.0</td></tr></tbody>
+  </table></div>
+  <details>
+    <summary>Show blue-chip stocks</summary>
+    <div class="scroll" style="margin-top:12px"><table>
+      <thead><tr><th>Code</th><th>Sector</th><th class="num">Close (Tk)</th>
+      <th class="num">Move</th><th class="num">Turnover (Tk mn)</th></tr></thead>
+      <tbody>
+<tr><td><b>BEXIMCO</b></td>
+<td style="color:var(--faint)">Textile</td>
+<td class="num">0.0</td>
+<td class="num up">+3.08%</td>
+<td class="num">23</td></tr>
+<tr><td><b>HEIDELBCEM</b></td>
+<td style="color:var(--faint)">Cement</td>
+<td class="num">0.0</td>
+<td class="num up">+2.43%</td>
+<td class="num">0</td></tr>
+<tr><td><b>GPHISPAT</b></td>
+<td style="color:var(--faint)">Engineering</td>
+<td class="num">0.0</td>
+<td class="num up">+2.31%</td>
+<td class="num">2</td></tr>
+<tr><td><b>UNILEVERCL</b></td>
+<td style="color:var(--faint)">Food &amp; Allied</td>
+<td class="num">0.0</td>
+<td class="num up">+1.68%</td>
+<td class="num">0</td></tr>
+<tr><td><b>TITASGAS</b></td>
+<td style="color:var(--faint)">Fuel &amp; Power</td>
+<td class="num">0.0</td>
+<td class="num up">+1.67%</td>
+<td class="num">1</td></tr>
+<tr><td><b>MJLBD</b></td>
+<td style="color:var(--faint)">Fuel &amp; Power</td>
+<td class="num">0.0</td>
+<td class="num up">+1.44%</td>
+<td class="num">0</td></tr>
+<tr><td><b>CONFIDCEM</b></td>
+<td style="color:var(--faint)">Cement</td>
+<td class="num">0.0</td>
+<td class="num up">+1.42%</td>
+<td class="num">1</td></tr>
+<tr><td><b>POWERGRID</b></td>
+<td style="color:var(--faint)">Fuel &amp; Power</td>
+<td class="num">0.0</td>
+<td class="num up">+1.32%</td>
+<td class="num">1</td></tr>
+<tr><td><b>BXPHARMA</b></td>
+<td style="color:var(--faint)">Pharmaceuticals &amp; Chemicals</td>
+<td class="num">0.0</td>
+<td class="num up">+1.31%</td>
+<td class="num">38</td></tr>
+<tr><td><b>DESCO</b></td>
+<td style="color:var(--faint)">Fuel &amp; Power</td>
+<td class="num">0.0</td>
+<td class="num up">+1.30%</td>
+<td class="num">0</td></tr>
+<tr><td><b>SUMITPOWER</b></td>
+<td style="color:var(--faint)">Fuel &amp; Power</td>
+<td class="num">0.0</td>
+<td class="num up">+1.28%</td>
+<td class="num">2</td></tr>
+<tr><td><b>IDLC</b></td>
+<td style="color:var(--faint)">Financial Institutions</td>
+<td class="num">0.0</td>
+<td class="num up">+1.15%</td>
+<td class="num">2</td></tr></tbody>
+    </table></div>
+  </details>
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 123.13</div>
+  <div style="margin-top:6px"><span class="up">+0.87%</span> <span class="muted">since 2026-08-19</span></div>
+  <p class="muted" style="margin-top:10px">LOW CONFIDENCE · 5 source(s) · spread 0.72 taka<br>currency-api 122.82, er-api 123.13, floatrates 122.99, fxratesapi 123.54, yahoo-live 123.54</p>
+  <p class="muted" style="margin-top:10px">⚠ Providers disagree by 0.72 taka (currency-api 122.82, er-api 123.13, floatrates 122.99, fxratesapi 123.54, yahoo-live 123.54). Report the taka as approximate. Do not quote a precise level and do not make predictions keyed to a threshold this spread could cross.</p>
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">99.53</td>
+<td class="num up">+0.10%</td>
+<td class="num up">+0.53%</td>
+<td class="num down">-0.43%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">94.87</td>
+<td class="num down">-0.54%</td>
+<td class="num down">-0.89%</td>
+<td class="num down">-0.56%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1608</td>
+<td class="num up">+0.16%</td>
+<td class="num down">-0.52%</td>
+<td class="num up">+0.55%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.758</td>
+<td class="num up">+1.84%</td>
+<td class="num up">+0.42%</td>
+<td class="num up">+0.27%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">91.7</td>
+<td class="num up">+1.98%</td>
+<td class="num up">+4.82%</td>
+<td class="num up">+12.72%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">86.78</td>
+<td class="num up">+1.19%</td>
+<td class="num up">+5.37%</td>
+<td class="num up">+8.02%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">88.9</td>
+<td class="num down">-1.76%</td>
+<td class="num up">+0.36%</td>
+<td class="num up">+6.12%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">2.924</td>
+<td class="num down">-0.37%</td>
+<td class="num up">+5.56%</td>
+<td class="num up">+5.14%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">770.5</td>
+<td class="num up">+1.85%</td>
+<td class="num up">+12.40%</td>
+<td class="num up">+18.36%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,297.5</td>
+<td class="num up">+1.74%</td>
+<td class="num up">+5.66%</td>
+<td class="num up">+11.02%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,479.0</td>
+<td class="num up">+1.08%</td>
+<td class="num down">-3.43%</td>
+<td class="num up">+11.04%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,686.14</td>
+<td class="num down">-0.58%</td>
+<td class="num up">+0.15%</td>
+<td class="num up">+1.13%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">26,370.89</td>
+<td class="num down">-0.64%</td>
+<td class="num up">+0.73%</td>
+<td class="num up">+1.76%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">53,185.9</td>
+<td class="num down">-0.72%</td>
+<td class="num down">-0.17%</td>
+<td class="num up">+0.01%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,792.5</td>
+<td class="num down">-0.79%</td>
+<td class="num up">+0.41%</td>
+<td class="num down">-0.72%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">66,364.48</td>
+<td class="num up">+0.08%</td>
+<td class="num up">+1.28%</td>
+<td class="num up">+4.09%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">25,310.88</td>
+<td class="num down">-1.00%</td>
+<td class="num down">-0.81%</td>
+<td class="num down">-2.69%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">76,807.43</td>
+<td class="num down">-0.19%</td>
+<td class="num down">-0.73%</td>
+<td class="num down">-2.33%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">14.92</td>
+<td class="num up">+2.83%</td>
+<td class="num down">-1.39%</td>
+<td class="num down">-6.69%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Median USD/BDT was reported at an approximate Tk 123.13 on 31 August, remaining below the Tk 124.00 ceiling throughout the 7-session horizon.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Global NYBot cotton futures traded at 91.7 cents per pound on 31 August, comfortably above the 82.00 cents per pound threshold.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Global NYBot cotton futures closed at 91.7 cents per pound on 31 August, holding well above the 81.00 cents threshold.
+
+</div></div>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — The government officially announced that retail fuel prices will remain unchanged for September, and no electricity or gas price hikes were declared within the 21-day window.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Assumed automatic fiscal passthrough of energy import costs without accounting for the interim administration&#x27;s political commitment to freeze retail utility tariffs.</p>
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — DSE daily turnover plunged to Tk 98.2 crore on 31 August, staying far below the Tk 850 crore ceiling.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Textile sector turnover share on the DSE registered at 28.8% of total daily turnover on 31 August, remaining above the 17.0% threshold.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Global NYBot cotton futures traded at 91.7 cents per pound on 31 August, exceeding the 85.00 cents per pound target.
+
+</div></div>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — No formal operational guidelines for person-to-person Bangla QR transactions were published by Bangladesh Bank within the 14-day window.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Overestimated regulatory speed on technical payments policy without confirming an official gazette schedule.</p>
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Global NYBot cotton futures will remain above 88.00 cents per pound over the next 7 calendar days.</b>
+    <p>Strong 1-month momentum (+12.72% to 91.7 c/lb) and supply disruption risks provide sustained price support.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>Total DSE daily market turnover will remain below Tk 500 crore over the next 3 trading sessions.</b>
+    <p>Turnover collapsed to Tk 98.2 crore today, reflecting an acute absence of institutional liquidity that cannot rebound instantly.</p>
+    <div class="badge">judged in 3 days · DSE</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>The Textile sector will retain more than 20.0% of total daily turnover on the DSE over the next 3 trading sessions.</b>
+    <p>Retail speculative volume remains heavily anchored in spinning and garment equities amidst high international cotton prices.</p>
+    <div class="badge">judged in 3 days · DSE</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">46.8%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 22 correct, 25 wrong,
+    0 partial, 6 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Government borrowing from banks just blew past targets by Tk 47,500 crore.
+
+When tax collections fall short, the state turns to commercial banks for loans.
+That leaves less credit on the table for local businesses and private job creators.
+Meanwhile, global crude oil jumped above $91, raising import costs for the country.
+
+Heavy government borrowing from banks leaves fewer loans available for private business growth.
+
+#BangladeshEconomy #Banking #DhakaStockExchange #Inflation #MacroEconomy</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 01 Sep 2026, 10:43 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Current account deficit", "plain": "The gap when a country spends more foreign currency on imports and overseas services than it earns from exports and remittances."}, {"term": "Crowding-out effect", "plain": "When heavy government borrowing from commercial banks uses up available credit, leaving little money for private businesses to borrow."}, {"term": "Turnover tax", "plain": "A mandatory tax charged directly on a company's total gross sales, regardless of whether the business generated a profit or suffered a loss."}, {"term": "Direct listing", "plain": "A process where an established company lists its existing shares on the stock exchange without issuing new shares or hiring underwriters."}];
+window.__POST__ = "Government borrowing from banks just blew past targets by Tk 47,500 crore.\n\nWhen tax collections fall short, the state turns to commercial banks for loans.\nThat leaves less credit on the table for local businesses and private job creators.\nMeanwhile, global crude oil jumped above $91, raising import costs for the country.\n\nHeavy government borrowing from banks leaves fewer loans available for private business growth.\n\n#BangladeshEconomy #Banking #DhakaStockExchange #Inflation #MacroEconomy\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
