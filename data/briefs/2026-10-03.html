@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-10-03</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Saturday, 03 October 2026</h1>
+  <div class="meta">178 stories from 29 sources ·
+    71 Bangladesh · 102 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Factory fuel just leaped Tk 12 per litre, piling more pressure on local business.</p>
+  <ol class="flash"><li>Factory fuel just got Tk 12 more expensive per litre, driving up the cost to run captive power generators.</li><li>Twenty-one banks do not have enough backup capital to absorb bad loans, threatening lending stability.</li><li>Garment export earnings rose 6.1% in September, providing vital foreign currency inflows.</li><li>Bangladesh plans to build nearly 13,000 MW of new power plants by 2030 to prevent industrial outages.</li><li>Nuclear fuel has reached the country, moving Rooppur closer to delivering baseload grid power.</li></ol>
+  <div class="stats"><div class="stat"><b>VIX (volatility)</b><span class="down">-6.59%</span></div><div class="stat"><b>Hang Seng</b><span class="down">-2.60%</span></div><div class="stat"><b>Natural Gas</b><span class="up">+2.29%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by acute domestic energy cost adjustments colliding with unresolved balance sheet weaknesses in the banking sector. The dominant force was the Tk 11.92 per litre hike in industrial furnace oil to Tk 108.78, which immediately raises production expenses across manufacturers relying on heavy fuel oil. This domestic cost-push pressure occurs as Brent crude holds above $102 per barrel, confirming that energy subsidy burdens continue to be passed directly to private industry.</p><p>What changed versus recent sessions is the corroboration of an export rebound alongside severe financial fragility. September readymade garment exports expanded 6.1%, providing needed dollar liquidity, yet 21 commercial banks were reported facing capital shortfalls. In foreign exchange, our corroborated median USD/BDT quote settled at Tk 122.95 per dollar across five providers, up 0.72% since August 19, dispelling earlier uncorroborated narratives of an uncontrollable currency plunge.</p><p>Looking ahead, investors must watch commercial bank balance sheets and the pass-through of retail energy prices into upcoming September consumer price readings. The single number that will confirm whether this energy squeeze is overwhelming corporate margins is the next quarterly private sector credit growth print, which will show whether solvent firms can continue to borrow above the current high cost of capital.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Real Effective Exchange Rate (REER)</h3>
+    <div class="prose"><p>Nominal exchange rates tell you only how many units of currency trade for another, like Tk 122.95 per dollar. However, businesses buy real goods, not currencies. The Real Effective Exchange Rate (REER) measures the value of a currency against a weighted basket of major trading partners, adjusted for inflation differences between nations.</p><p>If Bangladesh experiences 10% domestic inflation while trade competitors like Vietnam see only 3%, Bangladeshi goods become relatively more expensive to foreign buyers even if the nominal exchange rate stays completely flat. In financial terms, a rising REER indicates that a country is losing international export price competitiveness unless its nominal currency depreciates to offset the inflation gap.</p></div>
+    <div class="quiz"><b>Test yourself</b>If the US dollar and Vietnamese dong exchange rates stay identical, but domestic inflation in Bangladesh accelerates above global levels, does Bangladesh&#x27;s REER appreciate or depreciate?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Domestic furnace oil prices rose Tk 11.92 to Tk 108.78 per litre, escalating manufacturing overheads.</h3>
+    <div class="plain"><b>In plain English</b>Factory fuel just got Tk 12 more expensive per litre, driving up the cost to run captive power generators.</div>
+    <p class="why prose">Higher fuel prices inflate cost of goods sold (COGS) — direct production costs — for manufacturers running heavy fuel oil plants. This compounds recent Tk 20 retail fuel hikes and directly weakens corporate operating margins. Higher industrial costs risk filtering into persistent headline inflation across the broader supply chain.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMisAFBVV95cUxNVG0yMFB0Y3hnam1VVVFvMDZTLTBHbjVlQ2ZaSkdUOHVoSUlRcW5udkIzYVhpMHlIMzRnbFBFUWdvMS1UUjd4bWlFcGprMm9BXzZxQ2pObGlFcDBQQTBTNndHNThJMG5MeDRGZThNUGNJbElIRXBKTWI2Tjh3RHNieFJqRENQbW50dHNiWUhibDdpbjNwdURwd25hVmhkSlJfQnh5OVN3dTVHZXZnSG92RA?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Twenty-one commercial banks in Bangladesh face capital shortfalls, elevating financial sector balance sheet risks.</h3>
+    <div class="plain"><b>In plain English</b>Twenty-one banks do not have enough backup capital to absorb bad loans, threatening lending stability.</div>
+    <p class="why prose">A deficiency in regulatory capital adequacy ratios (CAR) — the percentage of a bank&#x27;s capital to its risk-weighted assets — impairs credit creation. Without central bank recapitalisation, these lenders cannot absorb non-performing loans (NPLs), which are loans in or near default. This structural insolvency risk threatens interbank liquidity and keeps private sector credit growth depressed.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>Daily Observer</span>
+      <a href="https://news.google.com/rss/articles/CBMiSkFVX3lxTE81MlRROEdSMU5UbEVNYVN1c2NoUUVJcHQ3SmdaeEZ4TksyUHlpcW1sTEZzQW11THhnRFhQeUFja0xQeU9pbE04cGJ3?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>September readymade garment exports expanded 6.1%, signaling an export recovery amid external turbulence.</h3>
+    <div class="plain"><b>In plain English</b>Garment export earnings rose 6.1% in September, providing vital foreign currency inflows.</div>
+    <p class="why prose">Readymade garments (RMG) deliver over 80% of Bangladesh&#x27;s export earnings, anchoring formal current account receipts. Steady expansion supports commercial bank foreign exchange reserves, helping finance essential imports. However, rising real effective exchange rates (REER) threaten to erode this pricing edge over regional competitors.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>Banglanews24</span>
+      <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE84dUh2a2F6c3BQaHJCZW5BTjJRYUpFR0NQMFo4SUVzWWljZ3lkU2ZUemo4WW9TOE1heV9lelpLanVGOEE2cDFfelpmVFpoQmduU3dBNWM5YkRvdWFKQUZMblI0dWQxMDR1eXJF?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>The government unveiled a 2028-30 power roadmap targeting 12,940 MW in new generation capacity.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh plans to build nearly 13,000 MW of new power plants by 2030 to prevent industrial outages.</div>
+    <p class="why prose">Meeting peak demand of 20,000 to 25,000 MW requires heavy capital expenditure (capex) across local coal, gas, and solar infrastructure. If executed poorly, this risks expanding capacity charges — fixed fees paid to power plant owners regardless of generation. Given domestic gas depletion, reliance on imported energy will keep fiscal budget deficits elevated.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/energy/new-energy-roadmap-targets-local-coal-gas-solar-1560911" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Initial uranium shipments arrived in Dhaka for the first unit of the Rooppur Nuclear Power Plant.</h3>
+    <div class="plain"><b>In plain English</b>Nuclear fuel has reached the country, moving Rooppur closer to delivering baseload grid power.</div>
+    <p class="why prose">Commissioning Rooppur&#x27;s first 1,200 MW unit will provide baseload electricity — minimum continuous power supply — reducing costly spot liquefied natural gas (LNG) imports. However, sovereign external debt servicing on bilateral Russian project financing will soon kick into the balance of payments. Execution timelines determine how quickly state utility fiscal subsidies can be curbed.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/energy/special-cargo-flight-carrying-rooppur-nuclear-fuel-lands-dhaka-1560881" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>The Asian Development Bank committed funding to support the government&#x27;s utility-scale solar energy expansion.</h3>
+    <div class="plain"><b>In plain English</b>The Asian Development Bank is providing cheap foreign loans to build large solar power projects.</div>
+    <p class="why prose">Concessional loans — debt offered at well below market interest rates with long grace periods — ease sovereign balance of payment pressures. Expanding renewable energy helps Bangladesh hedge against volatile international hydrocarbon pricing. It also provides foreign currency liquidity without demanding immediate commercial debt servicing.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Financial Express</span>
+      <a href="https://news.google.com/rss/articles/CBMivwFBVV95cUxPNEk2Yl9Wa3ZCZ2tqMVEtZ3EtWXV5U3lpVnlRN1ZramwwNG9UX01hWkhyVkszRVM1SXZ4Z190VGRqVF84TWdSdUFCMUZXWVptUE14YWxHbFA0WHloX2g3Z19yWUZaVnhpdGI1WVRTYUxEamw5SW5Ka3pTQThHNlNLNkJmYWZHTkNPYWowOGJYWjRjMnZsZmFWVWdnaU1Cb1lBdEpkdnpiTTVHWUhUbmxxc2tYZEUyN0ItZ05fTEg1Z9IBywFBVV95cUxPdnZuT3cwbndpejdZeTBsbkkzVGgxY3JnRTE1OExtTUFvcE45dGtMS1FxUndKSE9WYWJBeDEzRTBXRWtBaUVpWV9tV1R6SVhBb3FQUlZxT0wtSjE5VWVyOHRCdjlOT3Y0am95OGhnb1djRHAyV1ozRDR4OWFLQnJBbmJQR3BHT2ZvS1Z6UTV5SVFFX0ZTbUc5YXVSNFRoTXBvaHVVVXFPNTdnZVg1Z0FzZWpoTGcxREZJdThRMG5YRDNsT281SEttMDJnbw?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>A rising real effective exchange rate threatens the international price competitiveness of Bangladeshi exports.</h3>
+    <div class="plain"><b>In plain English</b>High domestic inflation is making Bangladeshi factory goods look relatively more expensive abroad.</div>
+    <p class="why prose">The real effective exchange rate (REER) tracks the value of the taka against trade partners, adjusted for relative inflation differentials. With domestic consumer prices outpacing those of competitors, a stronger REER penalises exporters unless offset by nominal taka depreciation. This squeezes readymade garment operating margins against rivals like Vietnam and India.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#047857">FX</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Financial Express</span>
+      <a href="https://news.google.com/rss/articles/CBMilgFBVV95cUxPYnF0SkMza2Y0YjlOMWlkaVdfOXN6RlVMRHZIUkE4dGJRU3c5Wm1MTlZRbU55dWV5THFtaTVEUS1FM3lfY0FhRS1hbUFlcTVOUnhpNUNDWm1xbFNydDVJVGcweHRZLVpMNG5WWVJjaXBYSFdYMkNYdkJ3WXhZajM3dFE2ZURMWEs3dm9KR190NU5yd2RVbWc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>US non-farm payrolls undershot expectations in September as the unemployment rate rose to 4.2%.</h3>
+    <div class="plain"><b>In plain English</b>American job growth slowed last month, signaling softer consumer spending ahead in Bangladesh&#x27;s top market.</div>
+    <p class="why prose">Cooling US employment growth threatens consumer demand in Bangladesh&#x27;s largest single-country apparel destination. On the monetary front, softer labour data cements expectations that the Federal Reserve will avoid aggressive policy rate hikes, which may eventually soften the US dollar index. Lower global yields reduce imported financial strain for frontier emerging markets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/news/us-job-growth-undershoots-expectations-september-labor-market-remains-stable-4289161" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>Brent crude futures settled at $102.25 per barrel after G7 leaders coordinated fuel reserve releases.</h3>
+    <div class="plain"><b>In plain English</b>Global oil prices paused above $102 per barrel as wealthy nations moved to tap emergency fuel reserves.</div>
+    <p class="why prose">Crude above $100 compounds Bangladesh&#x27;s trade deficit by swelling the domestic energy import bill. Coordinated reserve sales provide short-term supply relief, but structurally high prices exhaust sovereign budgetary fuel subsidies. This forces state agencies to pass costs down via retail tariff hikes, sustaining domestic inflation.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Wall Street Journal</span>
+      <a href="https://www.wsj.com/finance/commodities-futures/oil-edges-higher-amid-rising-mideast-tensions-d4b3dcdd?mod=rss_markets_main" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>The US 10-year Treasury yield rose to 5.277% as high sovereign debt levels triggered broad bond selling.</h3>
+    <div class="plain"><b>In plain English</b>US government borrowing costs hit fresh highs, pushing global interest rates upward.</div>
+    <p class="why prose">The 10-year US Treasury yield serves as the global risk-free discount rate, setting the baseline cost of capital globally. Elevated yields attract capital to dollar-denominated assets, putting persistent depreciation pressure on emerging market currencies like the taka. Higher international rates also raise sovereign borrowing spreads for frontier economies refinancing foreign debt.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#4338ca">Global Markets</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>The Wall Street Journal</span>
+      <a href="https://www.wsj.com/finance/investing/high-government-debt-is-adding-fuel-to-the-global-bond-market-selloff-a93fa0fe?mod=rss_markets_main" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Energy Cost Pass-Through to Headline Inflation</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#9</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Brent settles above $102/bbl → State import bill rises → Domestic furnace oil raised Tk 11.92 to Tk 108.78/L → Industrial electricity generation costs rise → Wholesale goods inflation accelerates.</div>
+  <div class="sowhat prose"><b>So what</b>Industrial margins will contract further as manufacturers absorb higher power generation costs, forcing equity investors to discount near-term corporate earnings.</div>
+</article>
+<article class="card">
+  <h3>Macro Competitiveness and FX Realities</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#7</span><span class="chip" style="--chip:#475569">#8</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">US job growth slows to 4.2% unemployment → Western apparel demand softens → Domestic inflation pushes REER higher → Bangladeshi export price competitiveness weakens → RMG export expansion risks decelerating below September&#x27;s 6.1%.</div>
+  <div class="sowhat prose"><b>So what</b>If domestic inflation keeps REER artificially high, Bangladesh Bank will face mounting market pressure to let the nominal taka depreciate to protect garment order books.</div>
+</article>
+<article class="card">
+  <h3>Banking Solvency and High Sovereign Borrowing Yields</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#10</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">US 10-year Treasury yields rise to 5.277% → Global liquidity remains tight → Bangladesh Bank keeps domestic monetary policy tight → Debt service costs rise for indebted local borrowers → Credit distress worsens, leaving 21 banks with capital deficits.</div>
+  <div class="sowhat prose"><b>So what</b>Commercial banks with thin capital buffers cannot lend, creating a private sector credit freeze that curbs corporate industrial expansion.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Cost of goods sold (COGS)</h4>
+  <p>The direct expense required to produce a product, including raw materials, electricity, and factory fuel.</p>
+  <p>A Tk 11.92 hike in furnace oil expands industrial COGS, squeezing operating profits across power-intensive manufacturers.</p><span class="stick">COGS is the money spent before a single good can leave the factory floor.</span>
+</div>
+<div class="term">
+  <h4>Capital adequacy ratio (CAR)</h4>
+  <p>The percentage of a bank&#x27;s own capital kept as a financial buffer against bad loans and unexpected losses.</p>
+  <p>Twenty-one local banks face severe capital shortfalls, falling below mandated CAR thresholds.</p><span class="stick">CAR is a bank&#x27;s financial helmet; without it, bad loans cause traumatic brain injury to the lender.</span>
+</div>
+<div class="term">
+  <h4>Real effective exchange rate (REER)</h4>
+  <p>The price of a country&#x27;s goods relative to trading partners, adjusted for inflation differences across currencies.</p>
+  <p>A rising REER warns that high domestic inflation is making Bangladeshi garments more expensive abroad.</p><span class="stick">A higher REER means your exports are losing price appeal on global store shelves.</span>
+</div>
+<div class="term">
+  <h4>Baseload electricity</h4>
+  <p>The minimum, constant level of electrical power that a grid must provide around the clock.</p>
+  <p>The delivery of uranium fuel to Rooppur marks the next step toward adding 1,200 MW of steady baseload supply.</p><span class="stick">Baseload is the reliable foundation of a power grid that keeps factories running when solar and wind sleep.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 122.95</div>
+  <div style="margin-top:6px"><span class="up">+0.72%</span> <span class="muted">since 2026-08-19</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.44 taka<br>currency-api 122.92, er-api 122.95, floatrates 123.08, fxratesapi 122.83, yahoo-live 123.27</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">101.93</td>
+<td class="num down">-0.17%</td>
+<td class="num up">+0.95%</td>
+<td class="num up">+2.96%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">96.3</td>
+<td class="num up">+0.08%</td>
+<td class="num up">+0.53%</td>
+<td class="num up">+1.42%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1257</td>
+<td class="num down">-0.62%</td>
+<td class="num down">-1.03%</td>
+<td class="num down">-2.92%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">5.277</td>
+<td class="num up">+0.76%</td>
+<td class="num up">+1.79%</td>
+<td class="num up">+10.03%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">75.15</td>
+<td class="num up">+1.51%</td>
+<td class="num down">-4.76%</td>
+<td class="num down">-9.85%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">91.11</td>
+<td class="num down">-1.90%</td>
+<td class="num down">-1.41%</td>
+<td class="num down">-0.21%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">102.25</td>
+<td class="num down">-0.06%</td>
+<td class="num down">-1.98%</td>
+<td class="num up">+7.05%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.035</td>
+<td class="num up">+2.29%</td>
+<td class="num down">-5.04%</td>
+<td class="num up">+4.19%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">683.0</td>
+<td class="num up">+0.04%</td>
+<td class="num down">-2.88%</td>
+<td class="num down">-7.20%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,278.25</td>
+<td class="num down">-0.45%</td>
+<td class="num down">-3.09%</td>
+<td class="num down">-2.14%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,162.3</td>
+<td class="num down">-0.95%</td>
+<td class="num down">-3.68%</td>
+<td class="num down">-8.32%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,722.72</td>
+<td class="num up">+0.73%</td>
+<td class="num down">-0.27%</td>
+<td class="num down">-0.32%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">27,190.86</td>
+<td class="num up">+1.19%</td>
+<td class="num up">+0.45%</td>
+<td class="num up">+2.28%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">51,176.96</td>
+<td class="num up">+0.49%</td>
+<td class="num down">-1.26%</td>
+<td class="num down">-4.67%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,462.0</td>
+<td class="num up">+0.32%</td>
+<td class="num down">-2.18%</td>
+<td class="num down">-2.74%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">68,309.46</td>
+<td class="num down">-0.94%</td>
+<td class="num up">+2.93%</td>
+<td class="num up">+6.19%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">23,972.29</td>
+<td class="num down">-2.60%</td>
+<td class="num down">-3.19%</td>
+<td class="num down">-5.29%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">71,909.7</td>
+<td class="num down">-0.79%</td>
+<td class="num down">-2.27%</td>
+<td class="num down">-6.09%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">15.31</td>
+<td class="num down">-6.59%</td>
+<td class="num up">+2.96%</td>
+<td class="num up">+0.72%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — Brent crude futures settled at $102.25 per barrel on 2026-10-02, exceeding the $102.00 threshold.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Underestimated geopolitical risk premiums and global inventory tightness, which kept Brent above $102 despite coordinated G7 strategic reserve releases.</p>
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Corroborated median USD/BDT will remain below Tk 123.50 over the next 14 calendar days.</b>
+    <p>High-confidence multi-provider median sits at Tk 122.95 with tight spreads, and September&#x27;s 6.1% RMG export growth provides steady commercial bank FX inflows.</p>
+    <div class="badge">judged in 14 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>Brent crude futures will settle below $106.00 per barrel over the next 7 calendar days.</b>
+    <p>Coordinated G7 reserve releases and weak US non-farm payroll job growth will limit near-term upside breakout momentum above the $105 level.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>US 10-year Treasury yields will remain above 5.10% over the next 7 calendar days.</b>
+    <p>Persistent global sovereign debt issuance pressure and stubborn inflation expectations continue to keep long-term yields elevated above 5.27%.</p>
+    <div class="badge">judged in 7 days · Global Markets</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">42.6%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 23 correct, 31 wrong,
+    0 partial, 7 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Factory fuel just leaped Tk 12 per litre, piling more pressure on local business.
+
+The government raised furnace oil prices to Tk 108.78 today.
+At the same time, reports show 21 local banks are falling short on required capital buffers.
+While September garment exports grew 6.1%, rising domestic costs threaten to squeeze factory profits.
+
+Energy price hikes continue to shift the financial burden from state subsidies straight onto manufacturers.
+
+#BangladeshEconomy #EnergyPrices #BankingSector #RMGExport</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 03 Oct 2026, 21:11 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Cost of goods sold (COGS)", "plain": "The direct expense required to produce a product, including raw materials, electricity, and factory fuel."}, {"term": "Capital adequacy ratio (CAR)", "plain": "The percentage of a bank's own capital kept as a financial buffer against bad loans and unexpected losses."}, {"term": "Real effective exchange rate (REER)", "plain": "The price of a country's goods relative to trading partners, adjusted for inflation differences across currencies."}, {"term": "Baseload electricity", "plain": "The minimum, constant level of electrical power that a grid must provide around the clock."}];
+window.__POST__ = "Factory fuel just leaped Tk 12 per litre, piling more pressure on local business.\n\nThe government raised furnace oil prices to Tk 108.78 today.\nAt the same time, reports show 21 local banks are falling short on required capital buffers.\nWhile September garment exports grew 6.1%, rising domestic costs threaten to squeeze factory profits.\n\nEnergy price hikes continue to shift the financial burden from state subsidies straight onto manufacturers.\n\n#BangladeshEconomy #EnergyPrices #BankingSector #RMGExport\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
