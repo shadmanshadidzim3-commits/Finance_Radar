@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-10-11</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Sunday, 11 October 2026</h1>
+  <div class="meta">170 stories from 27 sources ·
+    85 Bangladesh · 85 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Banks have excess cash, but factories are not borrowing. Here is why it matters.</p>
+  <ol class="flash"><li>Clothing factories sold 6% more goods abroad this quarter, providing essential dollar inflows to support national finances.</li><li>The country&#x27;s total foreign debt climbed to nearly $115 billion, raising future foreign currency repayment pressures.</li><li>Overseas Bangladeshi workers sent home over $9.3 billion in three months, strengthening national bank reserves.</li><li>Banks have extra cash because businesses are not borrowing, pushing interest rates on short-term government debt below 8%.</li><li>One of the country&#x27;s biggest steelmakers asked the central bank for more time to repay Tk 12,000 crore in loans.</li></ol>
+  <div class="stats"><div class="stat"><b>Cotton</b><span class="up">+5.68%</span></div><div class="stat"><b>VIX (volatility)</b><span class="down">-3.70%</span></div><div class="stat"><b>Wheat</b><span class="down">-1.79%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by an acute divergence between sovereign liquidity buffers and structural corporate credit stress. The dominant economic reality was the drop in Treasury bill yields below 8%, triggered by banks holding idle deposits while private credit growth languished under 5% for six straight months. This commercial bank liquidity overhang exists alongside substantial corporate distress, highlighted by GPH Ispat requesting rescheduling on a Tk 12,000 crore debt pile.</p><p>What changed versus recent sessions is the emerging contrast between robust external current account inflows and widening domestic fiscal shortfalls. Corroborated Q1 readymade garment exports expanded 6.1% to $10.59 billion, and remittances reached $9.37 billion through October 7, stabilizing the median USD/BDT exchange rate at Tk 123.09. However, internal fiscal collection lagged significantly, with Chattogram Customs missing its quarterly target by Tk 9,949 crore as external debt climbed to $114.98 billion.</p><p>What to watch next is whether commercial banks re-allocate excess liquidity back into private enterprise or remain entrenched in low-yielding sovereign debt. The critical metric to monitor is the commercial bank private-sector credit growth figure in upcoming Bangladesh Bank updates. If private lending remains stuck below 5%, bank net interest margins will suffer steady erosion across the coming quarters.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>The Liquidity Trap in Commercial Banking</h3>
+    <div class="prose"><p>A liquidity trap occurs when financial institutions hold abundant cash reserves but cannot channel them into productive lending because business demand is moribund and credit risk is elevated. In Bangladesh today, banks hold substantial excess liquidity, yet private-sector credit growth has remained below 5% for six consecutive months. Reluctant to extend fresh corporate credit amidst non-performing loan worries, lenders pile surplus funds into short-term Treasury bills, driving yields down below 8%.</p><p>When sovereign yields sink below the cost of maintaining term deposits, bank profit margins contract. Flooding the banking system with liquidity fails to ignite economic activity if private enterprise lacks the confidence or capacity to borrow.</p></div>
+    <div class="quiz"><b>Test yourself</b>Why does an influx of bank deposits fail to stimulate private investment when corporate credit risk is elevated and businesses are deleveraging?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Readymade garment exports grew 6.1% year-on-year in the first quarter of FY27, reaching $10.59 billion.</h3>
+    <div class="plain"><b>In plain English</b>Clothing factories sold 6% more goods abroad this quarter, providing essential dollar inflows to support national finances.</div>
+    <p class="why prose">Corroborated across three newsrooms, this expansion anchors foreign exchange liquidity — the availability of cash in foreign currencies to settle overseas transactions. Shipments to non-traditional destinations grew 9.4% to $1.81 billion, showing regional market diversification. Sustained export billing directly supports commercial bank nostro accounts, which are foreign currency accounts held by local banks in correspondent banks overseas.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net, New Age BD, Jagonews24</span>
+      <a href="https://www.tbsnews.net/economy/rmg/rmg-exports-grow-61-q1-1568621" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Bangladesh&#x27;s total external debt stock expanded 3.65% quarter-on-quarter to reach $114.98 billion at the end of June 2026.</h3>
+    <div class="plain"><b>In plain English</b>The country&#x27;s total foreign debt climbed to nearly $115 billion, raising future foreign currency repayment pressures.</div>
+    <p class="why prose">According to central bank data reported by The Daily Star, higher external leverage heightens external debt servicing — the cash required to pay loan principal and interest on schedule. Because the median exchange rate sits at Tk 123.09 per dollar, higher sovereign liabilities require a greater slice of tax revenue to convert into dollars. This leaves less fiscal room for development spending.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>thedailystar.net</span>
+      <a href="https://www.thedailystar.net/business/news/bangladeshs-foreign-debt-rises-11498-billion-end-apr-jun-4296051" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Remittance inflows increased 13.1% year-on-year to $9.37 billion between July 1 and October 7.</h3>
+    <div class="plain"><b>In plain English</b>Overseas Bangladeshi workers sent home over $9.3 billion in three months, strengthening national bank reserves.</div>
+    <p class="why prose">Reported by state news agency BSS, the surge reflects steady inflows via formal banking channels as the spread between bank rates and the kerb market remains tight. Remittance acts as the front-line defence for the current account — the ledger recording trade in goods, services, and unilateral transfers. These funds buffer gross foreign exchange reserves, which BSS reported at $36.21 billion.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>Bangladesh Sangbad Sangstha (BSS)</span>
+      <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE1BTVNzVXFrS1Y1V0ZuSVV5QnlxWUxtUTZQWmRvc2IwNEdXLW9LRlZqYThZY05iU0ludmhzbTlWZlZ5ZWh2R0E5OFI3N3NVQktn?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Excess banking liquidity and sluggish credit demand pulled short-term Treasury bill cut-off yields below 8%.</h3>
+    <div class="plain"><b>In plain English</b>Banks have extra cash because businesses are not borrowing, pushing interest rates on short-term government debt below 8%.</div>
+    <p class="why prose">According to The Business Standard, private-sector credit growth has remained below 5% for six consecutive months. Sluggish corporate borrowing forces lenders to park idle funds into sovereign paper, driving cut-off yields down through competitive bidding. Lower sovereign paper yields depress banks&#x27; asset yields, threatening to cause net interest margin compression — the narrowing of the gap between interest earned on loans and interest paid on deposits.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/banking/excess-liquidity-weak-credit-demand-push-treasury-bill-yields-below-8-1569656" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>GPH Ispat approached Bangladesh Bank to reschedule a portion of its Tk 12,000 crore corporate debt burden.</h3>
+    <div class="plain"><b>In plain English</b>One of the country&#x27;s biggest steelmakers asked the central bank for more time to repay Tk 12,000 crore in loans.</div>
+    <p class="why prose">According to The Daily Star, this restructuring request illustrates widespread distress among capital-intensive industrial firms facing elevated borrowing rates and high raw material costs. When heavy manufacturers struggle to meet debt service schedules, lenders must build loan loss provisions — capital set aside to absorb anticipated credit defaults. That provision charge directly reduces bank capital adequacy ratios.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">GPHISPAT</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxOVkFSVTRXLTRORHN0NV9WLVNxczFvVlJiYzEzS0hqYjI0QVZpUUxnazFCX0ItU1JwQ1ZZdVFxMmowaEZGZ25IakExa2F3SjduVVhZY2I5OUFsY2VDZVFWTV9wZG1ZVFZmZng5TGxrQXJ3cDd0anV4b2NtdVN4LURtWVByRDg2ZkFSWlVhQ2hNNmxtS1VkWGJuZy1DQV9PTThGMHV3dXZrN1l6NUtuaDk1MWsyV1JaRmYySFE?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>Chattogram Customs revenue grew 11% to Tk 22,083 crore in Q1 FY27, falling 31% short of its Tk 32,032 crore target.</h3>
+    <div class="plain"><b>In plain English</b>Import tax collections grew 11%, but missed government budget expectations by nearly Tk 10,000 crore.</div>
+    <p class="why prose">Reported by The Business Standard, this Tk 9,949 crore quarterly shortfall highlights the structural fiscal deficit — the recurring gap where public expenditure outstrips tax receipts. Customs receipts lag because non-essential import curbs and high energy costs dampen aggregate import volume. A chronic customs revenue shortfall forces the Ministry of Finance to step up domestic debt issuance to fund the state budget.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/chattogram-customs-revenue-rises-11-q1-still-tk9949cr-short-target-1568681" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Global cotton futures surged 5.68% in one day to 80.54 cents per pound, extending weekly gains to 7.17%.</h3>
+    <div class="plain"><b>In plain English</b>Cotton prices jumped nearly 6% in global markets, making thread and cloth more expensive for garment factories.</div>
+    <p class="why prose">Cotton is the primary raw material input for Bangladesh&#x27;s primary textile and garment spinning sector. A sharp run-up raises working capital requirements — the liquid funds necessary to finance ongoing operations and raw inventory. Unless local garment exporters can pass these cost increases to foreign buyers, gross operating margins will contract over the coming quarter.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>hits Bangladesh directly</span>
+      <span>Global Markets Feed</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Dhaka airport cancelled seven flights after drone attacks struck Riyadh airport in Saudi Arabia.</h3>
+    <div class="plain"><b>In plain English</b>Flights to Saudi Arabia were disrupted by attacks on Riyadh airport, risking travel and overseas job departures.</div>
+    <p class="why prose">Reported by TBS and The Daily Star, flight groundings introduce operational friction into the primary corridor for Bangladeshi migrant workers. Saudi Arabia accounts for the largest share of Bangladesh&#x27;s overseas labour remittances. Extended aviation halts or escalated regional conflict could slow new worker deployments and disrupt personal transfer channels.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>tbsnews.net, thedailystar.net</span>
+      <a href="https://www.tbsnews.net/economy/aviation/five-flights-dhaka-cancelled-after-riyadh-airport-attack-1568791" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>The Rooppur nuclear power plant achieved its initial chain reaction, moving towards grid power generation.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh&#x27;s first nuclear power station initiated atomic fission, bringing it one step closer to generating cheap electricity.</div>
+    <p class="why prose">According to Prothom Alo, commencing fission brings 2,400 megawatts of planned base-load capacity closer to domestic transmission. Base load is the permanent minimum level of electric power required by the national grid. Bringing nuclear energy online reduces dependence on imported liquefied natural gas (LNG), easing recurrent pressures on sovereign foreign currency reserves.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>en.prothomalo.com</span>
+      <a href="https://en.prothomalo.com/bangladesh/qg3o594xan" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>BSEC penalized three market manipulators Tk 73.76 lakh for artificial price rigging in Trust Islami Life Insurance shares.</h3>
+    <div class="plain"><b>In plain English</b>The stock market regulator fined three traders Tk 73.8 lakh for illegally manipulating an insurance stock&#x27;s price.</div>
+    <p class="why prose">According to The Business Standard, regulatory action highlights the persistent speculative churn in illiquid small-cap and insurance counters. Artificial circular trading distorts price discovery — the process by which market buyers and sellers determine fair asset value. Regulatory enforcement seeks to deter speculative syndicates that exploit retail investors.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#b45309">DSE</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxNem1rcE14TUdPU1NsWWtjU3pTNmJXMFZlWXBOUFlvTHA0cVV3cV9oaHVLNjJhMEF5RVRialdDMFBxSzVrSzlscXNwSkQyTmRfZ1k2Ym5XOHBERWNJU3Vud0x1V0dOeWQ4cm9hV3dSQnIwRW90R3FPQUUyMFBNNUxZVEsyaEpmanJSYXphaHhGSXJLQVVBWW94a05ERGZHd01wVlNZazNwWTlqRE55aklFQlB3?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Private Credit Slump and Bank Profitability Compression</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#5</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Sub-5% private sector loan demand leaves banks with idle deposits → Lenders funnel cash into short-term T-bills, pushing yields below 8% → Large corporate defaults and debt rescheduling requests (like GPH Ispat&#x27;s Tk 12,000cr facility) require higher loan provisioning → Net interest margins compress while risk-weighted capital adequacy declines.</div>
+  <div class="sowhat prose"><b>So what</b>Commercial banks face squeezed profit margins and increased capital provisioning burdens simultaneously.</div>
+</article>
+<article class="card">
+  <h3>Raw Input Inflation Versus Export Top-Line Resilience</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#7</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Global cotton futures jump 5.68% to 80.54 cents per pound → Bangladesh yarn spinning and fabric mills face elevated procurement expenses → Higher production costs collide with fixed-price retail apparel contracts → Operating cash flows tighten despite solid 6.1% Q1 garment export growth.</div>
+  <div class="sowhat prose"><b>So what</b>Garment factory volume expansion will face margin compression unless overseas buyers accept higher unit pricing.</div>
+</article>
+<article class="card">
+  <h3>Customs Shortfall Compounding Sovereign External Debt servicing</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#6</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Chattogram Customs revenue misses Q1 target by Tk 9,949 crore → Government domestic revenue collection falls behind budget forecasts → Sovereign external debt rises 3.65% to $114.98 billion, inflating annual foreign debt servicing → The Ministry of Finance must expand domestic T-bill and bond issuance to bridge the fiscal revenue gap.</div>
+  <div class="sowhat prose"><b>So what</b>Sovereign fiscal imbalances will keep domestic debt issuance heavy despite falling short-term T-bill yields.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Net interest margin</h4>
+  <p>The gap between what a bank earns on its loans and investments and what it pays depositors in interest.</p>
+  <p>Excess bank liquidity has driven Treasury bill yields below 8%, narrowing the spread banks earn over their deposit costs.</p><span class="stick">It is the gross profit margin of a bank&#x27;s core lending business.</span>
+</div>
+<div class="term">
+  <h4>Nostro account</h4>
+  <p>A bank account that a domestic bank holds in foreign currency at another bank in a foreign country.</p>
+  <p>Strong Q1 export earnings of $10.59 billion replenish Bangladeshi banks&#x27; dollar balances held overseas.</p><span class="stick">Think of it as your local bank&#x27;s overseas checking account used to settle international trade.</span>
+</div>
+<div class="term">
+  <h4>Loan loss provision</h4>
+  <p>An expense that a bank sets aside from its earnings to cushion against loans that borrowers might fail to repay.</p>
+  <p>GPH Ispat&#x27;s plea to restructure Tk 12,000 crore in debt threatens to force participating banks into recording higher credit provisions.</p><span class="stick">It is money deducted from current profits to build an emergency fund for bad loans.</span>
+</div>
+<div class="term">
+  <h4>Current account</h4>
+  <p>The record of a country&#x27;s net trade in goods, services, and overseas cash gifts like worker remittances.</p>
+  <p>A 13.1% rise in remittances to $9.37 billion strengthens the inflows that pay for fuel and raw commodity imports.</p><span class="stick">It shows whether a nation is paying its daily international bills from its own earnings or by borrowing abroad.</span>
+</div>
+<div class="term">
+  <h4>Capital adequacy ratio</h4>
+  <p>The ratio of a bank&#x27;s core capital to its risk-weighted assets, measuring its financial strength against shocks.</p>
+  <p>Heavy corporate loan restructurings threaten to deplete regulatory capital buffers across vulnerable domestic lenders.</p><span class="stick">It is a bank&#x27;s financial shock absorber; the thicker the cushion, the harder it is to fail.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 123.09</div>
+  <div style="margin-top:6px"><span class="down">-0.11%</span> <span class="muted">since 2026-10-10</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.43 taka<br>currency-api 123.26, er-api 123.22, floatrates 123.09, fxratesapi 122.96, yahoo-live 122.83</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">102.21</td>
+<td class="num up">+0.07%</td>
+<td class="num up">+0.27%</td>
+<td class="num up">+3.12%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">96.78</td>
+<td class="num down">-0.04%</td>
+<td class="num up">+0.47%</td>
+<td class="num up">+2.06%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1206</td>
+<td class="num up">+0.04%</td>
+<td class="num down">-0.39%</td>
+<td class="num down">-3.63%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">5.244</td>
+<td class="num up">+0.25%</td>
+<td class="num down">-0.63%</td>
+<td class="num up">+8.41%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">80.54</td>
+<td class="num up">+5.68%</td>
+<td class="num up">+7.17%</td>
+<td class="num down">-2.23%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">91.85</td>
+<td class="num up">+0.39%</td>
+<td class="num up">+0.81%</td>
+<td class="num down">-8.20%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">104.72</td>
+<td class="num up">+0.42%</td>
+<td class="num up">+2.42%</td>
+<td class="num up">+0.11%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.22</td>
+<td class="num up">+1.64%</td>
+<td class="num up">+6.10%</td>
+<td class="num up">+13.74%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">671.0</td>
+<td class="num down">-1.79%</td>
+<td class="num down">-1.76%</td>
+<td class="num down">-5.09%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,292.0</td>
+<td class="num up">+0.35%</td>
+<td class="num up">+1.08%</td>
+<td class="num up">+0.92%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,216.3</td>
+<td class="num up">+1.43%</td>
+<td class="num up">+1.30%</td>
+<td class="num down">-4.37%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,811.54</td>
+<td class="num up">+0.59%</td>
+<td class="num up">+1.15%</td>
+<td class="num up">+2.90%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">27,366.17</td>
+<td class="num up">+0.64%</td>
+<td class="num up">+0.64%</td>
+<td class="num up">+4.92%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">51,654.95</td>
+<td class="num up">+0.83%</td>
+<td class="num up">+0.93%</td>
+<td class="num down">-0.79%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,552.1</td>
+<td class="num up">+1.06%</td>
+<td class="num up">+0.86%</td>
+<td class="num down">-1.11%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">69,030.92</td>
+<td class="num down">-0.02%</td>
+<td class="num up">+1.06%</td>
+<td class="num up">+5.97%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">24,211.35</td>
+<td class="num up">+1.79%</td>
+<td class="num up">+1.00%</td>
+<td class="num down">-4.21%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">72,472.33</td>
+<td class="num up">+1.23%</td>
+<td class="num up">+0.78%</td>
+<td class="num down">-3.07%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">14.84</td>
+<td class="num down">-3.70%</td>
+<td class="num down">-3.07%</td>
+<td class="num down">-9.84%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>Corroborated median USD/BDT will remain below Tk 123.50 over the next 7 calendar days.</b>
+    <p>High-confidence median pricing closed at Tk 123.09 across five independent providers, underpinned by robust Q1 export receipts and steady remittance inflows.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>The US 10-year Treasury yield will remain above 5.10% over the next 7 calendar days.</b>
+    <p>The US 10-year yield sits firmly at 5.244% with the Dollar Index at 102.21, supported by continued US economic momentum and persistent core inflation concerns.</p>
+    <div class="badge">judged in 7 days · Global Macro</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>Brent crude futures will settle above $100.00 per barrel over the next 7 calendar days.</b>
+    <p>Brent closed at $104.72 per barrel as escalating Middle East infrastructure attacks maintain an active geopolitical risk premium on global crude supply.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">47.5%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 28 correct, 31 wrong,
+    0 partial, 11 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Banks have excess cash, but factories are not borrowing. Here is why it matters.
+
+Private sector loan growth has stayed below 5% for six months.
+Banks are pouring their extra cash into government bills, pushing returns below 8%.
+Meanwhile, garment exports grew 6% and worker remittances jumped 13%.
+Dollars are arriving, but domestic business confidence remains frozen.
+
+Plentiful cash in bank vaults does not help the economy if businesses are too cautious to borrow.
+
+#BangladeshEconomy #Banking #TreasuryBills #RMGExports</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 11 Oct 2026, 22:42 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Net interest margin", "plain": "The gap between what a bank earns on its loans and investments and what it pays depositors in interest."}, {"term": "Nostro account", "plain": "A bank account that a domestic bank holds in foreign currency at another bank in a foreign country."}, {"term": "Loan loss provision", "plain": "An expense that a bank sets aside from its earnings to cushion against loans that borrowers might fail to repay."}, {"term": "Current account", "plain": "The record of a country's net trade in goods, services, and overseas cash gifts like worker remittances."}, {"term": "Capital adequacy ratio", "plain": "The ratio of a bank's core capital to its risk-weighted assets, measuring its financial strength against shocks."}];
+window.__POST__ = "Banks have excess cash, but factories are not borrowing. Here is why it matters.\n\nPrivate sector loan growth has stayed below 5% for six months.\nBanks are pouring their extra cash into government bills, pushing returns below 8%.\nMeanwhile, garment exports grew 6% and worker remittances jumped 13%.\nDollars are arriving, but domestic business confidence remains frozen.\n\nPlentiful cash in bank vaults does not help the economy if businesses are too cautious to borrow.\n\n#BangladeshEconomy #Banking #TreasuryBills #RMGExports\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
