@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-10-13</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Tuesday, 13 October 2026</h1>
+  <div class="meta">223 stories from 28 sources ·
+    112 Bangladesh · 111 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">IMF warns Bangladesh faces its slowest economic growth in 38 years.</p>
+  <ol class="flash"><li>The IMF expects Bangladesh&#x27;s economic growth to drop to its lowest point since the 1980s as consumer prices surge by double digits.</li><li>The government is trying to secure $10 billion from the World Bank to support public finances and fund crucial development projects.</li><li>Businesses pledged 22% more money for foreign imports last month because energy and factory raw materials became significantly more expensive.</li><li>The central bank is providing fresh emergency cash to National Bank so retail customers can finally withdraw their deposits.</li><li>The central bank allowed two struggling Beximco factories to access fresh operational credit despite their loan defaults.</li></ol>
+  <div class="stats"><div class="stat"><b>Nikkei 225</b><span class="down">-1.82%</span></div><div class="stat"><b>USD/INR</b><span class="down">-1.59%</span></div><div class="stat"><b>BSE Sensex</b><span class="up">+1.54%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by sobering macroeconomic projections colliding with emergency interventions across Bangladesh&#x27;s financial sector. The IMF cut its FY27 economic growth outlook for Bangladesh to a 38-year low of 3.2% while projecting inflation to climb to 10.9%, underscoring severe stagflationary pressures. Concurrently, Bangladesh Bank stepped in with fresh liquidity injections for National Bank and eased lending rules for defaulting Beximco units to preserve industrial activity.</p><p>What changed versus recent sessions is the visible escalation of structural corporate and banking vulnerabilities. While recent briefs highlighted falling short-term Treasury bill cut-offs caused by idle bank liquidity, today&#x27;s developments show that liquidity remains trapped rather than resolving solvency distress. The 22% surge in September import letters of credit demonstrates that high international fuel prices are expanding trade liabilities even as domestic factory demand decelerates.</p><p>Moving forward, investors must monitor whether multilateral institutions formalise emergency funding pipelines to relieve external debt obligations. High-confidence multi-provider median USD/BDT settled at Tk 123.48 today with a tight spread of 0.33 taka. The single number that will signal whether balance of payments pressure is stabilising is whether median USD/BDT holds below Tk 123.80 over the coming week.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>The Stagflation Trap</h3>
+    <div class="prose"><p>Stagflation occurs when an economy experiences slow economic growth alongside high inflation. Standard economic policy works well when growth and inflation move together. When growth is strong and prices heat up, central banks raise interest rates to cool the economy.</p><p>When growth stalls and prices fall, central banks cut rates to stimulate investment. In stagflation, monetary tools conflict. Raising interest rates to fight 10.9% inflation makes loans expensive, further suffocating businesses and slowing growth.</p><p>But cutting rates to revive 3.2% growth injects cash that accelerates price increases. The only durable escape is expanding domestic supply, such as producing local energy to cut expensive fuel imports.</p></div>
+    <div class="quiz"><b>Test yourself</b>Why does cutting interest rates during a period of stagflation risk worsening the overall economy?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>The IMF cut Bangladesh&#x27;s FY27 GDP growth forecast to a 38-year low of 3.2% while projecting inflation to climb to 10.9%.</h3>
+    <div class="plain"><b>In plain English</b>The IMF expects Bangladesh&#x27;s economic growth to drop to its lowest point since the 1980s as consumer prices surge by double digits.</div>
+    <p class="why prose">The downgrade reflects severe stagflation — an economic condition combining stagnant growth with rapid price inflation. Higher projected inflation forces Bangladesh Bank to maintain a contractionary monetary policy, raising the cost of borrowing for domestic businesses. This directly compresses operating margins across energy-intensive industries and curtails private sector credit demand.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, The Financial Express</span>
+      <a href="https://www.tbsnews.net/economy/imf-cuts-bangladesh-growth-forecast-32-raises-inflation-outlook-109-1571001" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Bangladesh opened formal negotiations with the World Bank for an additional $10 billion in multi-year financial assistance.</h3>
+    <div class="plain"><b>In plain English</b>The government is trying to secure $10 billion from the World Bank to support public finances and fund crucial development projects.</div>
+    <p class="why prose">External concessional financing — multi-year loans provided below commercial market interest rates — is vital to bridge the sovereign deficit without crowding out private credit. If secured, these disbursements will build foreign exchange reserves and reduce reliance on expensive bilateral commercial debt. However, disbursement hinges on governance and revenue-mobilisation milestones.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, Jagonews24</span>
+      <a href="https://www.tbsnews.net/economy/talks-ongoing-world-bank-additional-10b-assistance-finance-minister-1571136" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Import letters of credit opened in September jumped 22% year-on-year, driven by costlier fuel and industrial inputs.</h3>
+    <div class="plain"><b>In plain English</b>Businesses pledged 22% more money for foreign imports last month because energy and factory raw materials became significantly more expensive.</div>
+    <p class="why prose">A surge in letters of credit — bank guarantees that commit domestic lenders to pay foreign suppliers in foreign currency — signals higher future dollar outflows. This reflects higher global benchmark pricing rather than higher volume. The expansion will drain commercial bank foreign currency liquidity over the next 90 to 180 days.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Bangladesh Bank announced additional liquidity injections for National Bank to settle overdue depositor withdrawals.</h3>
+    <div class="plain"><b>In plain English</b>The central bank is providing fresh emergency cash to National Bank so retail customers can finally withdraw their deposits.</div>
+    <p class="why prose">The central bank is acting as the lender of last resort — an emergency credit provider to solvent or restructured banks facing liquidity runs. Prolonged deposit runs deplete bank cash reserves and freeze interbank lending. While these interventions prevent panic, direct central bank liquidity creation risks compounding broader money supply expansion.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMiuwFBVV95cUxNTHBuLWItQXhZaWlxRDRmdlZ1cVgwRWdsWDNEZVBvUTdUWFo5UTZfWFpQUk82ckJ6UF8zRHNWSlZJUzJBYTVRSmxLUy04bDRvZTV4cm13WXJJSzNMLXpiMmNLX19OMUhabmEwMlVIS2d2akFKLV81UDFjWi1MSGxWcXROdVlyUHMzV01PSTNIQkxLUG5yTmN5c2VjWU0yeTg5TV83NlJhdDBYODdKTk5veVZyU21GeHFQSlI4?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Bangladesh Bank relaxed credit restrictions for two defaulting Beximco Group units to maintain baseline operations.</h3>
+    <div class="plain"><b>In plain English</b>The central bank allowed two struggling Beximco factories to access fresh operational credit despite their loan defaults.</div>
+    <p class="why prose">Standard prudential norms prohibit commercial banks from extending new working capital to non-performing loan accounts — loans whose scheduled interest or principal payments are past due. Waiving these rules shields operational employment in large manufacturing conglomerates. However, it risks moral hazard and leaves lender credit loss provisions exposed.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span><span class="tick">BEXIMCO</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/two-beximco-firms-get-bb-lifeline-keep-business-going-4297226" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>BSEC strengthened regulations on undistributed cash dividend accounts and required clean central bank CIB reports for independent director reappointments.</h3>
+    <div class="plain"><b>In plain English</b>The stock market regulator tightened rules on how firms handle unpaid dividends and made credit checks mandatory for independent directors.</div>
+    <p class="why prose">The Bangladesh Securities and Exchange Commission is tightening corporate governance standards on the Dhaka Stock Exchange. Mandatory Credit Information Bureau checks ensure independent directors have clean personal debt profiles before overseeing listed board audit committees. Tighter cash dividend rules prevent corporate promoters from quietly using shareholder dividends as internal working capital.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/stocks/bsec-toughens-rules-cash-dividend-accounts-eases-independent-director-hiring-1571611" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Bangladesh initiated negotiations for a Comprehensive Economic Partnership Agreement with Oman to narrow bilateral trade deficits.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh is working on a free trade agreement with Oman to boost exports and lower the cost of fuel imports.</div>
+    <p class="why prose">A Comprehensive Economic Partnership Agreement eliminates bilateral tariffs on merchandise and streamlines trade logistics. Bangladesh runs an energy-driven trade deficit with Middle Eastern oil producers. Securing preferential market access helps diversify export receipts beyond apparel into non-traditional Gulf markets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, Dainik Shiksha, New Age BD</span>
+      <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxNOWtsYzVpT184b0ItOHl6LUJiLTlFNGRmNEQ4cXBTNVVLM0lzV2M5M1hDV21HWDBnTUdPU0cxVmhpNGxlam5BcWhVcmRBTTk2TFlLUVZhY09lZzdXb2FGX01ZVnoxOEp2dTRjUHNsRm83NEd1VDFBZEtnNmkzV0tCcGRZWEUxaDVXSElkQTA3R0FyMEZQMEJFTUp3STU5SDF0c3BXeWx2T3dqYlMt?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>The first unit of the Rooppur Nuclear Power Plant reached minimum controlled power, initiating pre-grid operational testing.</h3>
+    <div class="plain"><b>In plain English</b>The first reactor at Rooppur started running at low power as engineers prepare to connect it to the national electricity grid.</div>
+    <p class="why prose">Connecting 1,200 megawatts of nuclear base-load capacity — continuous electrical output that runs uninterrupted around the clock — reduces domestic reliance on imported liquefied natural gas. Cutting LNG spot purchases lowers Bangladesh&#x27;s sovereign foreign exchange bill and eases fiscal subsidy pressures on the Bangladesh Power Development Board.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/energy/rooppur-unit-1-reaches-minimum-control-level-1571331" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>Bangladesh Bank permitted resident foreign currency accounts to hold foreign loan proceeds without immediate conversion to taka.</h3>
+    <div class="plain"><b>In plain English</b>The central bank now allows local businesses to keep borrowed foreign cash in dollar accounts rather than forcing them to convert it into taka.</div>
+    <p class="why prose">Forced conversion previously created foreign exchange risk — financial losses stemming from fluctuating exchange rates — for corporate borrowers importing capital machinery. Allowing firms to retain loan proceeds in dollars protects private balance sheets from depreciation costs. It also reduces frictional transaction spreads charged by commercial dealer desks.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNUVhpLXRPQWYwMjA4UUdzWjlzQWJJWmhOS1VHU19XRE04ekh4WU5zSHJuRVhUdXNfeUY4dFpib2dyZk1sUlZFOGJxV3JEeTZPd09kS2dZb3ZWV20yNUl4NlVacWFoUzNhYWF6blNKNUZ2Y1paRWF2b0g1YUxEcXZpUHlUd3FMVWtvZUNFYnV6TFlqUVR2c0J5WUVxd2k5TWsxWEwweVhUSUtzOEZ3Y1Y2N3hacmg1LWxYZHc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>The IMF warned that rising government debt and persistent inflation could trigger disorderly spikes in global bond yields.</h3>
+    <div class="plain"><b>In plain English</b>The IMF cautioned that rising government debt worldwide could trigger sudden jumps in global borrowing costs.</div>
+    <p class="why prose">The US 10-year Treasury yield closed at 5.24%, anchoring global benchmark yields near cyclical highs. Higher yields in advanced economies widen the emerging-market sovereign risk premium — the added interest rate international investors demand to hold debt from frontier countries like Bangladesh. This makes planned sovereign commercial bond issues significantly more expensive.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>CNBC</span>
+      <a href="https://www.cnbc.com/2026/10/13/treasury-yields-imf-debt-inflation-.html" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Import Cost Escalation to Foreign Exchange Strain</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#10</span><span>strong link</span>
+  </div>
+  <div class="chain prose">High global crude ($105.25 Brent) and US 10Y yields at 5.24% → September import LC commitments jump 22% → foreign currency demand rises → IMF projects inflation reaching 10.9% and GDP slowing to 3.2%.</div>
+  <div class="sowhat prose"><b>So what</b>High import bills will drain commercial bank foreign exchange reserves, limiting the central bank&#x27;s ability to cut domestic interest rates.</div>
+</article>
+<article class="card">
+  <h3>Banking Distress and State Liquidity Interventions</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#5</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Severe bad loan burdens freeze depositor withdrawals at National Bank and operating lines at Beximco → Bangladesh Bank injects emergency cash and relaxes default limits → regulatory forbearance increases system-wide moral hazard.</div>
+  <div class="sowhat prose"><b>So what</b>Emergency balance sheet support prevents short-term panic, but it delays necessary credit provisioning and balance sheet cleanup across the banking sector.</div>
+</article>
+<article class="card">
+  <h3>Multilateral Aid Bridge for Sovereign Balance of Payments</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#7</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">IMF projects lowest economic growth in 38 years → government pursues $10 billion World Bank financing and Oman trade agreements → multilateral inflows aim to cover structural balance of payments deficits.</div>
+  <div class="sowhat prose"><b>So what</b>Securing multi-year concessional capital from development lenders is the primary buffer keeping the taka stable against external debt servicing pressures.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Stagflation</h4>
+  <p>An economic trap where economic growth stalls and unemployment rises, but consumer prices keep rising anyway.</p>
+  <p>The IMF projected Bangladesh&#x27;s FY27 growth will fall to 3.2% while domestic inflation surges to 10.9%.</p><span class="stick">It is the worst of both worlds: stagnant business activity paired with rising grocery bills.</span>
+</div>
+<div class="term">
+  <h4>Concessional financing</h4>
+  <p>Loans granted by multilateral institutions like the World Bank with below-market interest rates and long grace periods.</p>
+  <p>Bangladesh is negotiating $10 billion in multi-year assistance from the World Bank to avoid expensive commercial loans.</p><span class="stick">Cheap development loans designed to build infrastructure, not commercial debt meant to make a bank profit.</span>
+</div>
+<div class="term">
+  <h4>Letters of credit</h4>
+  <p>A formal guarantee from a buyer&#x27;s bank promising that a foreign seller will receive full payment on time.</p>
+  <p>Import letters of credit opened in September jumped 22% due to rising prices for crude and raw materials.</p><span class="stick">A bank&#x27;s written promise that turns a local business order into guaranteed foreign currency trade.</span>
+</div>
+<div class="term">
+  <h4>Lender of last resort</h4>
+  <p>A central bank&#x27;s function of providing emergency cash to solvent financial institutions facing depositor panics.</p>
+  <p>Bangladesh Bank injected direct liquidity into National Bank so depositors could withdraw their funds.</p><span class="stick">The financial fire department that supplies emergency cash when no commercial bank will lend.</span>
+</div>
+<div class="term">
+  <h4>Moral hazard</h4>
+  <p>The incentive to take reckless risks when someone else absorbs the cost of failure.</p>
+  <p>The central bank relaxed lending bans for defaulting Beximco units, rewarding non-performing borrowers with credit.</p><span class="stick">If the government always bails you out, you have no reason to manage risk carefully.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 123.48</div>
+  <div style="margin-top:6px"><span class="up">+0.18%</span> <span class="muted">since 2026-10-12</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.33 taka<br>currency-api 123.48, er-api 123.20, floatrates 123.25, fxratesapi 123.53, yahoo-live 123.53</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">102.29</td>
+<td class="num down">-0.28%</td>
+<td class="num up">+0.45%</td>
+<td class="num up">+2.84%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">95.28</td>
+<td class="num down">-1.59%</td>
+<td class="num down">-1.09%</td>
+<td class="num up">+0.26%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1191</td>
+<td class="num down">-0.20%</td>
+<td class="num down">-0.57%</td>
+<td class="num down">-3.48%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">5.24</td>
+<td class="num down">-0.08%</td>
+<td class="num down">-1.34%</td>
+<td class="num up">+5.62%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">80.67</td>
+<td class="num up">+0.09%</td>
+<td class="num up">+4.12%</td>
+<td class="num up">+0.04%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">92.61</td>
+<td class="num down">-1.21%</td>
+<td class="num up">+3.54%</td>
+<td class="num down">-8.66%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">105.25</td>
+<td class="num down">-1.31%</td>
+<td class="num up">+4.64%</td>
+<td class="num down">-0.41%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.132</td>
+<td class="num down">-1.11%</td>
+<td class="num up">+0.58%</td>
+<td class="num up">+8.15%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">668.5</td>
+<td class="num down">-0.56%</td>
+<td class="num down">-5.08%</td>
+<td class="num down">-5.45%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,283.5</td>
+<td class="num down">-0.33%</td>
+<td class="num down">-1.50%</td>
+<td class="num down">-0.14%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,209.5</td>
+<td class="num up">+0.45%</td>
+<td class="num up">+0.53%</td>
+<td class="num down">-3.27%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,807.24</td>
+<td class="num down">-0.06%</td>
+<td class="num up">+0.43%</td>
+<td class="num up">+2.46%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">27,245.9</td>
+<td class="num down">-0.44%</td>
+<td class="num down">-0.84%</td>
+<td class="num up">+4.05%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">51,850.55</td>
+<td class="num up">+0.38%</td>
+<td class="num up">+1.14%</td>
+<td class="num down">-1.09%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,726.52</td>
+<td class="num up">+0.66%</td>
+<td class="num up">+1.75%</td>
+<td class="num up">+0.27%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">67,777.52</td>
+<td class="num down">-1.82%</td>
+<td class="num down">-3.10%</td>
+<td class="num up">+6.75%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">24,345.22</td>
+<td class="num up">+0.30%</td>
+<td class="num up">+0.27%</td>
+<td class="num down">-2.30%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">73,033.78</td>
+<td class="num up">+1.54%</td>
+<td class="num down">-0.05%</td>
+<td class="num down">-1.31%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">15.41</td>
+<td class="num up">+1.31%</td>
+<td class="num up">+2.66%</td>
+<td class="num down">-9.88%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>Corroborated median USD/BDT will remain below Tk 123.85 over the next 7 calendar days.</b>
+    <p>High-confidence median pricing closed at Tk 123.48 across 5 independent providers with a tight spread, supported by ongoing remittance receipts and multilateral loan negotiations.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Brent crude futures will settle above $100.00 per barrel over the next 7 calendar days.</b>
+    <p>Brent crude closed at $105.25 per barrel, underpinned by active Middle East geopolitical risks and tight physical delivery supplies.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>International cotton futures will stay below 85.00 cents per pound over the next 7 calendar days.</b>
+    <p>Cotton settled at 80.67 cents per pound, where muted global apparel demand prevents an immediate surge above 85 cents.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">47.5%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 28 correct, 31 wrong,
+    0 partial, 17 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">IMF warns Bangladesh faces its slowest economic growth in 38 years.
+
+The IMF projects economic growth will tumble to 3.2% while inflation hits 10.9%.
+At the same time, import costs jumped 22% in September as oil and raw materials got pricier.
+Bangladesh Bank is stepping in with emergency cash to keep troubled banks and factories open.
+Tough choices lie ahead between fighting inflation and keeping the economy moving.
+
+Rising global energy costs and sticky inflation are squeezing Bangladesh&#x27;s economic engine.
+
+#BangladeshEconomy #Inflation #Banking #IMF #Dhaka</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 13 Oct 2026, 18:06 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Stagflation", "plain": "An economic trap where economic growth stalls and unemployment rises, but consumer prices keep rising anyway."}, {"term": "Concessional financing", "plain": "Loans granted by multilateral institutions like the World Bank with below-market interest rates and long grace periods."}, {"term": "Letters of credit", "plain": "A formal guarantee from a buyer's bank promising that a foreign seller will receive full payment on time."}, {"term": "Lender of last resort", "plain": "A central bank's function of providing emergency cash to solvent financial institutions facing depositor panics."}, {"term": "Moral hazard", "plain": "The incentive to take reckless risks when someone else absorbs the cost of failure."}];
+window.__POST__ = "IMF warns Bangladesh faces its slowest economic growth in 38 years.\n\nThe IMF projects economic growth will tumble to 3.2% while inflation hits 10.9%.\nAt the same time, import costs jumped 22% in September as oil and raw materials got pricier.\nBangladesh Bank is stepping in with emergency cash to keep troubled banks and factories open.\nTough choices lie ahead between fighting inflation and keeping the economy moving.\n\nRising global energy costs and sticky inflation are squeezing Bangladesh's economic engine.\n\n#BangladeshEconomy #Inflation #Banking #IMF #Dhaka\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
