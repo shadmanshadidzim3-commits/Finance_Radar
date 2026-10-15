@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-10-15</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Thursday, 15 October 2026</h1>
+  <div class="meta">224 stories from 28 sources ·
+    105 Bangladesh · 119 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">A Tk 7,000 crore state bailout won&#x27;t fix Bangladesh&#x27;s broken banking system.</p>
+  <ol class="flash"><li>The largest state bank lent Tk 7,000 crore to rescue a troubled private bank with the central bank guaranteeing repayment.</li><li>Global lenders insisted that Bangladesh keep interest rates high and fix troubled banks before receiving fresh financial aid.</li><li>Apparel workers want base wages raised to Tk 30,000 monthly, threatening factory profits if international clothing buyers refuse to pay more.</li><li>Tax officials gave companies until October 25 to file VAT returns and decided to require submissions every single month.</li><li>Money sent home by overseas Bangladeshi workers rose nearly 13%, injecting almost $10 billion into domestic bank reserves.</li></ol>
+  <div class="stats"><div class="stat"><b>Nikkei 225</b><span class="down">-4.90%</span></div><div class="stat"><b>VIX (volatility)</b><span class="up">+3.68%</span></div><div class="stat"><b>BSE Sensex</b><span class="up">+2.11%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by domestic financial firefighting colliding with uncompromising external multilateral oversight. The dominant force was the state deploying emergency balance sheet capacity, directing Sonali Bank to inject Tk 7,000 crore into distressed National Bank under a central bank guarantee. This aggressive domestic intervention unfolded while the IMF reiterated that fresh funding hinges on cleaning up weak banks and repairing a tax-to-GDP ratio stuck at 7%.</p><p>What changed versus recent sessions is the overt convergence between sovereign credit guarantees and fiscal backtracking. While yesterday highlighted sovereign reliance on commercial bank credit of Tk 24,245 crore, today showed state-owned lenders directly absorbing private banking insolvency risk. Meanwhile, the National Board of Revenue abandoned quarterly VAT returns in favor of monthly reporting, illustrating fiscal urgency to satisfy IMF conditions that the finance minister now concedes must be met.</p><p>What to watch next is whether formal banking liquidity can maintain stability without sparking runaway moral hazard across other distressed private lenders. The single number that will reveal whether external pressure is easing is the corroborated median USD/BDT rate, which stood at Tk 123.48 today; any move above Tk 124.00 will confirm that domestic liquidity injections are leaking into foreign exchange demand.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Contingent Liabilities and Sovereign Guarantees</h3>
+    <div class="prose"><p>A sovereign guarantee is a legally binding commitment by the state or central bank to assume a debt if the primary borrower defaults. When Bangladesh Bank guarantees a Tk 7,000 crore interbank loan between Sonali Bank and National Bank, that money does not appear as an immediate expenditure in the national budget. Instead, it enters public accounts as a contingent liability — an obligation that crystallises only upon default.</p><p>If the borrowing bank recovers and repays the funds, the state spends nothing. But if the borrower fails, the central bank must absorb the losses, either by printing currency or drawing on public funds. Sovereign guarantees prevent immediate depositor runs, but they quietly transfer private commercial insolvency risk onto taxpayers.</p></div>
+    <div class="quiz"><b>Test yourself</b>If a central bank provides a full repayment guarantee on an interbank rescue loan, does sovereign debt increase immediately upon issuance, or does it only become a realized liability if the borrower defaults?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>According to The Daily Star, Sonali Bank lent Tk 7,000 crore to National Bank under a Bangladesh Bank liquidity guarantee.</h3>
+    <div class="plain"><b>In plain English</b>The largest state bank lent Tk 7,000 crore to rescue a troubled private bank with the central bank guaranteeing repayment.</div>
+    <p class="why prose">This emergency liquidity facility staves off bank run risk — the threat of depositors pulling savings simultaneously. However, state guarantees generate moral hazard — the incentive to take excessive risks when public authorities absorb downside losses. Shifting private credit losses to the sovereign balance sheet increases contingent liabilities for taxpayers.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxQeXJrYmtzRWlJbGFBclA0THlpVU1abmhZTjlYekk2bW5tUE94V1NvanZxS1o0UzBuVnJHNWplUEd0b0pxRnhjZWtSVTktbnc1ZjdhcFB3aUUyM0gwTjJQNzRTdVFCMUY3VHpUQnVDdkFYb2hXUG5KNHY4dzZJZk5BYXc0RkRDSXlKLWU5Y3pUVFZhd1MyNFVWUDdBU2pmbmMtckJEcUFYZkNXV2JFSFhVbWV3X2ZOck1ZMU1QaHhGdzFoWGFz?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>The IMF urged Bangladesh to maintain tight monetary policy and implement banking reforms as discussions over a new loan programme continue.</h3>
+    <div class="plain"><b>In plain English</b>Global lenders insisted that Bangladesh keep interest rates high and fix troubled banks before receiving fresh financial aid.</div>
+    <p class="why prose">The IMF highlighted that Bangladesh&#x27;s tax-to-GDP ratio — total tax collected divided by national economic output — has dropped to 7%, among the lowest worldwide. A tight monetary stance aims to tame inflation but raises debt-servicing costs for domestic firms. Conceding to conditionality is necessary to unlock foreign currency financing buffers.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Financial Express</span>
+      <a href="https://www.thedailystar.net/business/news/imf-urges-tight-monetary-policy-deeper-reforms-bangladesh-4299171" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Garment worker unions demanded raising the readymade garment sector minimum wage to Tk 30,000, intensifying cost pressures on manufacturers.</h3>
+    <div class="plain"><b>In plain English</b>Apparel workers want base wages raised to Tk 30,000 monthly, threatening factory profits if international clothing buyers refuse to pay more.</div>
+    <p class="why prose">Wages represent a major component of operating expenditure — ongoing day-to-day business costs — across export apparel factories. If Western buyers resist price increases, operating margins will compress sharply. That would push marginal sub-contracting garment units into severe operating losses.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>Textile Today, bbc.co.uk</span>
+      <a href="https://news.google.com/rss/articles/CBMixAFBVV95cUxOZU5CQnV3dHRxUFhhS2NUa0hiWWY2eEtRSFRmR2RTZkktWFUyUVN3ZVhxM3VhNTVERXJXMTFValU2akpQLUQxYXBfLVhhRk8zb1RnSHVXRmcxUkUxTkV2OWZhUzB5MVQ0TGZ5cXF3U3MzSWszQTI2OGNwV1BXcXNUVVEwZVk1REp1MDRoa1o4S05FdFJEdFJ4TUZSZjZMMzNRMTJoYWdMSF93amhCSWpEVGdaaFpOMlJXWUFQVnpJSzNqWmt0?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>The National Board of Revenue extended the July-September online VAT return deadline to October 25 while reverting to monthly filing mandates.</h3>
+    <div class="plain"><b>In plain English</b>Tax officials gave companies until October 25 to file VAT returns and decided to require submissions every single month.</div>
+    <p class="why prose">Value-added tax, or VAT — a consumption tax assessed on value added at each stage of production — is Bangladesh&#x27;s most immediate domestic revenue stream. Scrapping quarterly returns reflects sovereign urgency to narrow the fiscal deficit, which is the gap when state expenditure outpaces revenue collections. Sudden regulatory shifts create significant compliance friction for corporate taxpayers.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, tbsnews.net</span>
+      <a href="https://www.thedailystar.net/business/news/vat-return-deadline-extended-oct-25-nbr-4299481" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>According to RTV News, remittance inflows grew 12.9% year-on-year to $9.997 billion during the current fiscal year.</h3>
+    <div class="plain"><b>In plain English</b>Money sent home by overseas Bangladeshi workers rose nearly 13%, injecting almost $10 billion into domestic bank reserves.</div>
+    <p class="why prose">Remittance flows strengthen the secondary income balance — transfers received from abroad without exchanging goods or services. These dollar inflows replenish gross international reserves and support the current account. They provide commercial banks with foreign currency liquidity to settle import liabilities.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>RTV News</span>
+      <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBMNDB2YmgtZDFTeS12T1Vucm5iRExHSVlRUVNjVnV5YmxrZEs5dVlZUkN2Zmh2RVRfLUlWNk5sb2s1WDdremRYMVlWaENaNWlPZTdfNWxyOFl1ODk3ZG5jdnVnR3NYanpMbHEw?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>According to The Business Standard, the BSEC reconstituted the board of the Tk 1,700 crore Capital Market Stabilisation Fund after a 26-month deadlock.</h3>
+    <div class="plain"><b>In plain English</b>The stock market regulator revived a Tk 1,700 crore emergency fund to support falling share prices after two years of inaction.</div>
+    <p class="why prose">The fund functions as a buyer of last resort by deploying undistributed dividends to purchase equities during market slides. Reviving the governance board facilitates institutional support for listed blue chips. However, artificial liquidity injections cannot resolve fundamental corporate earnings headwinds.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Net profits at foreign commercial banks operating in Bangladesh fell in the first half of 2026 as foreign trade volume decelerated.</h3>
+    <div class="plain"><b>In plain English</b>Foreign banks in Bangladesh saw earnings drop during the first half because import and export business activity slowed down.</div>
+    <p class="why prose">Foreign banks rely heavily on non-funded income — fee revenue generated from letter of credit commissions and guarantees rather than direct lending. The earnings drop reflects sluggish capital expenditure across private industrial borrowers. It also highlights the lingering impact of past import restrictions on total trade throughput.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>Traders Union, The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMipgFBVV95cUxPaGlqcmtlVnpkOWR5cmRTTk1LM2hNOEJOV001WkxWWVIyV1NJQk5fdlFaVUtCYUtOUWlIMElHcW1mSDBpU0E4cDJOaHpMdEQ0Y25ZNGoxenNIa0NUWmw3bUdYUHdxNWdEaFVTVlVmZGt0a1BkbnVtVGdLZkpia2prNm81MVlnYUJZeXNfNERjSF9LWXIyNVFCblB2REZ1bUxORFFXVFVR?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>According to New Age BD, the dollar exchange rate on formal banking channels converged to near parity with the informal curb market.</h3>
+    <div class="plain"><b>In plain English</b>The US dollar now costs nearly the same at authorized commercial banks as it does on the informal street market.</div>
+    <p class="why prose">A negligible hundi spread — the premium paid for dollars in informal curb markets over official bank quotes — eliminates the financial incentive for illegal remittance routing. This channels foreign exchange directly into commercial bank net foreign assets. It also reduces private hoarding of physical foreign currency.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#047857">FX</span>
+      <span>hits Bangladesh directly</span>
+      <span>New Age BD</span>
+      <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE9zajZqNkNjSl8yRkRRZUt1dzNwdVo4NU1iY0RqY0lyVndCSjAwVnRReklhLTZHWVJyOE1iUjg1Q21GUU5PQXd3R1VNQzU2aTBrTUdDaW1MR2U?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>According to The Daily Star, US consumer inflation rose 3.7% year-on-year in September, exceeding market forecasts of 3.6%.</h3>
+    <div class="plain"><b>In plain English</b>Consumer prices in America climbed faster than expected last month, reducing chances that global interest rates will fall soon.</div>
+    <p class="why prose">The Consumer Price Index, or CPI — a benchmark measuring retail price changes paid by urban households — steers Federal Reserve interest rate policy. Hotter US inflation keeps global policy rates higher for longer, elevating debt service burdens for frontier borrowers. A strong dollar also sustains imported cost pressures on energy and food commodities.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/news/us-consumer-inflation-hotter-expected-midterms-loom-4299266" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>Global technology shares fell sharply as hotter US inflation and rising debt levels tied to artificial intelligence investments rattled markets.</h3>
+    <div class="plain"><b>In plain English</b>Stock markets slid worldwide as investors worried about high debt loads and interest rates staying elevated for longer.</div>
+    <p class="why prose">Tech market losses widen equity risk premia — the additional yield investors require to hold risky equities over government bonds. Rising volatility triggers risk aversion across emerging and frontier assets. This restrains foreign institutional portfolio inflows into regional financial markets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#4338ca">Global Markets</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>The Guardian</span>
+      <a href="https://www.theguardian.com/business/2026/oct/15/tech-market-sell-off-deepens-amid-fears-over-us-inflation-and-ai-debt" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Banking Bailout and Multilateral Pressure</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#2</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Central bank issues Tk 7,000 crore guarantee for Sonali Bank&#x27;s bailout of National Bank → sovereign assumes contingent liabilities for private bad loans → IMF demands strict deadlines and balance sheet cleanups for weak banks → fiscal and regulatory pressure intensifies on policymakers.</div>
+  <div class="sowhat prose"><b>So what</b>State-backed liquidity lifelines preserve troubled banks temporarily, but IMF conditionality will force painful recognition of non-performing loans.</div>
+</article>
+<article class="card">
+  <h3>Exchange Rate Convergence and Remittance Channeling</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#5</span><span class="chip" style="--chip:#475569">#8</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Official USD/BDT rate aligns with informal kerb market quotes → hundi premium narrows toward zero → migrant workers divert remittance flows from informal channels to formal banking system → cumulative remittances reach $9.997 billion → commercial bank net foreign assets stabilize.</div>
+  <div class="sowhat prose"><b>So what</b>A unified currency rate channeled nearly $10 billion through banks, easing the foreign currency liquidity crunch for import letters of credit.</div>
+</article>
+<article class="card">
+  <h3>Cost-Push Pressures on RMG Margins</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#9</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">US headline CPI prints hot at 3.7% → Federal Reserve prolongs restrictive monetary policy → Western consumer purchasing power remains constrained → garment workers demand Tk 30,000 monthly minimum wage → RMG factory owners face wage inflation while Western buyers resist price hikes → operating margins contract.</div>
+  <div class="sowhat prose"><b>So what</b>RMG manufacturers face an acute margin squeeze between domestic wage escalation and stagnant retail apparel pricing in export markets.</div>
+</article>
+<article class="card">
+  <h3>Domestic Revenue Urgency and VAT Reversion</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#4</span><span>strong link</span>
+  </div>
+  <div class="chain prose">IMF conditionality targets Bangladesh&#x27;s 7% tax-to-GDP ratio → National Board of Revenue reverts to monthly VAT return mandates to accelerate cash receipts → businesses face higher compliance burdens → tax authorities extend Q1 filing deadline to October 25 to prevent widespread defaults.</div>
+  <div class="sowhat prose"><b>So what</b>Frequent regulatory reversals create compliance friction for domestic enterprises as the sovereign scrambles to hit revenue targets.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Contingent liability</h4>
+  <p>A potential financial obligation that only becomes an actual payable debt if another party defaults.</p>
+  <p>Bangladesh Bank&#x27;s guarantee on Sonali Bank&#x27;s Tk 7,000 crore loan creates a contingent liability for the sovereign.</p><span class="stick">Co-signing a friend&#x27;s loan: you owe nothing today, but you are completely on the hook if they fail to pay.</span>
+</div>
+<div class="term">
+  <h4>Tax-to-GDP ratio</h4>
+  <p>Total tax revenue collected by the government divided by the total value of economic output.</p>
+  <p>The IMF flagged Bangladesh&#x27;s tax-to-GDP ratio of 7% as one of the lowest globally, demanding fiscal overhauls.</p><span class="stick">The percentage slice of the national economic pie that the government collects to fund public bills.</span>
+</div>
+<div class="term">
+  <h4>Moral hazard</h4>
+  <p>The tendency to take excessive risks when someone else bears the financial cost of failure.</p>
+  <p>Bailing out troubled private lenders with state guarantees rewards reckless management and removes the incentive for prudent banking.</p><span class="stick">If the state pays for your car accidents, you have far less reason to drive carefully.</span>
+</div>
+<div class="term">
+  <h4>Hundi spread</h4>
+  <p>The gap between the informal kerb market dollar rate and the official banking exchange rate.</p>
+  <p>The gap narrowed to parity today, removing the incentive for workers to bypass formal banking channels.</p><span class="stick">The informal bonus that tempts remittances away from banks into black-market channels.</span>
+</div>
+<div class="term">
+  <h4>Non-funded income</h4>
+  <p>Fee revenue earned by banks from commissions and guarantees without deploying their own cash balance sheet.</p>
+  <p>Foreign banks suffered profit declines in H1 because slower trade volumes depressed letter of credit fees.</p><span class="stick">Bank earnings generated purely from paperwork, service charges, and trade guarantees rather than interest on loans.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 123.48</div>
+  <div style="margin-top:6px"><span class="up">+0.24%</span> <span class="muted">since 2026-10-14</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.07 taka<br>currency-api 123.45, er-api 123.48, floatrates 123.43, fxratesapi 123.50, yahoo-live 123.49</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">102.22</td>
+<td class="num down">-0.32%</td>
+<td class="num up">+0.08%</td>
+<td class="num up">+2.58%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">95.06</td>
+<td class="num down">-0.24%</td>
+<td class="num down">-1.76%</td>
+<td class="num down">-0.81%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1217</td>
+<td class="num up">+0.11%</td>
+<td class="num up">+0.14%</td>
+<td class="num down">-2.87%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">5.085</td>
+<td class="num down">-2.02%</td>
+<td class="num down">-2.79%</td>
+<td class="num up">+1.78%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">80.43</td>
+<td class="num down">-0.29%</td>
+<td class="num up">+5.54%</td>
+<td class="num down">-0.83%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">93.72</td>
+<td class="num down">-1.44%</td>
+<td class="num up">+2.44%</td>
+<td class="num down">-11.44%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">104.25</td>
+<td class="num down">-1.71%</td>
+<td class="num down">-0.03%</td>
+<td class="num down">-4.14%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.229</td>
+<td class="num up">+0.97%</td>
+<td class="num up">+1.93%</td>
+<td class="num up">+10.62%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">675.25</td>
+<td class="num up">+0.30%</td>
+<td class="num down">-1.17%</td>
+<td class="num down">-7.31%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,272.0</td>
+<td class="num down">-0.41%</td>
+<td class="num down">-1.20%</td>
+<td class="num down">-3.55%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,161.2</td>
+<td class="num up">+1.30%</td>
+<td class="num up">+0.10%</td>
+<td class="num down">-3.96%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,718.94</td>
+<td class="num down">-1.11%</td>
+<td class="num down">-1.06%</td>
+<td class="num up">+1.76%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">26,692.87</td>
+<td class="num down">-1.88%</td>
+<td class="num down">-3.07%</td>
+<td class="num up">+2.74%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">51,621.48</td>
+<td class="num down">-0.09%</td>
+<td class="num up">+0.86%</td>
+<td class="num down">-0.91%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,810.49</td>
+<td class="num up">+0.80%</td>
+<td class="num up">+3.53%</td>
+<td class="num up">+1.43%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">64,425.95</td>
+<td class="num down">-4.90%</td>
+<td class="num down">-8.01%</td>
+<td class="num up">+1.48%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">24,062.72</td>
+<td class="num down">-1.03%</td>
+<td class="num up">+1.16%</td>
+<td class="num down">-2.45%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">74,315.61</td>
+<td class="num up">+2.11%</td>
+<td class="num up">+3.80%</td>
+<td class="num up">+0.42%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">17.49</td>
+<td class="num up">+3.68%</td>
+<td class="num up">+13.50%</td>
+<td class="num up">+1.69%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — The US 10-year Treasury yield dropped to 5.085% on 2026-10-15, breaking below the 5.15% threshold.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Underestimated market demand for US duration following tech equity volatility, assuming yield momentum would hold above 5.15%.</p>
+</div></div>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — The US 10-year Treasury yield fell to 5.085% on 2026-10-15, breaching the 5.10% floor.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Repeated the error of anchoring to recent yield highs without factoring in safe-haven bond rallies during global equity sell-offs.</p>
+</div></div>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — The US 10-year Treasury yield fell to 5.085% on 2026-10-15, dipping below the 5.10% threshold.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Failed to recognize the cluster risk of making multiple yield-floor predictions during a volatile macroeconomic window.</p>
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>Corroborated median USD/BDT will remain below Tk 123.90 over the next 7 calendar days.</b>
+    <p>Median pricing settled at Tk 123.48 with a narrow 0.07 spread across 5 providers, supported by official-curb rate parity and fiscal year remittances near $10 billion.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Brent crude futures will settle above $100.00 per barrel over the next 7 calendar days.</b>
+    <p>Brent settled at $104.25 despite daily softening, with persistent Middle Eastern geopolitical friction sustaining a baseline risk premium on crude.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>International cotton futures will stay below 85.00 cents per pound over the next 7 calendar days.</b>
+    <p>Cotton closed at 80.43 cents per pound, where softening global retail apparel sales and elevated interest rates prevent an aggressive speculative breakout.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">45.2%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 28 correct, 34 wrong,
+    0 partial, 20 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">A Tk 7,000 crore state bailout won&#x27;t fix Bangladesh&#x27;s broken banking system.
+
+State-owned Sonali Bank just loaned Tk 7,000 crore to rescue struggling National Bank.
+The central bank promised to cover any losses if things go wrong.
+Meanwhile, garment workers are demanding base wages rise to Tk 30,000 to survive inflation.
+Every time public money rescues mismanaged private lenders, regular taxpayers bear the ultimate cost.
+
+Bailing out failing banks with public guarantees protects bad managers while shifting financial risk to ordinary citizens.
+
+#BangladeshEconomy #BankingCrisis #RMG #Inflation</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 15 Oct 2026, 18:48 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Contingent liability", "plain": "A potential financial obligation that only becomes an actual payable debt if another party defaults."}, {"term": "Tax-to-GDP ratio", "plain": "Total tax revenue collected by the government divided by the total value of economic output."}, {"term": "Moral hazard", "plain": "The tendency to take excessive risks when someone else bears the financial cost of failure."}, {"term": "Hundi spread", "plain": "The gap between the informal kerb market dollar rate and the official banking exchange rate."}, {"term": "Non-funded income", "plain": "Fee revenue earned by banks from commissions and guarantees without deploying their own cash balance sheet."}];
+window.__POST__ = "A Tk 7,000 crore state bailout won't fix Bangladesh's broken banking system.\n\nState-owned Sonali Bank just loaned Tk 7,000 crore to rescue struggling National Bank.\nThe central bank promised to cover any losses if things go wrong.\nMeanwhile, garment workers are demanding base wages rise to Tk 30,000 to survive inflation.\nEvery time public money rescues mismanaged private lenders, regular taxpayers bear the ultimate cost.\n\nBailing out failing banks with public guarantees protects bad managers while shifting financial risk to ordinary citizens.\n\n#BangladeshEconomy #BankingCrisis #RMG #Inflation\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
