@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-10-18</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Sunday, 18 October 2026</h1>
+  <div class="meta">191 stories from 24 sources ·
+    104 Bangladesh · 87 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Why the government is finally capping expensive private power payments.</p>
+  <ol class="flash"><li>The government will stop buying overpriced private electricity to reduce huge subsidy losses that drain public funds.</li><li>The central bank pumped Tk 450 crore into shut factories over two weeks to help them reopen and restart production.</li><li>Foreign banks in Bangladesh made 38% less profit as trade slowed down and domestic borrowing demand dried up.</li><li>The stock regulator revived a Tk 1,700 crore emergency fund to support stock prices after being stuck for over two years.</li><li>Listed firms must now lock dividend cash in separate bank accounts so they cannot divert money meant for shareholders.</li></ol>
+  <div class="stats"><div class="stat"><b>VIX (volatility)</b><span class="up">+21.45%</span></div><div class="stat"><b>Brent Crude</b><span class="up">+3.72%</span></div><div class="stat"><b>Natural Gas</b><span class="down">-3.71%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by administrative interventions aiming to contain domestic fiscal and financial strains while global energy prices remained punishingly high. The dominant macroeconomic force was Brent crude holding near $110 per barrel, sustaining severe balance of payments pressure on Bangladesh. In response, policymakers moved to cap power purchase tariffs above average generation costs and revived market support bodies, attempting to shield public accounts from escalating energy subsidy burdens.</p><p>What changed versus recent sessions is the visible push to unwind regulatory delays and restore stalled liquidity mechanisms. Following weeks of domestic banking emergency firefighting, Bangladesh Bank accelerated Tk 450 crore in factory revival loans and deregulated industrial boiler imports. Furthermore, after a 26-month operational impasse, securities regulators reconstituted the Tk 1,700 crore Capital Market Stabilisation Fund. Our previous notes highlighted how idle liquidity was failing to reach productive manufacturing; today’s interventions represent administrative attempts to force capital back into shuttered industrial assets.</p><p>What to watch next is whether commercial banks actually deploy their own balance sheets alongside central bank refinance facilities, or whether foreign bank earnings contractions signal a broader retrenchment in private trade credit. The critical number to track is the corroborated median USD/BDT rate. If the taka sustains its current stability near Tk 123.27 despite $110 oil, foreign exchange reserves will have bought domestic industries precious breathing room.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Escrow account segregation in corporate governance</h3>
+    <div class="prose"><p>When a public corporation declares a dividend, it incurs a binding liability to shareholders. In liquidity-constrained corporate sectors, cash-poor companies often declare dividends during their annual general meetings to support their share prices, but quietly divert that cash to pay short-term working capital expenses or bank interest. By the time distribution day arrives, the cash is gone, leading to delayed payouts and investor disputes.</p><p>By mandating an escrow bank account — a legally partitioned account dedicated exclusively to dividend distribution — regulators ensure funds are ring-fenced the moment they are declared. This practice forces management to treat shareholder distributions as an unalterable cash outflow rather than an internal credit line.</p></div>
+    <div class="quiz"><b>Test yourself</b>Why does forcing companies to place dividends into an escrow account immediately expose financially weak firms?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>The government decided to halt purchasing electricity from private plants at rates exceeding the national average tariff, according to The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>The government will stop buying overpriced private electricity to reduce huge subsidy losses that drain public funds.</div>
+    <p class="why prose">The decision targets capacity charges — contractually guaranteed fees paid to power producers regardless of whether electricity is generated. Capping power purchase costs aims to curb the ballooning fiscal deficit, which is the gap when government spending exceeds tax revenues. It will squeeze margins for high-cost independent power producers while lowering the sovereign subsidy burden.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNVzVwX3ZNMnVGRHBsY0Jid0FnZUhZZ2RKbXpsR0hfQk1iOVgyX21BamhkM3dxcm5oaC1EZGIwV3p3MWw2b2hYNlY3WG1VSmQyV0tKRGFyM2NOQWFGUVJoR0RQOXV3TFczX2VkcDRqd3pTRGM1VWlRb1dPWmZiM2lmYURwUjlMcjlVaXVrLXAzQkE1Y0Qyb1J3?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Disbursements under Bangladesh Bank&#x27;s Tk 20,000 crore factory revival refinance scheme expanded by Tk 450 crore in 18 days, reported The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>The central bank pumped Tk 450 crore into shut factories over two weeks to help them reopen and restart production.</div>
+    <p class="why prose">The facility provides liquidity support through a refinance line — a low-interest lending facility funded by the central bank to commercial lenders. Speeding up disbursements seeks to revive non-operational assets before they turn into permanent non-performing loans, which are loans in default where borrowers have stopped making interest payments. However, channeling credit to distressed legacy units risks adding balance-sheet strain to participating banks if factory cash flows fail to rebound.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/banking/bangladesh-banks-tk20000cr-scheme-loans-closed-factories-rise-tk450cr-18-days" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Aggregate net profit of foreign commercial banks operating in Bangladesh dropped 38% year-on-year in the first half of 2026, according to The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>Foreign banks in Bangladesh made 38% less profit as trade slowed down and domestic borrowing demand dried up.</div>
+    <p class="why prose">Foreign banks depend heavily on trade finance — credit instruments like letters of credit that facilitate cross-border import and export transactions. Lower profits reflect contracting trade volumes alongside compressed net interest margin, the spread between what a bank earns on assets and pays on liabilities. When conservative multinational banks pull back on fee generation and trade volumes, foreign exchange liquidity in the interbank market contracts.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxQMU12MHA3alZORkR2eUdXU2c5QlFyOHFwZC1TbTNqNUFhRXJ0amRfNmNZb3d5bGFxczcwOUZCazNneHhWM2h6VTFJb0hfX0ozSWNaZ3Z4Wk02X1lvcG8zaGREb0dSQXl1RVdlSmxoUmQzblQxd3JjQXBibzR5VmJHb3dWSi16VHRtM1VsaQ?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>BSEC formed a reconstituted board for the Tk 1,700 crore Capital Market Stabilisation Fund after a 26-month operational impasse, reported The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>The stock regulator revived a Tk 1,700 crore emergency fund to support stock prices after being stuck for over two years.</div>
+    <p class="why prose">The Capital Market Stabilisation Fund pools undistributed dividends to act as a liquidity backstop — a source of emergency capital deployed during sharp market drawdowns. Resolving the governance deadlock allows institutional buying to absorb sell pressure on the Dhaka Stock Exchange. If deployed effectively, it provides counter-cyclical liquidity, though past interventions frequently struggled against broader macroeconomic downtrends.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#b45309">DSE</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxNbHR1cXdFM19aN1p4eWhBelpheGJUb3ZRWWpiZDVISUVjem42RnBKYlA2bmpVdHJaeVlkX0oxeVJtR2N4M2tDUmRCZUtTSWUxeDF2TVFYQllvdnNSbUN0bWNPTnFCMk9pRHJvNFJLYnlYN09xeGNFTkpKMno5TUFkeHNDenZXVTcyanl2TGhnVkJKYjAtTmZHLU5SQXV1SHVBZV82WTZxOUpTN0l1dFh2OFNYS3AzTS1ac01NejJkYnc4UQ?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>BSEC ordered all listed companies to park declared cash dividends in dedicated escrow bank accounts, according to The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>Listed firms must now lock dividend cash in separate bank accounts so they cannot divert money meant for shareholders.</div>
+    <p class="why prose">The directive prevents working capital diversion — the practice of using declared shareholder cash to plug operating cash deficits. Segregating cash into escrow accounts ensures immediate dividend payout capability and exposes companies suffering from liquidity mismatches. While this strengthens corporate governance, highly leveraged issuers may face short-term operating liquidity crunches.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Business Standard</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>Brent crude futures settled at $109.86 per barrel as Middle East energy infrastructure risks kept international benchmarks elevated.</h3>
+    <div class="plain"><b>In plain English</b>Global oil prices stayed near $110 per barrel, threatening to make electricity, transport, and fertilizer costlier in Bangladesh.</div>
+    <p class="why prose">Bangladesh imports almost all its petroleum products, meaning high crude prices translate into imported inflation — rising domestic prices driven by costlier foreign goods. Costlier oil worsens the current account balance, which measures trade in goods and services plus transfers. This widens sovereign foreign currency outflows and increases upward pressure on domestic power generation costs.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>hits Bangladesh directly</span>
+      <span>Energy News Beat, Global market data</span>
+      <a href="https://news.google.com/rss/articles/CBMiuAFBVV95cUxNYzBXZy1ya1c5dl9DZ0EzcE41MXZNRnM2Ul96N0diaC1XNlpCekFQYjNhQjVRdmFTT0RSR3dEY0VRR2xnQlUwSklWcUljclNxMHNLZzVMZVdjRzlOZ2UzU2RiV0EyTHdmOFpGOXZxbm1jbWx3MzA0MlJLSlBrZnFfNE1ZcFdnWllXRkk2S05sREloMmszM2E4clo0N3JXbXBDQTlOMzZmdXlZWjdZT21xUVc4N1N0Q3pL?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Vietnam signed a free trade agreement with four European nations, while Bangladesh apparel shipments to the EU fell 11.7%, reported en.bd-pratidin.com.</h3>
+    <div class="plain"><b>In plain English</b>Vietnam secured zero-tariff access to four wealthy European nations, making competition tougher for Bangladesh&#x27;s garment exporters.</div>
+    <p class="why prose">The deal with EFTA nations improves Vietnam&#x27;s tariff preference — lower customs duties granted by trade agreements that make a country&#x27;s exports cheaper. Bangladesh&#x27;s readymade garment sector accounts for over 80% of national export earnings and faces erosion of trade advantages. As competitors lock in duty-free terms, local garment factories face mounting order diversion and price competition.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>thedailystar.net, en.bd-pratidin.com</span>
+      <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBqcnBuZ095RUVmeF9rdjBONXdZenBiRlpGQUxBaFBHVFhJZFZHQVVNTlhLYm1FV2ZvSVA2VnRqdUxSY2lUeHlzZFBrQ1hYNmQtOG95OUFxX0M0cHZSamhyUg?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Renata PLC posted a 64% surge in annual net profit for FY26 on reduced borrowing expenses and operating efficiencies, according to The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>Drugmaker Renata grew its annual net profit by 64% after cutting interest payments and managing its factory costs better.</div>
+    <p class="why prose">The pharmaceutical manufacturer benefited from balance-sheet deleveraging — the process of paying down existing debt to reduce interest expenses. Lower finance charges widened operating profit into net earnings despite moderate top-line revenue growth. Renata&#x27;s performance highlights that corporate borrowers with strong pricing power can defend earnings by rationalizing balance-sheet liabilities.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">RENATA</span>
+      <span>hits Bangladesh directly</span>
+      <span>thedailystar.net, tbsnews.net</span>
+      <a href="https://www.thedailystar.net/business/economy/news/renatas-profit-jumps-64-finance-costs-fall-4301236" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>The government eliminated prior ministerial clearance requirements for industrial boiler imports, notified through a Bangladesh Bank circular reported by The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>Factories can now import industrial boilers without waiting for ministry approval, saving weeks of paperwork.</div>
+    <p class="why prose">Deregulating capital machinery procurement reduces non-tariff barriers — regulatory restrictions other than customs duties that delay trade flows. Garment and textile dye houses rely on industrial boilers for steam and finishing operations. Streamlining clearance lowers turnaround times for factory modernizations, supporting industrial capital expenditure.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>thedailystar.net</span>
+      <a href="https://www.thedailystar.net/business/news/businesses-no-longer-need-prior-approval-boiler-imports-4301841" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>BSEC slapped a combined fine of Tk 35.92 lakh on CBC Capital and associated investors for manipulating shares of Lovello Ice-Cream, reported tbsnews.net.</h3>
+    <div class="plain"><b>In plain English</b>Regulators fined an investment group Tk 36 lakh for artificially driving up an ice cream company&#x27;s share price.</div>
+    <p class="why prose">The penalty addresses circular trading and price rigging — fraudulent buy and sell orders created to give an illusion of active trading volume. Small-cap manipulation distorts price discovery, which is the mechanism by which market prices reflect genuine supply and demand. Enforcing fines deters speculative syndicates, though small penalties relative to illicit trading profits remain a chronic criticism.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#b45309">DSE</span><span class="tick">LOVELLO</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/stocks/bsec-fines-cbc-capital-led-syndicate-tk3592-lakh-lovello-share-manipulation-1575891" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Energy import costs and fiscal subsidy curbs</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#6</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Brent crude holds near $110/bbl → national import fuel bill expands → sovereign fiscal deficit widens → government caps power purchase tariffs above national average.</div>
+  <div class="sowhat prose"><b>So what</b>Independent power producers will see revenue caps while the government tries to prevent sovereign energy subsidies from draining the national budget.</div>
+</article>
+<article class="card">
+  <h3>Bank balance sheet quality and factory revival credit</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#3</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Trade slowdown depresses foreign bank earnings by 38% → commercial banks tighten private lending → central bank accelerates Tk 450 crore refinance disbursements to revive sick industrial units.</div>
+  <div class="sowhat prose"><b>So what</b>If sick factories fail to recover operational viability, state-backed refinance schemes will convert hidden distress into overt banking non-performing loans.</div>
+</article>
+<article class="card">
+  <h3>Trade competitiveness and export sector profitability</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#7</span><span class="chip" style="--chip:#475569">#9</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Vietnam secures European free trade pact → Bangladesh faces 11.7% EU export drop → government scraps boiler import permits to lower factory operational frictions.</div>
+  <div class="sowhat prose"><b>So what</b>Regulatory streamlining on capital equipment helps reduce factory setup delays, but cannot fully offset tariff disadvantages against competitor nations.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Capacity charges</h4>
+  <p>Guaranteed fees paid to power plant owners for keeping generators available, even if the government takes zero electricity.</p>
+  <p>The government is ending power purchases priced above the average tariff to eliminate inflated capacity payouts.</p><span class="stick">Paying rent on an empty warehouse whether you use it or not.</span>
+</div>
+<div class="term">
+  <h4>Refinance line</h4>
+  <p>A program where the central bank gives cheap loans to commercial banks so they can lend to specific struggling sectors.</p>
+  <p>Bangladesh Bank disbursed Tk 450 crore under its Tk 20,000 crore scheme to revive closed industrial factories.</p><span class="stick">A central bank wholesale discount that retail banks pass down to targeted borrowers.</span>
+</div>
+<div class="term">
+  <h4>Escrow account</h4>
+  <p>A dedicated bank account held for a specific legal purpose that cannot be used for everyday business expenses.</p>
+  <p>BSEC ordered listed companies to park declared dividend money into escrow accounts to protect shareholder payouts.</p><span class="stick">A locked savings jar that managers cannot raid to pay everyday bills.</span>
+</div>
+<div class="term">
+  <h4>Non-tariff barriers</h4>
+  <p>Bureaucratic rules, special permits, and border delays that make importing goods slow and expensive without charging a formal customs duty.</p>
+  <p>Authorities scrapped the requirement for ministerial clearance on industrial boiler imports.</p><span class="stick">Red tape acting as an invisible tax.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 123.27</div>
+  <div style="margin-top:6px"><span class="down">-0.17%</span> <span class="muted">since 2026-10-15</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.42 taka<br>currency-api 123.51, er-api 123.09, floatrates 123.39, fxratesapi 123.27, yahoo-live 123.14</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">101.84</td>
+<td class="num down">-0.16%</td>
+<td class="num down">-0.36%</td>
+<td class="num up">+1.62%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">94.95</td>
+<td class="num up">+0.45%</td>
+<td class="num down">-1.89%</td>
+<td class="num down">-1.09%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1242</td>
+<td class="num up">+0.26%</td>
+<td class="num up">+0.34%</td>
+<td class="num down">-2.56%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">5.098</td>
+<td class="num up">+0.18%</td>
+<td class="num down">-2.78%</td>
+<td class="num up">+1.84%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">80.0</td>
+<td class="num down">-0.07%</td>
+<td class="num down">-0.67%</td>
+<td class="num up">+3.39%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">99.02</td>
+<td class="num up">+1.07%</td>
+<td class="num up">+7.81%</td>
+<td class="num down">-1.28%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">109.86</td>
+<td class="num up">+3.72%</td>
+<td class="num up">+4.91%</td>
+<td class="num up">+5.77%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.116</td>
+<td class="num down">-3.71%</td>
+<td class="num down">-3.23%</td>
+<td class="num up">+7.01%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">660.5</td>
+<td class="num down">-1.42%</td>
+<td class="num down">-1.56%</td>
+<td class="num down">-7.53%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,261.25</td>
+<td class="num down">-0.14%</td>
+<td class="num down">-2.38%</td>
+<td class="num down">-3.24%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,181.1</td>
+<td class="num up">+0.26%</td>
+<td class="num down">-0.83%</td>
+<td class="num down">-5.51%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,659.44</td>
+<td class="num down">-1.09%</td>
+<td class="num down">-1.95%</td>
+<td class="num up">+0.28%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">26,140.03</td>
+<td class="num down">-2.15%</td>
+<td class="num down">-4.48%</td>
+<td class="num down">-1.05%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">52,002.41</td>
+<td class="num down">-0.34%</td>
+<td class="num up">+0.67%</td>
+<td class="num up">+0.43%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,881.9</td>
+<td class="num up">+0.38%</td>
+<td class="num up">+3.13%</td>
+<td class="num up">+1.81%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">65,324.29</td>
+<td class="num up">+1.39%</td>
+<td class="num down">-5.38%</td>
+<td class="num up">+2.19%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">24,186.83</td>
+<td class="num up">+0.52%</td>
+<td class="num down">-0.10%</td>
+<td class="num down">-2.13%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">74,729.27</td>
+<td class="num up">+0.56%</td>
+<td class="num up">+3.11%</td>
+<td class="num up">+0.53%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">19.99</td>
+<td class="num up">+21.45%</td>
+<td class="num up">+34.70%</td>
+<td class="num up">+12.87%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Corroborated median USD/BDT was Tk 123.27 on 18 October 2026 across five independent providers, remaining comfortably below the Tk 123.50 ceiling throughout the 7-day period.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Steady remittance inflows and IMF engagement maintained stability in the interbank currency corridor.</p>
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Brent crude futures settled at $109.86 per barrel on 18 October 2026, remaining well above $100.00 throughout the 7-day horizon.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Heightened Middle Eastern geopolitical risks kept an active risk premium intact across global petroleum benchmarks.</p>
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>Corroborated median USD/BDT will remain below Tk 123.75 over the next 7 calendar days.</b>
+    <p>High-confidence median pricing settled at Tk 123.27 across 5 independent providers with a 0.42 spread, underpinned by resilient remittance flows and tight foreign exchange licensing.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Brent crude futures will settle above $105.00 per barrel over the next 7 calendar days.</b>
+    <p>Brent closed at $109.86 per barrel with persistent Middle East infrastructure conflict sustaining an active supply risk premium.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>International cotton futures will remain below 83.00 cents per pound over the next 7 calendar days.</b>
+    <p>Cotton closed at 80.0 cents per pound, where softening European apparel retail demand continues to cap speculative raw material price spikes.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">48.5%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 32 correct, 34 wrong,
+    0 partial, 22 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Why the government is finally capping expensive private power payments.
+
+Oil is sitting near $110 a barrel and energy subsidies are burning through public funds.
+To stop the bleeding, Bangladesh will halt buying power above average national tariffs.
+Meanwhile, regulators ordered companies to lock dividend cash into separate accounts.
+No more using shareholder money to plug factory cash flow holes.
+
+Energy austerity and tighter corporate accountability are taking center stage.
+
+#BangladeshEconomy #EnergyTariffs #DhakaStockExchange #BankingBD</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 18 Oct 2026, 20:44 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Capacity charges", "plain": "Guaranteed fees paid to power plant owners for keeping generators available, even if the government takes zero electricity."}, {"term": "Refinance line", "plain": "A program where the central bank gives cheap loans to commercial banks so they can lend to specific struggling sectors."}, {"term": "Escrow account", "plain": "A dedicated bank account held for a specific legal purpose that cannot be used for everyday business expenses."}, {"term": "Non-tariff barriers", "plain": "Bureaucratic rules, special permits, and border delays that make importing goods slow and expensive without charging a formal customs duty."}];
+window.__POST__ = "Why the government is finally capping expensive private power payments.\n\nOil is sitting near $110 a barrel and energy subsidies are burning through public funds.\nTo stop the bleeding, Bangladesh will halt buying power above average national tariffs.\nMeanwhile, regulators ordered companies to lock dividend cash into separate accounts.\nNo more using shareholder money to plug factory cash flow holes.\n\nEnergy austerity and tighter corporate accountability are taking center stage.\n\n#BangladeshEconomy #EnergyTariffs #DhakaStockExchange #BankingBD\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
