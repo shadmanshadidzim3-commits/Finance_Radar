@@ -1,12 +1,12 @@
 {
  "en": {
-  "title": "Why Bangladesh's Fuel Import Bill Jumped 63%",
-  "caption": "High global oil prices pushed fuel import letters of credit up 63%, prompting the central bank to intervene. Not investment advice.",
+  "title": "Bangladesh's fuel bill just jumped 63%. Here's why.",
+  "caption": "Oil is pricey, the taka needs a bodyguard, and cash deals are dodging tax. Your sixty-second catch-up. Not investment advice.",
   "hashtags": [
    "BangladeshEconomy",
-   "EnergyCrisis",
-   "Forex",
-   "Inflation",
+   "Finance",
+   "Shorts",
+   "60SecondFinance",
    "Dhaka"
   ],
   "segments": [
@@ -14,84 +14,99 @@
     "kind": "hook",
     "label": "ENERGY",
     "stat": "63%",
-    "on_screen": "Fuel Import Bill Surges 63%",
-    "narration": "Bangladesh's quarterly fuel import bill jumped approximately 63% as world crude oil prices pushed past $110 per barrel."
+    "icon": "oil",
+    "on_screen": "Fuel bill: up 63%!",
+    "narration": "Imagine your bazar bill jumping by more than half in one go. That just happened to Bangladesh's fuel bill. Up approximately 63% in a quarter, with crude oil past $110 a barrel."
    },
    {
     "kind": "story",
-    "label": "TRADE DEFICIT",
-    "stat": "63%",
-    "on_screen": "Rising Oil Prices Widen Trade Deficit",
-    "narration": "Fuel import letters of credit surged because world energy costs jumped rapidly. When Bangladesh must spend more dollars on petroleum shipments, the wider import bill worsens our trade deficit and pushes domestic costs higher."
+    "label": "TRADE",
+    "stat": "$110",
+    "icon": "ship",
+    "on_screen": "More dollars out, fewer in",
+    "narration": "Here's the twist. We pay for that oil in dollars. It's like your salary staying the same while every bill doubles. Spend more dollars abroad, and the trade deficit grows, and prices at home creep up."
    },
    {
     "kind": "story",
-    "label": "FOREX RESERVE",
+    "label": "RESERVE",
+    "stat": "$20M",
+    "icon": "bank",
+    "on_screen": "Taka gets a bodyguard",
+    "narration": "So Bangladesh Bank stepped in like an older sibling in a fight. It sold $20 million from its reserves to banks, to keep the taka steady. Translation? Your groceries don't suddenly get pricier."
+   },
+   {
+    "kind": "story",
+    "label": "TAX",
     "stat": "",
-    "on_screen": "Central Bank Sells Emergency Dollars",
-    "narration": "To curb currency depreciation, Bangladesh Bank sold $20 million from foreign exchange reserves to commercial banks. This emergency support shields the taka so every everyday item you buy does not suddenly cost more."
-   },
-   {
-    "kind": "story",
-    "label": "TAX REVENUE",
-    "stat": "",
-    "on_screen": "Cash Transactions Drain Public Revenue",
-    "narration": "Meanwhile, a central bank study revealed that the government loses Tk 933 billion in annual tax revenue because paper cash transactions go unrecorded. Missing out on these funds forces the sovereign to borrow from commercial banks."
+    "icon": "money",
+    "on_screen": "Cash deals dodge the taxman",
+    "narration": "Meanwhile, cash deals are the friend who never pays back. A central bank study says unrecorded cash costs the government Tk 933 billion in tax a year. Guess who borrows to fill the gap? The government."
    },
    {
     "kind": "lesson",
     "label": "TODAY'S LESSON",
     "stat": "",
-    "on_screen": "How Open Market Operations Work",
-    "narration": "Today's term is open market operations. It happens when the central bank steps in to buy or sell foreign currency or bonds in the open market, steering exchange rates and guiding liquidity across commercial banks."
+    "icon": "bulb",
+    "on_screen": "Open market operations",
+    "narration": "Today's term: open market operations. Fancy name, simple idea. The central bank buys or sells dollars or bonds in the market, like a shopkeeper adjusting stock, to steer the exchange rate and the money in banks."
    }
   ]
  },
- "bn": {
-  "title": "জ্বালানি তেলের এলসি ৬৩% বাড়ল কেন?",
-  "caption": "বিশ্ববাজারে তেলের দাম বাড়ায় জ্বালানি আমদানির এলসি ৬৩% বেড়েছে এবং কেন্দ্রীয় ব্যাংক ডলার বিক্রি করছে। এটি বিনিয়োগ পরামর্শ নয়।",
+ "banglish": {
+  "title": "Fuel er bill 63% barlo! Keno?",
+  "caption": "Oil er dam akashe, taka ke bodyguard dite holo, ar cash deal tax faki dicche. Eta investment advice na.",
   "hashtags": [
-   "বাংলাদেশ",
-   "অর্থনীতি",
-   "মুদ্রাস্ফীতি",
-   "জ্বালানি",
-   "ব্যাংকিং"
+   "BangladeshEconomy",
+   "Banglish",
+   "Finance",
+   "60SecondFinance",
+   "Shorts"
   ],
   "segments": [
    {
     "kind": "hook",
-    "label": "জ্বালানি",
-    "stat": "৬৩%",
-    "on_screen": "জ্বালানি তেলের এলসি বেড়েছে ৬৩%",
-    "narration": "বিশ্ববাজারে জ্বালানি তেলের দাম ১১০ ডলার ছাড়িয়ে যাওয়ায় আমাদের জ্বালানি আমদানির এলসি প্রায় ৬৩% বেড়েছে।"
+    "label": "ENERGY",
+    "stat": "63%",
+    "icon": "oil",
+    "on_screen": "Fuel er bill 63% up!",
+    "narration": "Bhabun, ammu-r bazar er list hothat ordhek er beshi bere gelo. Thik eitai hoyeche Bangladesh er fuel bill er sathe. Ek quarter e prai 63% beshi, karon oil er dam $110 per barrel cross koreche.",
+    "speech": "ভাবুন, আম্মুর বাজারের list হঠাৎ অর্ধেকের বেশি বেড়ে গেল। ঠিক এইটাই হয়েছে Bangladesh এর fuel bill এর সাথে। এক quarter এ প্রায় 63% বেশি, কারণ oil এর দাম $110 per barrel cross করেছে।"
    },
    {
     "kind": "story",
-    "label": "বাণিজ্য ঘাটতি",
-    "stat": "৬৩%",
-    "on_screen": "বিশ্ববাজারে তেলের দাম বাড়ায় বাণিজ্য ঘাটতি",
-    "narration": "আন্তর্জাতিক বাজারে তেলের দাম বাড়ায় জ্বালানি আমদানির ব্যয় অনেক বেড়ে গেছে। এই বাড়তি খরচের কারণে দেশের ট্রেড ডেফিসিট বা বাণিজ্য ঘাটতি আরও বাড়ছে।"
+    "label": "TRADE",
+    "stat": "$110",
+    "icon": "ship",
+    "on_screen": "Dollar jacche, ashche kom",
+    "narration": "Ekhon moja ta holo, ei oil kinte hoy dollar diye. Mash shesh e salary same, kintu shob bill double, emon obostha. Dollar beshi bairer dike gele trade deficit baray, ar desher bhitore jinish er dam o bare.",
+    "speech": "এখন মজাটা হলো, এই oil কিনতে হয় dollar দিয়ে। মাস শেষে salary same, কিন্তু সব bill double, এমন অবস্থা। Dollar বেশি বাইরের দিকে গেলে trade deficit বাড়ে, আর দেশের ভিতরে জিনিসের দামও বাড়ে।"
    },
    {
     "kind": "story",
-    "label": "বৈদেশিক মুদ্রা",
+    "label": "RESERVE",
+    "stat": "$20M",
+    "icon": "bank",
+    "on_screen": "Taka-r bodyguard Bangladesh Bank",
+    "narration": "Tai Bangladesh Bank boro bhai er moto maath e namlo. Reserve theke $20 million banks er kache bikri korlo, jate taka stable thake. Mane? Apnar bazar er dam hothat lafay na.",
+    "speech": "তাই Bangladesh Bank বড় ভাইয়ের মতো মাঠে নামলো। Reserve থেকে $20 million banks এর কাছে বিক্রি করলো, যাতে taka stable থাকে। মানে? আপনার বাজারের দাম হঠাৎ লাফায় না।"
+   },
+   {
+    "kind": "story",
+    "label": "TAX",
     "stat": "",
-    "on_screen": "টাকার মান ধরে রাখতে ডলার বিক্রি",
-    "narration": "টাকার মান ধরে রাখতে বাংলাদেশ ব্যাংক বাণিজ্যিক ব্যাংকগুলোর কাছে ২০ মিলিয়ন ডলার বিক্রি করেছে। রিজার্ভ থেকে এই ডলার সরবরাহ নিত্যপণ্যের দাম নিয়ন্ত্রণে সাহায্য করে।"
-   },
-   {
-    "kind": "story",
-    "label": "অর্থনীতি",
-    "stat": "",
-    "on_screen": "নগদ লেনদেনে বিপুল রাজস্ব ক্ষতি",
-    "narration": "এদিকে বাংলাদেশ ব্যাংকের এক গবেষণায় দেখা গেছে, কাগুজে নগদ লেনদেনের কারণে সরকার বছরে ৯৩৩ বিলিয়ন টাকা রাজস্ব হারায়। ফলে উন্নয়ন বাজেটের ঘাটতি পূরণে সরকারকে ব্যাংক ঋণ নিতে হয়।"
+    "icon": "money",
+    "on_screen": "Cash deal, tax faki",
+    "narration": "Ar cash deal holo oi bondhu je dhar niye ar ferot dey na. Central bank er ekta study bolche, record chara cash er karone sarkar bochore Tk 933 billion tax hariye fele. Gap puron korte abar loan.",
+    "speech": "আর cash deal হলো ওই বন্ধু যে ধার নিয়ে আর ফেরত দেয় না। Central bank এর একটা study বলছে, record ছাড়া cash এর কারণে সরকার বছরে Tk 933 billion tax হারিয়ে ফেলে। Gap পূরণ করতে আবার loan।"
    },
    {
     "kind": "lesson",
-    "label": "আজকের পাঠ",
+    "label": "AJKER LESSON",
     "stat": "",
-    "on_screen": "ওপেন মার্কেট অপারেশনস কী?",
-    "narration": "আজকের বিষয় ওপেন মার্কেট অপারেশনস। যখন কেন্দ্রীয় ব্যাংক মুদ্রা বা বন্ড সরাসরি বাজারে কেনাবেচা করে টাকার বিনিময় হার ও ব্যাংকের তারল্য নিয়ন্ত্রণ করে, তাকেই ওপেন মার্কেট অপারেশনস বলে।"
+    "icon": "bulb",
+    "on_screen": "Open market operations",
+    "narration": "Ajker term open market operations. Naam ta bhari, idea ta simple. Dokandar jemon stock baray-komay, central bank temni market e dollar ba bond kene-beche, exchange rate ar bank er taka control korte.",
+    "speech": "আজকের term open market operations। নামটা ভারী, idea টা simple। দোকানদার যেমন stock বাড়ায়-কমায়, central bank তেমনি market এ dollar বা bond কেনে-বেচে, exchange rate আর bank এর টাকা control করতে।"
    }
   ]
  }

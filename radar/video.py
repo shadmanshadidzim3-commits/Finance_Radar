@@ -22,8 +22,6 @@ corrected, so a script that contains any figure the brief does not is rejected.
 from __future__ import annotations
 
 import asyncio
-import base64
-import html
 import json
 import re
 import shutil
@@ -33,26 +31,38 @@ import wave
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-FONTS = ROOT / "assets" / "fonts"
 W, H = 1080, 1920
-FPS = 30
+FPS = 25
 GAP_S = 0.35            # breath between segments
 
-VOICES = {"en": "en-US-AndrewNeural", "bn": "bn-BD-PradeepNeural"}
-GTTS_LANG = {"en": "en", "bn": "bn"}
+VOICES = {"en": "en-US-AndrewNeural", "bn": "bn-BD-PradeepNeural",
+          "banglish": "bn-BD-PradeepNeural"}
+GTTS_LANG = {"en": "en", "bn": "bn", "banglish": "bn"}
 
 OUTRO = {
     "en": {"kind": "outro", "label": "60 SECOND FINANCE", "stat": "",
-           "on_screen": "Follow for tomorrow's brief",
-           "narration": "That's your sixty seconds of finance. Follow for "
-                        "tomorrow's brief. This is not investment advice."},
+           "on_screen": "Smarter than the cha stall uncle",
+           "narration": "And that's your sixty seconds. You now know more than "
+                        "the uncle at the cha stall. Follow for tomorrow's episode. "
+                        "This is not investment advice."},
     "bn": {"kind": "outro", "label": "60 SECOND FINANCE", "stat": "",
            "on_screen": "কালকের আপডেটের জন্য ফলো করুন",
            "narration": "আজকের ফাইন্যান্স আপডেট এখানেই শেষ। কালকের আপডেট পেতে "
                         "ফলো করুন। এটি বিনিয়োগ পরামর্শ নয়।"},
+    "banglish": {"kind": "outro", "label": "60 SECOND FINANCE", "stat": "",
+                 "on_screen": "Cha-er dokaner mama ke beat!",
+                 "narration": "Bas, sixty second e apni ekhon cha-er dokaner mama-r "
+                              "cheye beshi janen. Kalke abar ashben, follow kore rakhun. "
+                              "Eta investment advice na.",
+                 "speech": "বাস, sixty second এ আপনি এখন চায়ের দোকানের মামার "
+                           "চেয়ে বেশি জানেন। কালকে আবার আসবেন, follow করে রাখুন। "
+                           "এটা investment advice না।"},
 }
 DISCLAIMER = {"en": "AI voice · Not investment advice",
-              "bn": "এআই ভয়েস · বিনিয়োগ পরামর্শ নয়"}
+              "bn": "এআই ভয়েস · বিনিয়োগ পরামর্শ নয়",
+              "banglish": "AI voice · Investment advice na"}
+for _o in OUTRO.values():
+    _o["icon"] = "people"
 
 
 class VideoError(RuntimeError):
@@ -105,7 +115,7 @@ def check_numbers(script: dict, allowed: set[float]) -> list[str]:
     """Every figure in a language's script that the brief does not contain."""
     bad = []
     for seg in script.get("segments", []):
-        for field in ("stat", "on_screen", "narration"):
+        for field in ("stat", "on_screen", "narration", "speech"):
             for n in _numbers(seg.get(field, "")):
                 if not any(abs(n - a) < 1e-9 for a in allowed):
                     bad.append(f"{n:g} in {seg.get('kind')} {field}: "
@@ -117,6 +127,9 @@ def _valid_shape(script: dict) -> bool:
     segs = script.get("segments")
     return (isinstance(segs, list) and 3 <= len(segs) <= 6 and
             all(isinstance(s, dict) and s.get("narration") for s in segs))
+
+
+LANGS = ("en", "banglish")
 
 
 def write_scripts(eng, analysis: dict, day: str, prompt_path: Path,
@@ -142,11 +155,12 @@ def write_scripts(eng, analysis: dict, day: str, prompt_path: Path,
                                 for lang, ps in problems.items() for p in ps))
         data = extract_json(eng.run(system, msg))
         problems = {}
-        for lang in ("en", "bn"):
+        for lang in LANGS:
             if lang in good:
                 continue
             sc = data.get(lang) or {}
-            if not _valid_shape(sc):
+            if not _valid_shape(sc) or (lang == "banglish" and not all(
+                    s.get("speech") for s in sc.get("segments", []))):
                 problems[lang] = ["script missing or malformed"]
                 continue
             bad = check_numbers(sc, allowed)
@@ -193,7 +207,7 @@ def _speak(text: str, lang: str, voice: str, mp3: Path) -> str:
     import edge_tts
 
     async def go():
-        await edge_tts.Communicate(text, voice, rate="+6%").save(str(mp3))
+        await edge_tts.Communicate(text, voice, rate="+12%").save(str(mp3))
 
     # Microsoft's endpoint drops the odd request. One voice switching to
     # another halfway through a video sounds broken, so retry before giving up.
@@ -232,76 +246,7 @@ def _join_wavs(parts: list[Path], gap_s: float, out: Path) -> None:
                 o.writeframes(silence)
 
 
-# ------------------------------------------------------------------ the slides
-
-def _font_face(name: str, file: str) -> str:
-    data = base64.b64encode((FONTS / file).read_bytes()).decode()
-    return (f"@font-face{{font-family:'{name}';"
-            f"src:url(data:font/ttf;base64,{data}) format('truetype');"
-            f"font-weight:100 900;}}")
-
-
-PAGE = """<!doctype html><html><head><meta charset="utf-8"><style>
-FONTFACES
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:1080px;height:1920px;overflow:hidden}
-body{background:#0b1220;color:#f4f6fa;
-  font-family:'Inter','Noto Sans Bengali',sans-serif;position:relative}
-body.bn{font-family:'Noto Sans Bengali','Inter',sans-serif}
-.glow{position:absolute;inset:0;
-  background:radial-gradient(900px 700px at 85% 8%,rgba(45,212,191,.16),transparent 70%),
-             radial-gradient(800px 800px at 0% 100%,rgba(96,165,250,.10),transparent 70%)}
-.top{position:absolute;left:72px;right:72px;top:96px}
-.brand{display:flex;justify-content:space-between;align-items:baseline}
-.brand b{font-size:34px;letter-spacing:.16em;color:#2dd4bf;font-weight:800;font-family:'Inter'}
-.brand span{font-size:30px;color:#94a3b8;font-family:'Inter'}
-.bars{display:flex;gap:12px;margin-top:30px}
-.bars i{flex:1;height:8px;border-radius:4px;background:rgba(148,163,184,.25)}
-.bars i.on{background:#2dd4bf}
-.main{position:absolute;left:72px;right:72px;top:330px}
-.label{display:inline-block;font-size:32px;font-weight:700;letter-spacing:.1em;
-  color:#0b1220;background:#2dd4bf;padding:10px 24px;border-radius:10px}
-.stat{font-size:200px;font-weight:800;line-height:1.05;margin-top:56px;
-  letter-spacing:-.02em;color:#2dd4bf;font-family:'Inter','Noto Sans Bengali'}
-.stat.up{color:#60a5fa}.stat.down{color:#f87171}
-.head{font-size:76px;font-weight:800;line-height:1.18;margin-top:44px}
-body.bn .head{line-height:1.4}
-.sub{position:absolute;left:72px;right:72px;top:1270px;min-height:250px;
-  background:rgba(15,23,42,.88);border-left:10px solid #2dd4bf;border-radius:18px;
-  padding:34px 40px;font-size:56px;font-weight:600;line-height:1.32;color:#fff}
-body.bn .sub{line-height:1.5}
-.foot{position:absolute;left:72px;right:72px;top:1580px;font-size:28px;color:#94a3b8}
-</style></head><body>
-<div class="glow"></div>
-<div class="top"><div class="brand"><b>BRAND</b><span id="date"></span></div>
-  <div class="bars" id="bars"></div></div>
-<div class="main"><div class="label" id="label"></div>
-  <div class="stat" id="stat"></div><div class="head" id="head"></div></div>
-<div class="sub" id="sub"></div>
-<div class="foot" id="foot"></div>
-<script>
-// Shrink only on real overflow: width for the one-line figure, the height cap
-// for the headline. Comparing scrollHeight to clientHeight misfires, because
-// tall glyphs poke past the line box and every figure shrank to the minimum.
-function fit(el,max,min,capH){let s=max;el.style.fontSize=s+'px';
-  const over=()=>el.scrollWidth>el.clientWidth+1||(capH&&el.scrollHeight>capH);
-  while(over()&&s>min){s-=6;el.style.fontSize=s+'px'}}
-window.paint=function(f){
-  document.body.className=f.lang;
-  document.getElementById('date').textContent=f.date;
-  document.getElementById('bars').innerHTML=Array.from({length:f.n},(_,i)=>
-    '<i class="'+(i<=f.i?'on':'')+'"></i>').join('');
-  const l=document.getElementById('label');l.textContent=f.label;l.style.display=f.label?'inline-block':'none';
-  const s=document.getElementById('stat');s.textContent=f.stat;s.className='stat '+f.tone;
-  s.style.display=f.stat?'block':'none';s.style.whiteSpace='nowrap';s.style.width='936px';fit(s,200,90);
-  const h=document.getElementById('head');h.textContent=f.head;
-  fit(h,f.stat?76:96,48,f.stat?560:820);
-  const b=document.getElementById('sub');b.textContent=f.sub;
-  b.style.visibility=f.sub?'visible':'hidden';
-  document.getElementById('foot').textContent=f.foot;
-}
-</script></body></html>"""
-
+# -------------------------------------------------------------------- assembly
 
 def _tone(stat: str) -> str:
     s = (stat or "").strip()
@@ -348,12 +293,11 @@ def _launch(p):
     raise VideoError("no Chrome/Edge found for drawing slides:\n  " + "\n  ".join(tried))
 
 
-# -------------------------------------------------------------------- assembly
-
 def build_video(script: dict, lang: str, day: str, out_path: Path,
                 brand: str = "60 SECOND FINANCE", voice: str | None = None,
                 log=print) -> dict:
     from playwright.sync_api import sync_playwright
+    from radar import whiteboard
 
     ff = _ffmpeg()
     segs = list(script["segments"]) + [OUTRO[lang]]
@@ -364,66 +308,67 @@ def build_video(script: dict, lang: str, day: str, out_path: Path,
 
     try:
         # 1. Voice, one file per segment, so each slide knows its exact length.
+        #    Banglish is spoken from `speech` (Bangla script, English words in
+        #    English letters) and subtitled from `narration` (Roman letters).
         wavs, durs, engines = [], [], set()
         for i, seg in enumerate(segs):
             mp3, wav = work / f"v{i}.mp3", work / f"v{i}.wav"
-            engines.add(_speak(seg["narration"], lang, voice, mp3))
+            engines.add(_speak(seg.get("speech") or seg["narration"], lang, voice, mp3))
             durs.append(_to_wav(ff, mp3, wav))
             wavs.append(wav)
         audio = work / "voice.wav"
         _join_wavs(wavs, GAP_S, audio)
 
-        # 2. Slides: one image per subtitle chunk, timed by its share of the
-        #    segment's characters. Close enough to speech pace to read along.
-        max_chars = 30 if lang == "en" else 30
-        frames: list[tuple[Path, float]] = []
-        faces = _font_face("Inter", "Inter.ttf") + _font_face("Noto Sans Bengali",
-                                                              "NotoSansBengali.ttf")
-        page_html = PAGE.replace("FONTFACES", faces).replace("BRAND", html.escape(brand))
-        n_content = len(segs)
+        # 2. The timeline: each slide lasts its voice plus the breath after it;
+        #    subtitles are timed by their share of the segment's characters.
+        scenes, start = [], 0.0
+        for i, (seg, dur) in enumerate(zip(segs, durs)):
+            span = dur + (GAP_S if i < len(segs) - 1 else 0.6)
+            pieces = _chunks(seg["narration"], 30)
+            weights = [len(c) + 3 for c in pieces]
+            subs, acc = [], 0.0
+            for c, w in zip(pieces, weights):
+                d = dur * w / sum(weights)
+                subs.append({"t0": acc, "t1": acc + d, "text": c})
+                acc += d
+            subs[-1]["t1"] = span
+            icon = seg.get("icon")
+            if icon not in whiteboard.ICONS:
+                icon = whiteboard.DEFAULT_ICON.get(seg.get("kind"), "document")
+            scenes.append({
+                "label": seg.get("label", ""), "head": seg.get("on_screen", ""),
+                "stat": seg.get("stat", ""), "tone": _tone(seg.get("stat", "")),
+                "icon": icon, "start": start, "dur": span, "subs": subs})
+            start += span
+        total = start
+
+        # 3. Draw it.
         with sync_playwright() as p:
             browser = _launch(p)
             page = browser.new_page(viewport={"width": W, "height": H})
-            page.set_content(page_html)
+            page.set_content(whiteboard.page_html(lang))
             page.evaluate("document.fonts.ready")
-            k = 0
-            for i, (seg, dur) in enumerate(zip(segs, durs)):
-                pieces = _chunks(seg["narration"], max_chars)
-                weights = [len(c) + 3 for c in pieces]
-                total = sum(weights)
-                for j, (chunk, wgt) in enumerate(zip(pieces, weights)):
-                    t = dur * wgt / total
-                    if j == len(pieces) - 1 and i < len(segs) - 1:
-                        t += GAP_S
-                    page.evaluate("f => window.paint(f)", {
-                        "lang": lang, "date": day, "n": n_content, "i": i,
-                        "label": seg.get("label", ""), "stat": seg.get("stat", ""),
-                        "tone": _tone(seg.get("stat", "")),
-                        "head": seg.get("on_screen", ""), "sub": chunk,
-                        "foot": DISCLAIMER[lang]})
-                    img = work / f"f{k:03d}.png"
-                    page.screenshot(path=str(img))
-                    frames.append((img, t))
-                    k += 1
+            frames = whiteboard.render_frames(
+                page, {"brand": brand, "date": day, "foot": DISCLAIMER[lang],
+                       "scenes": scenes}, total, FPS, work, log=log)
             browser.close()
 
-        # 3. Stitch. The concat demuxer needs the last image listed twice.
+        # 4. Stitch. The concat demuxer needs the last image listed twice.
         lst = work / "frames.txt"
         lines = []
         for img, t in frames:
-            lines += [f"file '{img.as_posix()}'", f"duration {t:.3f}"]
+            lines += [f"file '{img.as_posix()}'", f"duration {t:.4f}"]
         lines.append(f"file '{frames[-1][0].as_posix()}'")
         lst.write_text("\n".join(lines), encoding="utf8")
         _run([ff, "-y", "-loglevel", "error",
               "-f", "concat", "-safe", "0", "-i", str(lst), "-i", str(audio),
               "-vf", f"fps={FPS},format=yuv420p", "-c:v", "libx264",
-              "-preset", "medium", "-crf", "23", "-tune", "stillimage",
+              "-preset", "medium", "-crf", "24",
               "-c:a", "aac", "-b:a", "128k", "-shortest",
               "-movflags", "+faststart", str(out_path)])
 
-        seconds = sum(durs) + GAP_S * (len(durs) - 1)
         words = sum(len(s["narration"].split()) for s in segs)
-        return {"path": out_path, "seconds": round(seconds, 1), "words": words,
+        return {"path": out_path, "seconds": round(total, 1), "words": words,
                 "voice": voice if engines == {"edge"} else "/".join(sorted(engines)),
                 "mb": round(out_path.stat().st_size / 1e6, 2)}
     finally:
@@ -453,7 +398,7 @@ def make_videos(eng, analysis: dict, day: str, out_dir: Path, cfg: dict,
 
     voices = cfg.get("voices") or {}
     results = []
-    for lang in cfg.get("languages", ["en", "bn"]):
+    for lang in cfg.get("languages", list(LANGS)):
         if lang not in scripts:
             log(f"  [{lang}] no video today: script failed the number check twice")
             continue

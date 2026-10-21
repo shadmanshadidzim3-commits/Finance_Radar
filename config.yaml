@@ -41,10 +41,11 @@ video:
   # a synthetic voice, the day's figures on screen, live subtitles. They are
   # emailed with the brief for you to check and post by hand.
   enabled: true
-  languages: [en, bn]
+  # Whiteboard style: a hand writes and sketches each point as it is spoken.
+  languages: [en, banglish]   # also possible: bn (formal Bangla)
   voices:                     # any name from: edge-tts --list-voices
     en: en-US-AndrewNeural
-    bn: bn-BD-PradeepNeural   # female alternative: bn-BD-NabanitaNeural
+    banglish: bn-BD-PradeepNeural   # female alternative: bn-BD-NabanitaNeural
 
 # --------------------------------------------------------------- notifications
 notify:
