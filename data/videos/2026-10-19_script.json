@@ -1,0 +1,97 @@
+{
+ "en": {
+  "title": "Bangladesh spent $4.12B keeping fuel cheap",
+  "caption": "Energy subsidies, emergency loans and a shake-up at three state banks. Here is what it means for you. Not investment advice.",
+  "hashtags": [
+   "BangladeshEconomy",
+   "Finance",
+   "EnergyPrices",
+   "Banking",
+   "60SecondFinance"
+  ],
+  "segments": [
+   {
+    "kind": "hook",
+    "label": "TODAY",
+    "stat": "$4.12B",
+    "on_screen": "Spent in eight months to keep fuel cheap",
+    "narration": "In just eight months, Bangladesh spent 4.12 billion dollars keeping your fuel and electricity bills down. That money had to come from somewhere."
+   },
+   {
+    "kind": "story",
+    "label": "ENERGY",
+    "stat": "63%",
+    "on_screen": "Fuel import bills jump 63%",
+    "narration": "Banks' commitments to pay for imported fuel jumped about 63% in the first quarter. Oil is still expensive, and we pay for it in dollars, so every shipment drains our reserves."
+   },
+   {
+    "kind": "story",
+    "label": "LOANS",
+    "stat": "$14.5B",
+    "on_screen": "Bangladesh asks lenders for $14.5 billion",
+    "narration": "To refill those reserves, the government is asking lenders like the World Bank and the IMF for 14.5 billion dollars. Loans buy time, but they come with conditions and interest."
+   },
+   {
+    "kind": "story",
+    "label": "BANKING",
+    "stat": "",
+    "on_screen": "Top bosses out at Sonali, Janata and Rupali",
+    "narration": "The government also removed the managing directors of Sonali, Janata and Rupali, the three biggest state banks. If you bank there, your money is fine. This is about cleaning up bad loans at the top."
+   },
+   {
+    "kind": "lesson",
+    "label": "TODAY'S LESSON",
+    "stat": "",
+    "on_screen": "Fiscal deficit",
+    "narration": "Today's term is fiscal deficit. It is simply when the government spends more than it earns, like a family that keeps paying bills on a credit card. Those fuel subsidies make that gap wider."
+   }
+  ]
+ },
+ "bn": {
+  "title": "জ্বালানিতে আট মাসে ৪.১২ বিলিয়ন ডলার ভর্তুকি",
+  "caption": "জ্বালানি ভর্তুকি, বিদেশি ঋণ আর তিন সরকারি ব্যাংকে বড় পরিবর্তন। আপনার জন্য এর মানে কী, দেখুন। এটি বিনিয়োগ পরামর্শ নয়।",
+  "hashtags": [
+   "বাংলাদেশঅর্থনীতি",
+   "Finance",
+   "60SecondFinance",
+   "Banking"
+  ],
+  "segments": [
+   {
+    "kind": "hook",
+    "label": "আজকের খবর",
+    "stat": "$৪.১২B",
+    "on_screen": "আট মাসে জ্বালানিতে ভর্তুকি",
+    "narration": "মাত্র আট মাসে সরকার জ্বালানি আর বিদ্যুতের দাম কম রাখতে খরচ করেছে ৪.১২ বিলিয়ন ডলার। এই টাকা কোথা থেকে আসছে?"
+   },
+   {
+    "kind": "story",
+    "label": "জ্বালানি",
+    "stat": "৬৩%",
+    "on_screen": "জ্বালানি আমদানির এলসি বেড়েছে ৬৩%",
+    "narration": "প্রথম প্রান্তিকে জ্বালানি আমদানির এলসি বেড়েছে প্রায় ৬৩%। তেলের দাম চড়া, আর তা ডলারে দিতে হয়, তাই রিজার্ভে চাপ পড়ছে।"
+   },
+   {
+    "kind": "story",
+    "label": "ঋণ",
+    "stat": "$১৪.৫B",
+    "on_screen": "১৪.৫ বিলিয়ন ডলার ঋণ চাইছে সরকার",
+    "narration": "রিজার্ভ বাড়াতে সরকার বিশ্বব্যাংক আর আইএমএফের কাছে ১৪.৫ বিলিয়ন ডলার চাইছে। ঋণে সময় পাওয়া যায়, তবে শর্ত আর সুদ দুটোই আছে।"
+   },
+   {
+    "kind": "story",
+    "label": "ব্যাংক",
+    "stat": "",
+    "on_screen": "সোনালী, জনতা, রূপালীর এমডি বাদ",
+    "narration": "সোনালী, জনতা আর রূপালী ব্যাংকের এমডিদের চুক্তি বাতিল করেছে সরকার। আপনার আমানত নিরাপদ, এটা মূলত খেলাপি ঋণ সামলানোর চেষ্টা।"
+   },
+   {
+    "kind": "lesson",
+    "label": "আজকের শব্দ",
+    "stat": "",
+    "on_screen": "ফিসক্যাল ডেফিসিট বা বাজেট ঘাটতি",
+    "narration": "আজকের শব্দ বাজেট ঘাটতি। সরকার যখন আয়ের চেয়ে বেশি খরচ করে, সেটাই ঘাটতি। ক্রেডিট কার্ডে সংসার চালানোর মতো। জ্বালানি ভর্তুকি এই ঘাটতি আরও বাড়ায়।"
+   }
+  ]
+ }
+}

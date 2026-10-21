@@ -163,7 +163,8 @@ def _email_html(day: str, analysis: dict) -> str:
 
 
 def email_brief(cfg: dict, day: str, analysis: dict,
-                brief_path: Path, card_path: Path | None) -> bool:
+                brief_path: Path, card_path: Path | None,
+                videos: list | None = None) -> bool:
     """Email the brief. Gmail needs an App Password, not your normal password."""
     import smtplib
     from email.message import EmailMessage
@@ -191,7 +192,18 @@ def email_brief(cfg: dict, day: str, analysis: dict,
           "The full brief is attached as an HTML file.")
     msg.add_alternative(_email_html(day, analysis), subtype="html")
 
-    for path, mime in ((brief_path, ("text", "html")), (card_path, ("image", "png"))):
+    files = [(brief_path, ("text", "html")), (card_path, ("image", "png"))]
+    # Videos ride along for review before posting. Gmail caps a message at
+    # 25 MB after base64 (+33%), so stop adding them well before that.
+    budget = 17_000_000
+    for v in videos or []:
+        for path, mime in ((v.get("path"), ("video", "mp4")),
+                           (v.get("caption"), ("text", "plain"))):
+            if path and Path(path).exists() and Path(path).stat().st_size < budget:
+                budget -= Path(path).stat().st_size
+                files.append((path, mime))
+
+    for path, mime in files:
         if path and Path(path).exists():
             msg.add_attachment(Path(path).read_bytes(), maintype=mime[0],
                                subtype=mime[1], filename=Path(path).name)
@@ -207,7 +219,8 @@ def email_brief(cfg: dict, day: str, analysis: dict,
 
 
 def announce(cfg: dict, day: str, analysis: dict,
-             brief_path: Path, card_path: Path | None) -> dict:
+             brief_path: Path, card_path: Path | None,
+             videos: list | None = None) -> dict:
     """Fire every configured notification channel. Never raises."""
     sp = analysis.get("social_post", {}) or {}
     hook = sp.get("hook") or "Your daily brief is ready."
@@ -238,6 +251,7 @@ def announce(cfg: dict, day: str, analysis: dict,
                     and os.environ.get("FINRADAR_SMTP_PASS"))
     if mail.get("enabled") or from_env:
         mail.setdefault("to", os.environ.get("FINRADAR_MAIL_TO", ""))
-        results["email"] = email_brief(mail, day, analysis, brief_path, card_path)
+        results["email"] = email_brief(mail, day, analysis, brief_path, card_path,
+                                       videos=videos)
 
     return results

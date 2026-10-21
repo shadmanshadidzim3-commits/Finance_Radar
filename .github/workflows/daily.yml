@@ -69,6 +69,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      # The video slides are drawn by Chrome, which the Ubuntu image already
+      # has. Only if it ever disappears do we fetch Playwright's own copy.
+      - name: Make sure a browser exists for the video slides
+        run: |
+          if ! command -v google-chrome >/dev/null; then
+            python -m playwright install --with-deps chromium
+          fi
+
       - name: Build today's brief
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -131,6 +139,7 @@ jobs:
             data/briefs/
             data/dashboard.html
             data/cards/
+            data/videos/
             logs/error_*.txt
           if-no-files-found: warn
           retention-days: 30

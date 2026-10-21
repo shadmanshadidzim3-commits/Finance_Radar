@@ -9,3 +9,10 @@ python-dateutil>=2.9
 
 # Only needed if you set engine.name to "anthropic_api" in config.yaml:
 # anthropic>=0.40
+
+# Daily videos (radar/video.py). Slides are drawn by an installed Chrome/Edge
+# through Playwright; ffmpeg comes inside imageio-ffmpeg.
+edge-tts>=7.0
+gTTS>=2.5
+imageio-ffmpeg>=0.5
+playwright>=1.45

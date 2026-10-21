@@ -35,6 +35,17 @@ output:
                                  # is clickable and opens the brief when you are
                                  # ready. Set true if you run it by hand.
 
+# --------------------------------------------------------------------- videos
+video:
+  # Two ~60-second vertical videos a day (Shorts / Reels / TikTok), faceless:
+  # a synthetic voice, the day's figures on screen, live subtitles. They are
+  # emailed with the brief for you to check and post by hand.
+  enabled: true
+  languages: [en, bn]
+  voices:                     # any name from: edge-tts --list-voices
+    en: en-US-AndrewNeural
+    bn: bn-BD-PradeepNeural   # female alternative: bn-BD-NabanitaNeural
+
 # --------------------------------------------------------------- notifications
 notify:
   windows_toast: true

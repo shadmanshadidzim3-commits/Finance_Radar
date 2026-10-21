@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 
 from radar import analyze, card, collect, dashboard, dse as dse_mod, engine as engine_mod
-from radar import fx_bd, html_render, markets, notify, render
+from radar import fx_bd, html_render, markets, notify, render, video
 from radar.store import Store
 
 DATA = ROOT / "data"
@@ -212,6 +212,17 @@ def main() -> int:
         except Exception as e:
             log(f"  card generation failed ({type(e).__name__}: {e}) — continuing")
 
+    # Short vertical videos for Shorts/Reels/TikTok, English and Bangla. They
+    # arrive by email for review; nothing is posted automatically.
+    videos = []
+    vcfg = cfg.get("video", {}) or {}
+    if vcfg.get("enabled", False):
+        log("Making videos…")
+        videos = video.make_videos(
+            eng, analysis, day, DATA / "videos", vcfg,
+            brand=cfg["output"].get("brand", "60 SECOND FINANCE"),
+            prompt_path=ROOT / "prompts" / "video_script.md", log=log)
+
     try:
         dash_path = dashboard.build(store, DATA)
     except Exception as e:
@@ -227,7 +238,8 @@ def main() -> int:
         log(f"Archive → {dash_path}   <- your dashboard, searchable across all days")
 
     # --------------------------------------------------------------- notify
-    results = notify.announce(cfg.get("notify", {}), day, analysis, brief_path, card_path)
+    results = notify.announce(cfg.get("notify", {}), day, analysis, brief_path, card_path,
+                              videos=videos)
     if results:
         log("Notified: " + ", ".join(f"{k}={'ok' if v else 'failed'}"
                                      for k, v in results.items()))

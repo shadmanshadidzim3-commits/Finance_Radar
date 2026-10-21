@@ -17,3 +17,7 @@ data/seed/
 # Local DB snapshots taken before a destructive correction. Kept on disk for
 # rollback, never pushed — the cloud runner's copy is the source of truth.
 data/radar.db.backup-*
+
+# Videos are emailed and attached to the Actions run; committing ~4 MB a day
+# would bloat the repo by over a gigabyte a year. Scripts and captions stay.
+data/videos/*.mp4
