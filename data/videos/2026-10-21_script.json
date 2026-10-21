@@ -1,0 +1,98 @@
+{
+ "en": {
+  "title": "Why Bangladesh's Fuel Import Bill Jumped 63%",
+  "caption": "High global oil prices pushed fuel import letters of credit up 63%, prompting the central bank to intervene. Not investment advice.",
+  "hashtags": [
+   "BangladeshEconomy",
+   "EnergyCrisis",
+   "Forex",
+   "Inflation",
+   "Dhaka"
+  ],
+  "segments": [
+   {
+    "kind": "hook",
+    "label": "ENERGY",
+    "stat": "63%",
+    "on_screen": "Fuel Import Bill Surges 63%",
+    "narration": "Bangladesh's quarterly fuel import bill jumped approximately 63% as world crude oil prices pushed past $110 per barrel."
+   },
+   {
+    "kind": "story",
+    "label": "TRADE DEFICIT",
+    "stat": "63%",
+    "on_screen": "Rising Oil Prices Widen Trade Deficit",
+    "narration": "Fuel import letters of credit surged because world energy costs jumped rapidly. When Bangladesh must spend more dollars on petroleum shipments, the wider import bill worsens our trade deficit and pushes domestic costs higher."
+   },
+   {
+    "kind": "story",
+    "label": "FOREX RESERVE",
+    "stat": "",
+    "on_screen": "Central Bank Sells Emergency Dollars",
+    "narration": "To curb currency depreciation, Bangladesh Bank sold $20 million from foreign exchange reserves to commercial banks. This emergency support shields the taka so every everyday item you buy does not suddenly cost more."
+   },
+   {
+    "kind": "story",
+    "label": "TAX REVENUE",
+    "stat": "",
+    "on_screen": "Cash Transactions Drain Public Revenue",
+    "narration": "Meanwhile, a central bank study revealed that the government loses Tk 933 billion in annual tax revenue because paper cash transactions go unrecorded. Missing out on these funds forces the sovereign to borrow from commercial banks."
+   },
+   {
+    "kind": "lesson",
+    "label": "TODAY'S LESSON",
+    "stat": "",
+    "on_screen": "How Open Market Operations Work",
+    "narration": "Today's term is open market operations. It happens when the central bank steps in to buy or sell foreign currency or bonds in the open market, steering exchange rates and guiding liquidity across commercial banks."
+   }
+  ]
+ },
+ "bn": {
+  "title": "জ্বালানি তেলের এলসি ৬৩% বাড়ল কেন?",
+  "caption": "বিশ্ববাজারে তেলের দাম বাড়ায় জ্বালানি আমদানির এলসি ৬৩% বেড়েছে এবং কেন্দ্রীয় ব্যাংক ডলার বিক্রি করছে। এটি বিনিয়োগ পরামর্শ নয়।",
+  "hashtags": [
+   "বাংলাদেশ",
+   "অর্থনীতি",
+   "মুদ্রাস্ফীতি",
+   "জ্বালানি",
+   "ব্যাংকিং"
+  ],
+  "segments": [
+   {
+    "kind": "hook",
+    "label": "জ্বালানি",
+    "stat": "৬৩%",
+    "on_screen": "জ্বালানি তেলের এলসি বেড়েছে ৬৩%",
+    "narration": "বিশ্ববাজারে জ্বালানি তেলের দাম ১১০ ডলার ছাড়িয়ে যাওয়ায় আমাদের জ্বালানি আমদানির এলসি প্রায় ৬৩% বেড়েছে।"
+   },
+   {
+    "kind": "story",
+    "label": "বাণিজ্য ঘাটতি",
+    "stat": "৬৩%",
+    "on_screen": "বিশ্ববাজারে তেলের দাম বাড়ায় বাণিজ্য ঘাটতি",
+    "narration": "আন্তর্জাতিক বাজারে তেলের দাম বাড়ায় জ্বালানি আমদানির ব্যয় অনেক বেড়ে গেছে। এই বাড়তি খরচের কারণে দেশের ট্রেড ডেফিসিট বা বাণিজ্য ঘাটতি আরও বাড়ছে।"
+   },
+   {
+    "kind": "story",
+    "label": "বৈদেশিক মুদ্রা",
+    "stat": "",
+    "on_screen": "টাকার মান ধরে রাখতে ডলার বিক্রি",
+    "narration": "টাকার মান ধরে রাখতে বাংলাদেশ ব্যাংক বাণিজ্যিক ব্যাংকগুলোর কাছে ২০ মিলিয়ন ডলার বিক্রি করেছে। রিজার্ভ থেকে এই ডলার সরবরাহ নিত্যপণ্যের দাম নিয়ন্ত্রণে সাহায্য করে।"
+   },
+   {
+    "kind": "story",
+    "label": "অর্থনীতি",
+    "stat": "",
+    "on_screen": "নগদ লেনদেনে বিপুল রাজস্ব ক্ষতি",
+    "narration": "এদিকে বাংলাদেশ ব্যাংকের এক গবেষণায় দেখা গেছে, কাগুজে নগদ লেনদেনের কারণে সরকার বছরে ৯৩৩ বিলিয়ন টাকা রাজস্ব হারায়। ফলে উন্নয়ন বাজেটের ঘাটতি পূরণে সরকারকে ব্যাংক ঋণ নিতে হয়।"
+   },
+   {
+    "kind": "lesson",
+    "label": "আজকের পাঠ",
+    "stat": "",
+    "on_screen": "ওপেন মার্কেট অপারেশনস কী?",
+    "narration": "আজকের বিষয় ওপেন মার্কেট অপারেশনস। যখন কেন্দ্রীয় ব্যাংক মুদ্রা বা বন্ড সরাসরি বাজারে কেনাবেচা করে টাকার বিনিময় হার ও ব্যাংকের তারল্য নিয়ন্ত্রণ করে, তাকেই ওপেন মার্কেট অপারেশনস বলে।"
+   }
+  ]
+ }
+}
