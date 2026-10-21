@@ -40,7 +40,9 @@ video:
   # Two ~60-second vertical videos a day (Shorts / Reels / TikTok), faceless:
   # a synthetic voice, the day's figures on screen, live subtitles. They are
   # emailed with the brief for you to check and post by hand.
-  enabled: true
+  # Paused 2026-10-21 at the user's request until he decides to start posting.
+  # To make one by hand meanwhile: python make_video.py --date YYYY-MM-DD
+  enabled: false
   # Whiteboard style: a hand writes and sketches each point as it is spoken.
   languages: [en, banglish]   # also possible: bn (formal Bangla)
   voices:                     # any name from: edge-tts --list-voices
