@@ -169,7 +169,11 @@ class GeminiAPIEngine(Engine):
     # Which models a free key may use changes over time, and a model the key
     # cannot use answers 429 exactly like a spent quota does. So try a few in
     # order rather than betting the whole run on one name.
-    FALLBACKS = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-flash-latest"]
+    # October 2026: Google retired 2.0-flash and closed 2.5-flash to this key
+    # (404 "no longer available"), which silently cost 20 and 21 Oct. The
+    # "-latest" aliases follow Google's current model, so they lead now.
+    FALLBACKS = ["gemini-flash-latest", "gemini-3-flash-preview",
+                 "gemini-pro-latest", "gemini-flash-lite-latest", "gemini-2.5-flash"]
 
     def __init__(self, model: str | None = None, timeout: int = 900):
         self.model = model
@@ -220,10 +224,16 @@ class GeminiAPIEngine(Engine):
         problems: list[str] = []
         r = None
 
+        import time
         for name in candidates:
-            r = requests.post(self.ENDPOINT.format(model=name),
-                              headers={"x-goog-api-key": key},
-                              json=body, timeout=self.timeout)
+            # 500/503 is "busy right now", not "never": give it one more go.
+            for attempt in range(2):
+                r = requests.post(self.ENDPOINT.format(model=name),
+                                  headers={"x-goog-api-key": key},
+                                  json=body, timeout=self.timeout)
+                if r.status_code not in (500, 503):
+                    break
+                time.sleep(20)
             if r.ok:
                 self.model = name
                 break
@@ -231,7 +241,7 @@ class GeminiAPIEngine(Engine):
             # use — Google returns the same status for both, so keep Google's
             # own message and try the next model rather than guessing.
             problems.append(f"{name} -> {r.status_code}: {r.text[:300]}")
-            if r.status_code not in (400, 403, 404, 429):
+            if r.status_code not in (400, 403, 404, 429, 500, 503):
                 break
 
         if r is None or not r.ok:
