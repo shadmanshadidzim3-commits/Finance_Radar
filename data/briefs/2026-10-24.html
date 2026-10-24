@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-10-24</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Saturday, 24 October 2026</h1>
+  <div class="meta">181 stories from 25 sources ·
+    74 Bangladesh · 105 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Oil hits $116. What does it mean for your pocket?</p>
+  <ol class="flash"><li>Oil prices jumped again, making it much more expensive for Bangladesh to buy fuel and keep the lights on.</li><li>The IMF wants to remove taxes on basic needs like medicine to help people struggling with high prices.</li><li>Sales of denim to Europe are growing fast, even though other clothing sales are struggling.</li><li>The central bank shut its website to prevent hackers from attacking after finding a security hole.</li><li>A big Chinese company is spending $100 million to build a factory in Bangladesh, creating jobs.</li></ol>
+  <div class="stats"><div class="stat"><b>Natural Gas</b><span class="down">-5.58%</span></div><div class="stat"><b>WTI Crude</b><span class="up">+3.82%</span></div><div class="stat"><b>Brent Crude</b><span class="up">+3.14%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by a sharp escalation in external energy pressure as Brent crude vaulted to $116.72. This is the single dominant force, significantly increasing the cost of imports and threatening to undo recent efforts to stabilize the trade balance. The 3.14% daily jump is a major shock to the system.</p><p>What changed versus recent days is the intensification of this energy spike. While we previously saw Brent holding near $110, the move toward $117 marks a new level of fiscal danger. Domestically, the central bank&#x27;s website outage adds a layer of operational uncertainty, though commercial banking operations remain intact.</p><p>What to watch next is the government&#x27;s response to the IMF&#x27;s VAT exemption proposal. If enacted, it will signal a prioritization of inflation control over revenue collection. The one number that matters most tonight is $116.72; if Brent stays above this level, expect further pressure on the taka and a likely hike in domestic power tariffs.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Cost-Push Inflation</h3>
+    <div class="prose"><p>Inflation is usually caused by one of two things: people having too much money to spend (demand-pull) or the cost of making things going up (cost-push). Today, Bangladesh is facing classic cost-push inflation. When Brent crude hits $116, every truck that moves food and every factory that makes clothes becomes more expensive to run.</p><p>These businesses pass those costs on to you. Unlike demand-pull inflation, which you can fix by raising interest rates to stop people from spending, cost-push inflation is harder to fight because people still need to buy essentials like food and fuel regardless of the price.</p></div>
+    <div class="quiz"><b>Test yourself</b>If the price of bread rises because the cost of diesel for delivery trucks went up, is that demand-pull or cost-push inflation? (Answer: Cost-push).</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Brent crude futures surged 3.14% to $116.72 per barrel, hitting a new multi-month high.</h3>
+    <div class="plain"><b>In plain English</b>Oil prices jumped again, making it much more expensive for Bangladesh to buy fuel and keep the lights on.</div>
+    <p class="why prose">Sustained high crude prices widen the trade deficit, the gap between what a country spends on imports and earns from exports. This drains foreign exchange reserves and forces the government to increase energy subsidies, worsening the fiscal deficit.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span><span class="tick">BRN=F</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>The IMF proposed VAT exemptions on medicines and essential goods to mitigate inflation.</h3>
+    <div class="plain"><b>In plain English</b>The IMF wants to remove taxes on basic needs like medicine to help people struggling with high prices.</div>
+    <p class="why prose">Value Added Tax (VAT) is a consumption tax that increases the final price for buyers. Exempting essentials aims to protect the &#x27;new poor&#x27; from cost-push inflation, where rising input costs like fuel drive up general prices.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Financial Express</span>
+      <a href="https://news.google.com/rss/articles/CBMirwFBVV95cUxOSF9FS1hxQWI4Qm5ScGh1blhKTmxIX3dfbEVRZ3R6ZG95NFd6SVJONXpMTEc0REtzengyczhDcWdqNkxlekwwX1NDZU16Zlllazc4QVY3NFhBR3VsMk9wSzdWdHZIX3VKM0JEX3h2eGFyQzk1TXpKNDFjd3FGYnpjcWhMV0RyMXFqUTFaUXdSeW1vbG1tTmtPTzU3NWhQN3NndlBieUZ3VlU5UmlBZUg0?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Bangladesh&#x27;s denim exports to the EU rose 12.71% in August, showing product-specific resilience.</h3>
+    <div class="plain"><b>In plain English</b>Sales of denim to Europe are growing fast, even though other clothing sales are struggling.</div>
+    <p class="why prose">RMG exports are the economy&#x27;s backbone, and denim is a high-value segment. This growth helps offset the 11.67% slide in overall apparel exports, protecting the current account balance.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>Bangladesh Sangbad Sangstha (BSS)</span>
+      <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE1IZHdSalFaT0JlRFZRb2lzTFJMNGNMeTlKSmdSZlhhcGRHYVhRc25Dd0ZMT29waUsxakVyY3owOEtBRThwdHNjWjZqakJGcnNI?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Bangladesh Bank took its website offline following a global cyber alert and technical flaws.</h3>
+    <div class="plain"><b>In plain English</b>The central bank shut its website to prevent hackers from attacking after finding a security hole.</div>
+    <p class="why prose">Operational risk at the central bank can disrupt financial reporting and market transparency. While commercial bank connections remain active, the outage highlights vulnerabilities in the digital infrastructure of the banking sector.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, Prothom Alo</span>
+      <a href="https://www.thedailystar.net/business/news/bangladesh-bank-keeps-website-offline-amid-global-cyber-alert-4305776" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>A Chinese firm is investing $100 million in a beverage can factory at Kaliakoir Hi-Tech Park.</h3>
+    <div class="plain"><b>In plain English</b>A big Chinese company is spending $100 million to build a factory in Bangladesh, creating jobs.</div>
+    <p class="why prose">Foreign Direct Investment (FDI) provides non-debt foreign currency inflows. This project targets both domestic demand and exports, potentially improving the long-term trade balance in the manufacturing sector.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/industry/chinese-firm-invests-100m-beverage-can-factory-kaliakoir-hi-tech-park-1581271" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>BSEC tightened direct listing criteria and extended price discovery to two hours.</h3>
+    <div class="plain"><b>In plain English</b>Regulators made it harder for companies to join the stock market without a full public sale.</div>
+    <p class="why prose">Direct listing allows firms to list without an Initial Public Offering (IPO). Tightening these rules aims to prevent price manipulation and ensure only high-quality companies enter the DSE, protecting retail investors.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#b45309">DSE</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxPMFE1aXFocUxPWG5QZzJYdmJZcHRHNmtRNTBiVE85WlZ0bHhlMkJWYVBoVGRLNEdyU21QWGoya2M1dGhpR1kzeTQ3VVZNaHRCbzVQb1hxbnNRNTBRdjN3QnI2eVphaDJmLWpkNzhUX1h3dXZIMlBYeGN6OE1MaHlreXJwRi14bWJPb1RVcEh4MlJiVVNLa2xvRU5MejdoRGVCdjVrSG01bnZfdk5wZ255ZFZBN2ZyZ245OHc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Chickpea prices rose by Tk 17-21 per kg despite normal import volumes.</h3>
+    <div class="plain"><b>In plain English</b>The price of chickpeas is going up even though there is plenty of supply, hurting food budgets.</div>
+    <p class="why prose">This is a sign of market inefficiency or &#x27;artificial shortages.&#x27; Rising food prices contribute to headline inflation, reducing the real disposable income of consumers and slowing economic growth.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/markets/chickpea-prices-rise-amid-artificial-shortage-fears-despite-normal-imports-1581316" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>The government is exploring Sukuk and dollar bonds to fund the Matarbari Phase 2 project.</h3>
+    <div class="plain"><b>In plain English</b>The government is looking for new ways to borrow money for a massive power plant project.</div>
+    <p class="why prose">Sukuk are Shariah-compliant bonds. Using these instruments diversifies the government&#x27;s debt profile and taps into Islamic liquidity pools, which is critical as traditional external debt servicing costs rise.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>Traders Union</span>
+      <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPa25ONEpFWTREZWlvcG9Bc1lCU2FtUWViTklkQjZJWDR5ZjVqSW9KeTd3enpkcF9MNjRGQjNiSThWV0VuY0p2SFU0Nm5qdnR6U1JMa0NGb0hQU0dnVU5OWWdwTkowczRSdnRUWVIwZWxObEJTRUhKYnZHQ3ZVZjRWakVVLUd2RWJLR0JNbEVySW0yeHJVNmZ5bg?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>Bangladesh weighs repurposing unspent World Bank loans to meet development needs.</h3>
+    <div class="plain"><b>In plain English</b>The government wants to use old, leftover loan money for new, more urgent projects.</div>
+    <p class="why prose">This is a fiscal management strategy to improve the utilization rate of foreign aid. It allows the government to address immediate funding gaps without taking on entirely new high-interest debt.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>background context</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMiqgFBVV95cUxNMWFadllzZW8zMXd2cmFXR3hhOHZ3T3oxU3k2blhxNUtTZHJDaWo2ZnhVSEtXSjA5YlJMZy1VVXFqUXNsLUswTzlWYU93ZHh2dHFVTEF6VGJNZk5rSGFCVnpTV0I4OFhwMHFpMl9lMWNuWEx4dlYycjZqSjhVR3JMOGZhWlNWTUdaaXJIOWM3SnJyOUUwZTJaUngxZWVPN28wYlRjWWk1QU9YUQ?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>Overall apparel exports to the EU fell 11.67%, contrasting with denim&#x27;s growth.</h3>
+    <div class="plain"><b>In plain English</b>Most clothing exports to Europe are down, showing that global demand is weakening.</div>
+    <p class="why prose">This decline signals slowing demand in major Western markets. It puts pressure on the net interest margins of banks heavily exposed to the RMG sector, as exporters may struggle to service loans.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>Daily Observer</span>
+      <a href="https://news.google.com/rss/articles/CBMiSkFVX3lxTE03UGZOSjJoUjRoRnhrcGcyQTMzenFvRkN2a2RNRGE4ZVJYbnY5UTFLSWlYRkVTcDJDSEN5a3IwMkpmWWNyWTVKOWdB?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Energy Shock Transmission</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#7</span><span class="chip" style="--chip:#475569">#2</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Brent crude surge → Higher transport and production costs → Artificial shortage and price hikes in commodities like chickpeas → IMF proposes VAT exemptions to curb inflation.</div>
+  <div class="sowhat prose"><b>So what</b>The government is forced to trade tax revenue for social stability as energy costs drive up the price of food.</div>
+</article>
+<article class="card">
+  <h3>RMG Divergence</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#10</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Global demand slowdown → Overall 11.67% drop in EU apparel exports → Product-specific demand for denim leads to 12.71% growth.</div>
+  <div class="sowhat prose"><b>So what</b>Investors should favor textile firms with diversified or high-value product mixes rather than general apparel manufacturers.</div>
+</article>
+<article class="card">
+  <h3>Fiscal and Debt Management</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#8</span><span class="chip" style="--chip:#475569">#9</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Rising debt servicing costs → Repurposing idle World Bank loans + Exploring Sukuk for Matarbari.</div>
+  <div class="sowhat prose"><b>So what</b>Bangladesh is shifting toward more creative and efficient financing to avoid a debt trap while maintaining infrastructure growth.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Cost-push inflation</h4>
+  <p>When prices go up because it costs companies more to make things, usually due to higher fuel or raw material costs.</p>
+  <p>Rising oil and chickpea prices are driving up the cost of living in Bangladesh.</p><span class="stick">It&#x27;s inflation caused by the supply side (costs) rather than the demand side (spending).</span>
+</div>
+<div class="term">
+  <h4>Direct Listing</h4>
+  <p>A way for a company to put its shares on the stock market without a traditional public sale or hiring expensive investment banks.</p>
+  <p>BSEC is making the rules for this process stricter to protect investors from bad companies.</p><span class="stick">It&#x27;s like a &#x27;shortcut&#x27; to the stock market that the regulator is now narrowing.</span>
+</div>
+<div class="term">
+  <h4>Sukuk</h4>
+  <p>An Islamic financial certificate, similar to a bond, that complies with Shariah law by representing ownership in an asset.</p>
+  <p>The government is looking at Sukuk to fund the Matarbari power project.</p><span class="stick">Think of it as a &#x27;Shariah-compliant bond&#x27; where you own a piece of a project instead of just lending money.</span>
+</div>
+<div class="term">
+  <h4>Trade Deficit</h4>
+  <p>The difference when a country buys more from other countries than it sells to them.</p>
+  <p>The $116 oil price makes our imports much more expensive, widening this gap.</p><span class="stick">It&#x27;s the national version of spending more than you earn.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 123.66</div>
+  <div style="margin-top:6px"><span class="down">-0.04%</span> <span class="muted">since 2026-10-23</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.36 taka<br>currency-api 123.64, er-api 123.71, floatrates 123.66, fxratesapi 123.54, yahoo-live 123.90</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">101.81</td>
+<td class="num up">+0.20%</td>
+<td class="num down">-0.03%</td>
+<td class="num up">+0.51%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">94.94</td>
+<td class="num up">+0.24%</td>
+<td class="num down">-0.04%</td>
+<td class="num down">-0.78%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1204</td>
+<td class="num down">-0.27%</td>
+<td class="num down">-0.08%</td>
+<td class="num down">-2.13%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.988</td>
+<td class="num up">+0.71%</td>
+<td class="num down">-2.16%</td>
+<td class="num down">-2.46%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">80.2</td>
+<td class="num down">-0.73%</td>
+<td class="num up">+0.25%</td>
+<td class="num up">+0.87%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">103.27</td>
+<td class="num up">+3.82%</td>
+<td class="num up">+1.83%</td>
+<td class="num up">+9.15%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">116.72</td>
+<td class="num up">+3.14%</td>
+<td class="num up">+6.24%</td>
+<td class="num up">+9.49%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">2.64</td>
+<td class="num down">-5.58%</td>
+<td class="num down">-15.28%</td>
+<td class="num down">-19.93%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">625.0</td>
+<td class="num up">+0.04%</td>
+<td class="num down">-5.37%</td>
+<td class="num down">-11.60%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,256.5</td>
+<td class="num up">+0.28%</td>
+<td class="num down">-0.38%</td>
+<td class="num down">-4.63%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,007.9</td>
+<td class="num down">-1.29%</td>
+<td class="num down">-4.14%</td>
+<td class="num down">-6.75%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,623.68</td>
+<td class="num down">-0.52%</td>
+<td class="num down">-0.47%</td>
+<td class="num down">-1.04%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">25,955.34</td>
+<td class="num down">-0.21%</td>
+<td class="num down">-0.71%</td>
+<td class="num down">-3.65%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">52,215.16</td>
+<td class="num down">-1.23%</td>
+<td class="num up">+0.41%</td>
+<td class="num up">+1.68%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,690.4</td>
+<td class="num down">-0.32%</td>
+<td class="num down">-1.76%</td>
+<td class="num down">-0.14%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">62,693.16</td>
+<td class="num down">-0.34%</td>
+<td class="num down">-4.03%</td>
+<td class="num down">-4.31%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">23,093.37</td>
+<td class="num up">+0.69%</td>
+<td class="num down">-4.03%</td>
+<td class="num down">-7.01%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">73,123.83</td>
+<td class="num down">-0.17%</td>
+<td class="num down">-1.60%</td>
+<td class="num down">-2.28%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">19.45</td>
+<td class="num up">+2.21%</td>
+<td class="num down">-2.70%</td>
+<td class="num up">+28.13%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Brent crude settled at $116.72 on 24 Oct, well above the $105.00 threshold.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — International cotton futures settled at 80.2 cents on 24 Oct, remaining below 84.00.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — The US 10-year Treasury yield was 4.988% on 24 Oct, staying above 4.95%.
+
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Brent crude futures will remain above $112.00 per barrel for the next 7 calendar days.</b>
+    <p>Strong upward momentum and persistent geopolitical supply risks have established a higher floor for crude.</p>
+    <div class="badge">judged in 7 days · Energy</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>The corroborated median USD/BDT will stay below Tk 124.20 over the next 7 calendar days.</b>
+    <p>Central bank interventions and current median stability at 123.66 suggest a slow, managed depreciation rather than a spike.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">80%</div>
+  <div class="body">
+    <b>International cotton futures will remain below 83.00 cents per pound over the next 7 calendar days.</b>
+    <p>The 11.67% drop in EU apparel exports indicates weakening demand that will cap raw material prices.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">59.5%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 50 correct, 34 wrong,
+    0 partial, 19 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Oil hits $116. What does it mean for your pocket?
+
+Global oil prices just jumped to $116.72.
+This makes everything from transport to electricity more expensive.
+Meanwhile, the IMF is suggesting we remove taxes on medicine to help.
+Our denim exports are growing, but overall clothing sales to Europe are falling.
+
+High energy costs are the biggest threat to our economy right now.
+
+#BangladeshEconomy #OilPrices #Inflation #RMG</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 24 Oct 2026, 18:09 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Cost-push inflation", "plain": "When prices go up because it costs companies more to make things, usually due to higher fuel or raw material costs."}, {"term": "Direct Listing", "plain": "A way for a company to put its shares on the stock market without a traditional public sale or hiring expensive investment banks."}, {"term": "Sukuk", "plain": "An Islamic financial certificate, similar to a bond, that complies with Shariah law by representing ownership in an asset."}, {"term": "Trade Deficit", "plain": "The difference when a country buys more from other countries than it sells to them."}];
+window.__POST__ = "Oil hits $116. What does it mean for your pocket?\n\nGlobal oil prices just jumped to $116.72.\nThis makes everything from transport to electricity more expensive.\nMeanwhile, the IMF is suggesting we remove taxes on medicine to help.\nOur denim exports are growing, but overall clothing sales to Europe are falling.\n\nHigh energy costs are the biggest threat to our economy right now.\n\n#BangladeshEconomy #OilPrices #Inflation #RMG\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
