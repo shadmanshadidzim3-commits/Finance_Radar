@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-10-28</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Wednesday, 28 October 2026</h1>
+  <div class="meta">196 stories from 26 sources ·
+    90 Bangladesh · 106 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">The Taka just hit a new low: 124.01.</p>
+  <ol class="flash"><li>The dollar is now more expensive than ever, making everything Bangladesh buys from other countries cost more.</li><li>The price of gas used for power and industry jumped sharply, which will likely raise electricity bills.</li><li>A major gas supplier says it cannot guarantee deliveries for two more years, threatening our power supply.</li><li>The central bank says it will take at least six months to fix the country&#x27;s struggling banks.</li><li>A top expert says people are now stealing money from banks rather than just failing to pay it back.</li></ol>
+  <div class="stats"><div class="stat"><b>Natural Gas</b><span class="up">+13.46%</span></div><div class="stat"><b>WTI Crude</b><span class="up">+2.98%</span></div><div class="stat"><b>Nikkei 225</b><span class="up">+1.73%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by the Taka finally breaching the Tk 124.00 barrier in corroborated data. The dominant force was the 13.46% surge in global natural gas prices, which, combined with Qatar’s extended force majeure, creates a massive, unbudgeted dollar liability for the government. This is no longer just a price issue; it is a supply-chain crisis for the country&#x27;s energy security.</p><p>What changed versus recent days is the official admission of a long recovery road for the banking sector. By pushing the &#x27;visible improvement&#x27; target to mid-2027, Bangladesh Bank has signaled that the current liquidity crunch and high NPL levels are structural, not seasonal. The earlier narrative of a quick post-reform bounce is being replaced by a &#x27;looting&#x27; diagnosis that suggests deeper institutional rot.</p><p>What to watch next is the government&#x27;s response to the Tk 1,958 crore in unpaid export incentives. If these are not cleared, we will likely see a slowdown in RMG production as factories run out of working capital. The one number to watch is the USD/BDT spread; if it stays above 0.40 taka, it means the market is still searching for a floor.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Cost-Push Inflation</h3>
+    <div class="prose"><p>Usually, prices go up because people have too much money and want to buy things (demand-pull). Cost-push inflation is different. It happens when the *cost* of making things goes up, forcing companies to raise prices just to survive.</p><p>Today’s 13% jump in gas prices is a perfect example. Because gas is used for electricity and factory machines, almost every business in Bangladesh now faces higher costs. Unilever already reported raising prices because of energy.</p><p>When the Taka falls, it adds a second layer: the raw materials we buy from abroad also cost more. This creates a cycle where prices rise even if people aren&#x27;t spending more.</p></div>
+    <div class="quiz"><b>Test yourself</b>If the Taka gets stronger but oil prices double, would that cause cost-push or demand-pull inflation? (Answer: Cost-push, because the input cost of energy has risen.)</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>The corroborated median USD/BDT rate reached Tk 124.01, marking a new psychological threshold.</h3>
+    <div class="plain"><b>In plain English</b>The dollar is now more expensive than ever, making everything Bangladesh buys from other countries cost more.</div>
+    <p class="why prose">This is the first time our high-confidence median has crossed the 124 mark. It signals that central bank interventions are struggling to contain depreciation—the loss of a currency&#x27;s value—against the pressure of energy import bills.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#047857">FX</span>
+      <span>hits Bangladesh directly</span>
+      <span>Dhaka Tribune</span>
+      <a href="https://news.google.com/rss/articles/CBMipwFBVV95cUxPZWJEMW5tcXJfcHJDemxrR0Y0WF9IQWE5SHZsYkpFTWpiVWpZLVJHUTY3XzUzWWVndEVyVnZCYWF3MnpVd3IxYXJYa3IxNkU5SWhkUkVpTmFyVDg4Q25OcUE2RUJ5MEVVT2ZTRDd3WWk5MUpiMWZXNW5qYklJT2JxRlhVWVVUUTBqbUdndEFRWlJTQzdnNDdRY0l0aUpIWllvOHZrbldqSdIBpwFBVV95cUxPZWJEMW5tcXJfcHJDemxrR0Y0WF9IQWE5SHZsYkpFTWpiVWpZLVJHUTY3XzUzWWVndEVyVnZCYWF3MnpVd3IxYXJYa3IxNkU5SWhkUkVpTmFyVDg4Q25OcUE2RUJ5MEVVT2ZTRDd3WWk5MUpiMWZXNW5qYklJT2JxRlhVWVVUUTBqbUdndEFRWlJTQzdnNDdRY0l0aUpIWllvOHZrbldqSQ?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Global natural gas futures surged 13.46% in a single day to reach $3.06.</h3>
+    <div class="plain"><b>In plain English</b>The price of gas used for power and industry jumped sharply, which will likely raise electricity bills.</div>
+    <p class="why prose">Bangladesh relies on liquefied natural gas (LNG) imports to fuel its power plants. This price spike directly increases the fiscal deficit—the gap between government spending and income—due to higher energy subsidies.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span><span class="tick">NG=F</span>
+      <span>hits Bangladesh directly</span>
+      <span>Global Markets Feed</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>QatarEnergy extended its LNG delivery suspensions to South Asia through the end of 2026.</h3>
+    <div class="plain"><b>In plain English</b>A major gas supplier says it cannot guarantee deliveries for two more years, threatening our power supply.</div>
+    <p class="why prose">The extension of force majeure—a legal clause allowing a company to skip deliveries due to uncontrollable events—forces Bangladesh to buy more expensive gas on the spot market. This drains foreign exchange reserves, which are the country&#x27;s savings in foreign currency.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>OilPrice.com, Egypt Oil &amp; Gas</span>
+      <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxOZHM0eFVacnNsc3hDY3BUNkhQVlNuTE5wR3VpamtmQTQ3QVQzU1JWMTlKN2hvVlBKdkpQTk9mbmpLbzZvcFJBblZWeC1qMExyMVJrT1hOaThCQUdJcE9OamxaQTY4OXZaMHlUb1dOZGd1UXBDT2RxWUxqTTlqaUdjRU9SSmxTRGVsVjB1aFNWOUFZQWpjN3JaY05XZlVqNnFhRjZ4VjBUMXUtMEN00gGyAUFVX3lxTE9NblJCUFVFWFhPU292eEMxZ2g5Y1AzYUtKNzRzdkNNSWs3TUo5SnMwUE95eTFxZGpMNWFRS0x5czE2Znd1T3hoR29VcjdNMVdKTHFjVktVVEo4STJmUXA4a1U0MW1WM3RabDZXVWJBbzZNUE1zOE5qOWk2VFlYQ2FtUWJ5OE1VWGZ3VF82MVFHekNsLWRwck9PNmFKWWZRUi1HbUJjeTdaZFE5aXdvTlJVQmc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Bangladesh Bank expects the banking sector to show visible recovery by March-April 2027.</h3>
+    <div class="plain"><b>In plain English</b>The central bank says it will take at least six months to fix the country&#x27;s struggling banks.</div>
+    <p class="why prose">This timeline acknowledges the depth of the capital shortfall—the amount of money banks lack to safely cover their risks. It suggests that liquidity, or the availability of cash for lending, will remain tight for the near term.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, The Financial Express</span>
+      <a href="https://www.tbsnews.net/economy/banking/banking-sector-recovery-expected-march-april-2027-bb-1586131" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Economist Wahiduddin Mahmud warned that &#x27;bank plunder&#x27; has surpassed the traditional loan default culture.</h3>
+    <div class="plain"><b>In plain English</b>A top expert says people are now stealing money from banks rather than just failing to pay it back.</div>
+    <p class="why prose">This highlights a shift in asset quality risks from simple business failure to systemic fraud. It undermines investor confidence in the banking sector&#x27;s reported non-performing loans (NPLs), which are loans where payments are seriously overdue.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>background context</span>
+      <span>The Daily Star, Prothom Alo</span>
+      <a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxQM0puRm5nOVYzalhTbUYyWXU4SVBSaXJlMGM0REh1TTJ2NTh5ZW5GOW5jbmQ0NDk4MFV6RWRaOURTeVI3cGt1bl9EazlxaU8zckVCa3RNYUpWVDZJQ1psdjdGaWFmb09kdTJSQ09BbUxNYU1LRVBkZnFob3VGVlkxTG9mcEFBbWEtSmE5LWhFVDNHRTJqYWZyRVhIMm9nZVNGaHRR?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>Export incentive payments of Tk 1,958 crore remain unpaid for the last three months.</h3>
+    <div class="plain"><b>In plain English</b>The government owes garment exporters nearly 2,000 crore taka, causing them cash flow problems.</div>
+    <p class="why prose">Exporters rely on these incentives to maintain their net interest margins—the difference between what they earn and spend. Delays create a working capital crunch, potentially slowing down production in the RMG sector.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, Traders Union</span>
+      <a href="https://www.tbsnews.net/economy/tk1958cr-q1-export-incentives-stuck-payment-delays-1585081" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>bKash reported a 25% drop in Q3 profit despite seeing revenue growth.</h3>
+    <div class="plain"><b>In plain English</b>The country&#x27;s biggest mobile money company is making less profit because its costs are rising faster than its sales.</div>
+    <p class="why prose">As a proxy for digital consumption, bKash&#x27;s earnings compression—shrinking profit margins—suggests that high operating costs and inflation are eating into even the most dominant tech-enabled firms.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">BKASH</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, New Age BD</span>
+      <a href="https://news.google.com/rss/articles/CBMimgFBVV95cUxPQU51bUJfQ00xQmVRUlJ3cGhTSEgwQmVmcjJyV2xJeTJhTm1OYmlKVWg1dXluSU9pOUM0TS1WXzkyR2xxQy1vcU9LSldodnBxN0NMa04weFB2UzJYUkpObkg3UnpOTExCbmVCVVA3OGxKZmRZRDZrSy15b3pXYmZKUEZ6Vm5uNm50T0NwMlVOZWZtdlBHSHpTekNB?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>BSEC approved Tk 35 billion in bonds to support capital market liquidity.</h3>
+    <div class="plain"><b>In plain English</b>The stock market regulator is allowing companies to borrow 3,500 crore taka to help put more cash into the market.</div>
+    <p class="why prose">Bonds are debt instruments used to raise capital. This move aims to provide an alternative to bank loans for large companies, potentially easing the credit squeeze in the private sector.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#b45309">DSE</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Financial Express</span>
+      <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPTlZFaHRCXzBUeG5PcmhXUjRvZXFYZ2ZDblQzaVRQV0E4QVI4cElTZFhQLTdiSkNCXzI0RHdzSFgxeVRTMlVhZEpnYU9oU0Y4YloyOTRfb2NUWnN1cnNVOXRjNDY1dFdVRnczd2JfYlRDeG1pd0xmTHVxamJwZWdYLUl3LTBZaGZKZEZWZGxQUWNuTTBjLVRDb0FSdEc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>Gold prices in Bangladesh rose by Tk 2,216 per bhori, reversing four recent cuts.</h3>
+    <div class="plain"><b>In plain English</b>Gold just got more expensive, which often happens when people are worried about the value of their cash.</div>
+    <p class="why prose">Domestic gold prices often track the exchange rate and global sentiment. This hike reflects the weakening taka and serves as an indicator of inflation expectations among consumers.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/bangladesh/gold-price-rises-tk-2216-bhori-after-four-straight-cuts-1585316" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>Markets expect the US Federal Reserve to hold interest rates steady this Wednesday.</h3>
+    <div class="plain"><b>In plain English</b>The US central bank will likely keep its interest rates the same, which affects how much it costs for countries like ours to borrow dollars.</div>
+    <p class="why prose">A &#x27;hold&#x27; means the US dollar index—the measure of the dollar&#x27;s strength—will likely remain high. This keeps pressure on the taka and prevents any immediate relief in our foreign debt servicing costs.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>background context</span>
+      <span>The Daily Star, The Guardian</span>
+      
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Energy-Currency Death Spiral</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#3</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Qatar force majeure extension → Higher spot LNG reliance → 13.4% gas price surge → Increased dollar demand for imports → Taka depreciates to 124.01.</div>
+  <div class="sowhat prose"><b>So what</b>The cost of keeping the lights on is directly devaluing the currency in your pocket.</div>
+</article>
+<article class="card">
+  <h3>Banking Sector Stagnation</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#5</span><span class="chip" style="--chip:#475569">#8</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Systemic &#x27;plunder&#x27; identified → BB delays recovery timeline to 2027 → BSEC pushes bonds to bypass bank credit freeze.</div>
+  <div class="sowhat prose"><b>So what</b>Traditional bank lending is broken; investors must look to the bond market for capital.</div>
+</article>
+<article class="card">
+  <h3>Imported Inflation Transmission</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#7</span><span class="chip" style="--chip:#475569">#9</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Taka hits 124.01 → Higher cost for imported inputs → bKash profit margins compress and gold prices rise.</div>
+  <div class="sowhat prose"><b>So what</b>Inflation is shifting from &#x27;energy-only&#x27; to a broad-based squeeze on corporate profits and household savings.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Force majeure</h4>
+  <p>A legal clause that frees a company from a contract because of an event they can&#x27;t control, like a war or a natural disaster.</p>
+  <p>Qatar used this to explain why it can&#x27;t deliver gas to Bangladesh through 2026.</p><span class="stick">It is the &#x27;act of God&#x27; clause that lets suppliers walk away when things get tough.</span>
+</div>
+<div class="term">
+  <h4>Non-performing loan (NPL)</h4>
+  <p>A loan where the borrower has stopped making payments for a long time, usually 90 days.</p>
+  <p>Wahiduddin Mahmud argued that the banking crisis is driven by people intentionally &#x27;plundering&#x27; these funds.</p><span class="stick">An NPL is a &#x27;dead&#x27; asset that stops a bank from lending to anyone else.</span>
+</div>
+<div class="term">
+  <h4>Capital shortfall</h4>
+  <p>When a bank doesn&#x27;t have enough of its own money to protect its depositors if its loans go bad.</p>
+  <p>Bangladesh Bank is giving banks until 2027 to fix these shortfalls.</p><span class="stick">It is the difference between a bank being a safe vault and a house of cards.</span>
+</div>
+<div class="term">
+  <h4>Export factoring</h4>
+  <p>When a business sells its export invoices to a bank at a discount to get cash immediately.</p>
+  <p>Mercantile Bank signed a deal with Tradewind to offer this service to Bangladeshi exporters.</p><span class="stick">It is like getting a payday loan for your business so you don&#x27;t have to wait 90 days for a buyer to pay.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 124.01</div>
+  <div style="margin-top:6px"><span class="up">+0.19%</span> <span class="muted">since 2026-10-27</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.47 taka<br>currency-api 124.14, er-api 124.01, floatrates 124.01, fxratesapi 123.80, yahoo-live 123.67</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">102.24</td>
+<td class="num down">-0.08%</td>
+<td class="num up">+0.45%</td>
+<td class="num up">+1.03%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">95.21</td>
+<td class="num up">+0.02%</td>
+<td class="num up">+0.52%</td>
+<td class="num down">-0.60%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.115</td>
+<td class="num down">-0.22%</td>
+<td class="num down">-0.69%</td>
+<td class="num down">-2.01%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">5.02</td>
+<td class="num up">+0.54%</td>
+<td class="num down">-2.45%</td>
+<td class="num down">-4.20%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">78.34</td>
+<td class="num up">+0.36%</td>
+<td class="num down">-4.26%</td>
+<td class="num down">-0.91%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">102.88</td>
+<td class="num up">+2.98%</td>
+<td class="num up">+5.90%</td>
+<td class="num up">+11.10%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">111.94</td>
+<td class="num down">-1.70%</td>
+<td class="num up">+2.87%</td>
+<td class="num up">+6.33%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.06</td>
+<td class="num up">+13.46%</td>
+<td class="num up">+9.68%</td>
+<td class="num up">+2.00%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">601.75</td>
+<td class="num down">-1.39%</td>
+<td class="num down">-4.22%</td>
+<td class="num down">-12.63%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,244.25</td>
+<td class="num up">+1.22%</td>
+<td class="num down">-0.08%</td>
+<td class="num down">-3.42%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,054.8</td>
+<td class="num down">-0.49%</td>
+<td class="num down">-2.29%</td>
+<td class="num down">-2.73%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,737.85</td>
+<td class="num up">+0.20%</td>
+<td class="num down">-0.25%</td>
+<td class="num up">+0.70%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">26,480.67</td>
+<td class="num up">+0.01%</td>
+<td class="num down">-0.83%</td>
+<td class="num down">-1.27%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">52,514.28</td>
+<td class="num up">+0.26%</td>
+<td class="num down">-0.65%</td>
+<td class="num up">+2.01%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,694.5</td>
+<td class="num up">+0.07%</td>
+<td class="num down">-0.54%</td>
+<td class="num up">+0.09%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">63,268.37</td>
+<td class="num up">+1.73%</td>
+<td class="num down">-1.26%</td>
+<td class="num down">-3.96%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">23,041.32</td>
+<td class="num down">-0.73%</td>
+<td class="num down">-3.46%</td>
+<td class="num down">-6.50%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">73,246.03</td>
+<td class="num down">-0.48%</td>
+<td class="num down">-0.63%</td>
+<td class="num up">+0.65%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">17.36</td>
+<td class="num down">-0.91%</td>
+<td class="num up">+4.08%</td>
+<td class="num up">+8.03%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Brent crude is at $111.94 on 28 Oct, remaining well above the $108.00 threshold.
+
+</div></div>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — The corroborated median USD/BDT reached Tk 124.01 on 28 Oct, exceeding the Tk 124.00 limit.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: I underestimated the impact of the trade deficit widening on the central bank&#x27;s ability to defend the 124 level.</p>
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Cotton futures are at 78.34 cents on 28 Oct, staying below the 83.00 threshold.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Brent crude is at $111.94 on 28 Oct, settling above $105.00.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — The corroborated median USD/BDT is Tk 124.01 on 28 Oct, which is below the Tk 124.10 threshold.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Cotton is at 78.34 cents on 28 Oct, below 83.00.
+
+</div></div>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — USD/BDT median reached Tk 124.01 on 28 Oct, breaching the Tk 124.00 cap.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: I relied on central bank resistance that was overwhelmed by energy payment demand.</p>
+</div></div>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — USD/BDT median reached Tk 124.01 on 28 Oct, breaching the Tk 124.00 cap.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Debt repayment pressure proved stronger than the managed depreciation trend.</p>
+</div></div>
+<div class="res"><div>⚪</div>
+<div><b>UNCLEAR</b> — DSE turnover data was missing for 28 Oct due to a technical error.
+
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">80%</div>
+  <div class="body">
+    <b>The corroborated median USD/BDT will stay above Tk 124.00 for the next 5 trading sessions.</b>
+    <p>The breach of 124.00 is backed by a 13% gas spike and Qatar&#x27;s force majeure, which will keep dollar demand high.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Global Natural Gas futures will remain above $2.95 for the next 7 calendar days.</b>
+    <p>The 13.4% daily jump and supply disruptions from Qatar create a strong new price floor.</p>
+    <div class="badge">judged in 7 days · Energy</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>DSE daily turnover will remain below Tk 500 crore when data resumes.</b>
+    <p>The grid failure news and the 2027 banking recovery timeline will discourage institutional buyers.</p>
+    <div class="badge">judged in 5 days · DSE</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">62.4%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 63 correct, 38 wrong,
+    0 partial, 13 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">The Taka just hit a new low: 124.01.
+
+For the first time, the dollar has officially crossed the 124 mark.
+At the same time, global gas prices jumped 13% in a single day.
+This means electricity and imports are about to get much more expensive.
+Banks also warned they won&#x27;t fully recover until 2027.
+
+Energy costs are driving the Taka down and your costs up.
+
+#BangladeshEconomy #TakaDepreciation #EnergyCrisis</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 28 Oct 2026, 23:16 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Force majeure", "plain": "A legal clause that frees a company from a contract because of an event they can't control, like a war or a natural disaster."}, {"term": "Non-performing loan (NPL)", "plain": "A loan where the borrower has stopped making payments for a long time, usually 90 days."}, {"term": "Capital shortfall", "plain": "When a bank doesn't have enough of its own money to protect its depositors if its loans go bad."}, {"term": "Export factoring", "plain": "When a business sells its export invoices to a bank at a discount to get cash immediately."}];
+window.__POST__ = "The Taka just hit a new low: 124.01.\n\nFor the first time, the dollar has officially crossed the 124 mark.\nAt the same time, global gas prices jumped 13% in a single day.\nThis means electricity and imports are about to get much more expensive.\nBanks also warned they won't fully recover until 2027.\n\nEnergy costs are driving the Taka down and your costs up.\n\n#BangladeshEconomy #TakaDepreciation #EnergyCrisis\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
