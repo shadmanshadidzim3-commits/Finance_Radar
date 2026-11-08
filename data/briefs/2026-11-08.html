@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-11-08</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Sunday, 08 November 2026</h1>
+  <div class="meta">193 stories from 27 sources ·
+    108 Bangladesh · 84 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Why did Bangladesh&#x27;s trade deficit just jump 31%?</p>
+  <ol class="flash"><li>The gap between what Bangladesh buys and sells abroad grew by nearly a third because imported oil and gas cost twice as much.</li><li>The central bank made it cheaper for merchants to import staple foods so prices do not jump before Ramadan.</li><li>The World Bank agreed to lend Bangladesh $450 million to help fix vulnerabilities in its banking system.</li><li>Textile workers went back to their sewing machines after factory owners agreed to wage adjustments.</li><li>The central bank allowed a major food conglomerate to borrow more day-to-day cash despite past overdue debts.</li></ol>
+  <div class="stats"><div class="stat"><b>VIX (volatility)</b><span class="down">-9.01%</span></div><div class="stat"><b>Nikkei 225</b><span class="down">-5.96%</span></div><div class="stat"><b>Natural Gas</b><span class="up">+1.73%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was defined by the ongoing consequences of Bangladesh&#x27;s structural trade deficit. Fuel import costs doubled in the first quarter, widening the merchandise trade gap by 31%. This external drain continues to strain bank liquidity, keeping the corroborated median USD/BDT rate pinned at Tk 124.57.</p><p>What changed versus recent sessions is the resumption of work across key industrial belts in Gazipur and Savar. The minimum wage board settlement ended protests that caused an estimated Tk 1,500 crore in production losses. In tandem, the signing of a $450 million World Bank loan agreement provides an immediate foreign currency buffer.</p><p>What to watch next is whether commercial banks expand dollar import letters of credit following relaxed margin rules on Ramadan food staples. The key benchmark will be the corroborated median USD/BDT rate: crossing Tk 124.70 would confirm that commercial food and fuel demand is outpacing incoming central bank liquidity.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Cash margin requirements on Letters of Credit</h3>
+    <div class="prose"><p>When an importer purchases goods internationally, its bank issues a Letter of Credit (LC) guaranteeing payment to the overseas exporter. To manage default and currency risk, the central bank specifies a &#x27;cash margin&#x27; — the percentage of the order&#x27;s value the buyer must deposit upfront in cash. If the margin is 100%, the importer must lock up the entire value before the deal starts.</p><p>When Bangladesh Bank lowers the margin to near zero for Ramadan essentials, it removes this cash drag. Importers can bring in rice or oil using less upfront cash, boosting domestic supply. However, this policy increases immediate demand for foreign currency in the interbank market.</p></div>
+    <div class="quiz"><b>Test yourself</b>If the central bank raises the LC cash margin on imported luxury cars to 100%, does that encourage or discourage car imports, and why?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Bangladesh&#x27;s trade deficit widened 31% in the first quarter as the fuel import bill doubled.</h3>
+    <div class="plain"><b>In plain English</b>The gap between what Bangladesh buys and sells abroad grew by nearly a third because imported oil and gas cost twice as much.</div>
+    <p class="why prose">A widening trade deficit — the excess of merchandise imports over exports — accelerates foreign exchange depletion. The surge in energy payments drains commercial bank dollar liquidity. This directly drives taka depreciation and raises imported inflation across the wider economy.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQeWlBTnQ4WVZjTzJCZDJGVzgtczE5WmpfMllmS2hBUGxzNHNNWmUtbjNOSmJQbERzLUNmSUJFREJONUdYMldwR0E5QjAtcHFYd2lnTUxxd3YydkNYaXV0QnNGQWdKa2d0LWtDdTBHeFJnVlkxTDFUbTllSnhySDJaMVl4TTRGUVdTXzJWYko2Y3p0YjBOc29ZT0ZaSGtfTU5DRHdXYTY4cFhQTEk?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Bangladesh Bank instructed commercial banks to keep cash margin requirements at the minimum level for ten essential food imports ahead of Ramadan.</h3>
+    <div class="plain"><b>In plain English</b>The central bank made it cheaper for merchants to import staple foods so prices do not jump before Ramadan.</div>
+    <p class="why prose">A cash margin is the upfront collateral an importer must deposit in cash with a bank to open a letter of credit. Lowering this requirement eases working capital constraints for food importers. However, it increases systemic dollar demand during an ongoing foreign currency shortage.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/news/bb-eases-lc-cash-margin-ramadan-essentials-4318376" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>The World Bank signed a $450 million financing agreement with Bangladesh to strengthen the domestic financial sector.</h3>
+    <div class="plain"><b>In plain English</b>The World Bank agreed to lend Bangladesh $450 million to help fix vulnerabilities in its banking system.</div>
+    <p class="why prose">This concessional balance of payments support injects fresh foreign exchange reserves into the sovereign account. It provides temporary foreign currency liquidity while requiring structural governance reforms across troubled domestic lenders.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxQU05xZVBHWnRTdE1QSUZaZmRjOGlUZGdwRDRYYTRhbi1NcFlBRS1NaG5PcWV6NE4wLS0yZTRPVmV5d1NoTGQ2VWlXelpQRzJuQktCWVNpdGZ0YUtRRGM5aUdYZVJWak9mVEZDV1NfY2pjdWhKaEtTdEg2MUJtcVBFVmo4STVrM1laRDhyMnhMVVB6SjZxeDF0Q0Facnd0ZHlSUmF6Z3YzeW5uVUk?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Garment factories in Gazipur and Savar resumed normal operations as a wage board agreement halted industrial unrest.</h3>
+    <div class="plain"><b>In plain English</b>Textile workers went back to their sewing machines after factory owners agreed to wage adjustments.</div>
+    <p class="why prose">The restart halts production losses that reached an estimated Tk 1,500 crore during recent strikes. Ready-made garments generate over 80% of export proceeds. Restoring factory output is critical to bringing export receipts back to normal.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/rmg/garment-factories-resume-production-gazipur-savar-wage-deal-eases-labour-unrest-1596146" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Bangladesh Bank approved a Tk 3,000 crore working capital facility for defaulted units of City Group, according to The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>The central bank allowed a major food conglomerate to borrow more day-to-day cash despite past overdue debts.</div>
+    <p class="why prose">A working capital facility finances the immediate operational costs of running a business, such as buying raw ingredients. Regulators intervened to ensure commodity supply stability in cooking oil and sugar. However, lending to defaulted entities exacerbates moral hazard across the banking system.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMiwAFBVV95cUxQTC04RnoxZ0VsdE52dnJ6b0FPZFVycW1rZm9yNzFidFVNLUNjbWZCckZHdE01N1haajR1ckpkaVNTZ1F3dXZPQ2tmOEMwV3h2RVRBTTZIYmpiVnZ5TTdCZWpVRmh5YU9FQzN1NE1GUDRVOXlVR2U3S0paQ0hpVHFKeUg4WF96cFU3ckxKWlVldS1DblpLeWo3aHU1TkhzMllMdVNxT1R3SkprZWhwVlloLWp5Y3JsNjlpSndSajBTR0M?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>BSEC requested a five-year extension for banks&#x27; special capital market investment funds to avoid sudden institutional redemptions.</h3>
+    <div class="plain"><b>In plain English</b>The stock market regulator asked the central bank to let commercial banks keep their special stock-buying funds active.</div>
+    <p class="why prose">Banks were granted special Tk 200 crore funds in 2020 to invest in listed equities without breaching statutory exposure ceilings. If these facilities expire, banks would be forced to liquidate equity portfolios. That would trigger substantial institutional selling pressure across the DSE.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMiugFBVV95cUxNemhkaElxYzZZUTFwdTRnU0l1MXRMYU5xS1FjRlRGZFlOMnFVekp3VlNQdXVMaE1Lam9SYTkwRG00V3FhUWYzSFpiLUdvX2dONUlNZTBnODBIZlRYdjJVcHFuLXFzLTQzcTVuQXRDVkRQZWdzU2NobVhrRWg5YTd1a1gwMkZNLVFrUDJoQmhBYm5KQ0xkY1VtUGxlVmN0cU9hNnZ6emVMaUZleVdXTHB2WjlNN0NtdkFrWXc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Envoy Textiles reported a 40% jump in first-quarter net profit to Tk 53 crore on lower financing costs, according to The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>A prominent denim manufacturer increased its quarterly earnings after replacing expensive local bank loans with cheaper development loans.</div>
+    <p class="why prose">Financial expenses fell 17.6% after the company secured low-cost financing from the Asian Development Bank. It demonstrates how listed exporters can protect net margins by reducing reliance on high-cost domestic commercial bank debt.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">ENVOYTEX</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/stocks/envoy-textiles-q1-profit-jumps-40-tk53cr-export-growth-lower-financing-costs-1596721" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Jamuna Oil declared a reduced cash dividend of 120% as its annual net profit dropped 34% to Tk 425 crore in FY26.</h3>
+    <div class="plain"><b>In plain English</b>A state-owned fuel distributor cut its yearly cash payout to shareholders after annual profits sank by a third.</div>
+    <p class="why prose">A cash dividend is the portion of earnings distributed to shareholders. The dividend cut from Tk 18 to Tk 12 per share highlights margin compression in downstream fuel distribution, reducing state revenue yields from listed energy assets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">JAMUNAOIL</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/stocks/jamuna-oil-cuts-dividend-120-fy26-profit-falls-34-1596726" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>QatarEnergy will supply 26 out of 40 liquefied natural gas cargoes scheduled for Bangladesh in 2027.</h3>
+    <div class="plain"><b>In plain English</b>Qatar will supply nearly two-thirds of the country&#x27;s planned super-chilled gas shipments in 2027 under long-term contracts.</div>
+    <p class="why prose">Long-term contracts reduce spot-market price volatility for imported natural gas. However, with domestic gas fields depleting, locked-in cargo commitments cement a high baseline sovereign energy import bill regardless of global demand shifts.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>Banglanews24</span>
+      <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFB3bnQ3M2VKQ20wRkhfb2Q1UmNjM3RDRlpBdTZFb29CcE5SM3RpZEZZTC1UOFc1V2YxS1BpazlHYk9kVElNakZzS1lfc01LS0xpTHQ3Q0V1SXlUMWNPTWVRRDJVbkgydGdlMDFN?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>External debt per capita reached $646 across Bangladesh&#x27;s 175.7 million population, according to World Bank figures reported by The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>Dividing the country&#x27;s foreign loans by its population shows each person accounts for roughly $646 of external national debt.</div>
+    <p class="why prose">Per-capita external debt measures total sovereign and private foreign liabilities divided by the population. Growing external debt increases future debt servicing costs, consuming an expanding share of export revenues and government tax receipts.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/every-bangladeshi-carries-646-foreign-debt-world-bank-1596191" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Energy import costs widening the trade deficit</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#8</span><span class="chip" style="--chip:#475569">#9</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Doubled fuel import bill → 31% expansion in merchandise trade deficit → compressed margins at distributors like Jamuna Oil → structural reliance on long-term LNG import commitments.</div>
+  <div class="sowhat prose"><b>So what</b>Fuel imports continue to absorb Bangladesh&#x27;s foreign exchange, keeping structural depreciation pressure on the taka.</div>
+</article>
+<article class="card">
+  <h3>Factory reopening restoring vital foreign exchange inflows</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#7</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Wage settlement ends strikes in Savar and Gazipur → garment factories resume operations → export shipments recover → reduced trade deficit pressure for high-efficiency exporters like Envoy Textiles.</div>
+  <div class="sowhat prose"><b>So what</b>Restoring garment production stems direct cash flow losses and preserves the main source of incoming dollar liquidity.</div>
+</article>
+<article class="card">
+  <h3>Policy support easing commodity and credit bottlenecks</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#5</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Central bank lowers import LC cash margins for food → working capital facility extended to defaulted food processors → lower barrier to importing essential staples ahead of Ramadan.</div>
+  <div class="sowhat prose"><b>So what</b>Regulators are prioritizing domestic food supply and price stability over strict credit discipline and foreign currency conservation.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Trade deficit</h4>
+  <p>The amount by which a country&#x27;s total spending on foreign imports exceeds its earnings from exported goods.</p>
+  <p>Bangladesh&#x27;s trade deficit expanded by 31% in the first quarter due to a doubled fuel import bill.</p><span class="stick">A trade deficit means more money left the country for goods than came in.</span>
+</div>
+<div class="term">
+  <h4>Cash margin</h4>
+  <p>The upfront cash a business must deposit with its bank before the bank agrees to back an import purchase.</p>
+  <p>Bangladesh Bank ordered lenders to keep cash margins at minimum levels for ten Ramadan food commodities.</p><span class="stick">It is the earnest money an importer puts on the counter before goods ship.</span>
+</div>
+<div class="term">
+  <h4>Working capital facility</h4>
+  <p>A revolving bank loan used to pay for day-to-day operating expenses like inventory, raw materials, and wages.</p>
+  <p>Bangladesh Bank cleared a Tk 3,000 crore working capital line for defaulted firms within City Group.</p><span class="stick">It funds everyday operational costs, not new factories or long-term machinery.</span>
+</div>
+<div class="term">
+  <h4>Per-capita external debt</h4>
+  <p>A country&#x27;s total foreign debt obligations divided evenly across its entire population.</p>
+  <p>World Bank data showed external debt per citizen reached $646 across 175.7 million Bangladeshis.</p><span class="stick">It gauges the country&#x27;s foreign debt burden per head, even though individuals do not repay it directly.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 124.57</div>
+  <div style="margin-top:6px"><span class="up">+0.03%</span> <span class="muted">since 2026-11-07</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.46 taka<br>currency-api 124.77, er-api 124.57, floatrates 124.35, fxratesapi 124.45, yahoo-live 124.81</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">102.3</td>
+<td class="num up">+0.74%</td>
+<td class="num up">+0.41%</td>
+<td class="num up">+0.16%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">93.91</td>
+<td class="num down">-0.58%</td>
+<td class="num down">-1.05%</td>
+<td class="num down">-2.55%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1228</td>
+<td class="num down">-0.06%</td>
+<td class="num up">+0.41%</td>
+<td class="num down">-0.22%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.859</td>
+<td class="num up">+0.45%</td>
+<td class="num down">-1.42%</td>
+<td class="num down">-7.78%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">79.11</td>
+<td class="num up">+0.51%</td>
+<td class="num up">+1.64%</td>
+<td class="num up">+3.81%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">90.83</td>
+<td class="num up">+0.34%</td>
+<td class="num down">-12.76%</td>
+<td class="num down">-0.72%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">98.32</td>
+<td class="num up">+0.03%</td>
+<td class="num down">-16.42%</td>
+<td class="num down">-5.72%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">2.998</td>
+<td class="num up">+1.73%</td>
+<td class="num up">+3.45%</td>
+<td class="num down">-5.37%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">591.25</td>
+<td class="num down">-1.34%</td>
+<td class="num down">-2.03%</td>
+<td class="num down">-13.47%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,193.75</td>
+<td class="num up">+1.08%</td>
+<td class="num down">-2.33%</td>
+<td class="num down">-7.28%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,074.9</td>
+<td class="num down">-0.94%</td>
+<td class="num up">+4.51%</td>
+<td class="num down">-1.97%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">24,579.43</td>
+<td class="num up">+1.09%</td>
+<td class="num down">-3.37%</td>
+<td class="num down">-10.75%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">51,285.73</td>
+<td class="num down">-0.46%</td>
+<td class="num down">-0.94%</td>
+<td class="num up">+0.21%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,673.9</td>
+<td class="num down">-1.01%</td>
+<td class="num down">-0.52%</td>
+<td class="num up">+1.25%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">57,434.77</td>
+<td class="num down">-5.96%</td>
+<td class="num down">-11.17%</td>
+<td class="num down">-18.74%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">24,481.86</td>
+<td class="num down">-1.27%</td>
+<td class="num up">+5.10%</td>
+<td class="num up">+0.83%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">80,999.4</td>
+<td class="num down">-0.04%</td>
+<td class="num up">+7.01%</td>
+<td class="num up">+10.86%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">25.64</td>
+<td class="num down">-9.01%</td>
+<td class="num up">+32.03%</td>
+<td class="num up">+70.82%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>The corroborated median USD/BDT exchange rate will stay above Tk 124.40 over the next 7 days.</b>
+    <p>Persistent trade deficit expansion and steady commercial import demand will prevent meaningful taka appreciation.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Brent crude futures will remain below $105.00 per barrel over the next 7 days.</b>
+    <p>Brent is currently at $98.32 after falling 16.42% in a week, reflecting cooling global manufacturing demand.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">64.9%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 85 correct, 46 wrong,
+    0 partial, 8 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Why did Bangladesh&#x27;s trade deficit just jump 31%?
+
+The country&#x27;s fuel import bill doubled in the first quarter, swallowing valuable foreign currency.
+
+Garment factories in Gazipur and Savar have reopened after wage talks, bringing back critical export revenue.
+
+To keep kitchen costs stable, the central bank is making it cheaper for traders to import Ramadan food items.
+
+Costly imported fuel remains the primary drag on Bangladesh&#x27;s foreign currency reserves.
+
+#BangladeshEconomy #TradeDeficit #FuelImports #EconomyUpdate</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 08 Nov 2026, 20:27 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Trade deficit", "plain": "The amount by which a country's total spending on foreign imports exceeds its earnings from exported goods."}, {"term": "Cash margin", "plain": "The upfront cash a business must deposit with its bank before the bank agrees to back an import purchase."}, {"term": "Working capital facility", "plain": "A revolving bank loan used to pay for day-to-day operating expenses like inventory, raw materials, and wages."}, {"term": "Per-capita external debt", "plain": "A country's total foreign debt obligations divided evenly across its entire population."}];
+window.__POST__ = "Why did Bangladesh's trade deficit just jump 31%?\n\nThe country's fuel import bill doubled in the first quarter, swallowing valuable foreign currency.\n\nGarment factories in Gazipur and Savar have reopened after wage talks, bringing back critical export revenue.\n\nTo keep kitchen costs stable, the central bank is making it cheaper for traders to import Ramadan food items.\n\nCostly imported fuel remains the primary drag on Bangladesh's foreign currency reserves.\n\n#BangladeshEconomy #TradeDeficit #FuelImports #EconomyUpdate\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
