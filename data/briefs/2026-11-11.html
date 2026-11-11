@@ -1,0 +1,663 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-11-11</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Wednesday, 11 November 2026</h1>
+  <div class="meta">221 stories from 30 sources ·
+    106 Bangladesh · 113 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Why your groceries may cost more even as food bills get delayed.</p>
+  <ol class="flash"><li>Banks are charging over 125 taka per dollar to pay for imported fuel, making essential goods more expensive for everyone.</li><li>The central bank is letting food importers delay paying their foreign bills for three months so holiday food supplies stay cheap.</li><li>The government collected far less tax money than planned, leaving a huge hole in the national budget.</li><li>Factory workers are skipping meals and healthcare because wages cannot keep up with high food prices.</li><li>The central bank asked the country&#x27;s top mobile money app to explain thousands of suspicious user accounts.</li></ol>
+  <div class="stats"><div class="stat"><b>Cotton</b><span class="up">+4.96%</span></div><div class="stat"><b>VIX (volatility)</b><span class="down">-4.32%</span></div><div class="stat"><b>US 10Y Treasury</b><span class="up">+2.45%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was defined by the structural collision between external payment liabilities and administrative stopgaps. The single dominant force was the widening strain on commercial foreign exchange liquidity, as elevated fuel imports pushed letter of credit settlement rates above Tk 125 per dollar. Rather than outright dollar sales, Bangladesh Bank responded by deferring foreign currency obligations, granting 90-day deferred payment terms for essential food imports.</p><p>What changed versus recent sessions is the explicit shift from settling past dues to postponing future ones. Over the past week, notes focused on the $1.64 billion Asian Clearing Union reserve outflow and factory unrest in industrial belts. Today, the authorities acknowledged that immediate spot reserves cannot comfortably absorb food and fuel bills simultaneously ahead of Ramadan. This policy follows yesterday&#x27;s disclosure of a Tk 50,000 crore tax collection shortfall, reinforcing that the sovereign lacks both dollar buffers and fiscal flexibility.</p><p>What to watch next is whether the commercial letter of credit settlement rate stabilizes or creeps higher as deferred import liabilities compound. The single number that will tell us whether this strategy is holding the line is the provider spread across cross-checked USD/BDT feeds, which currently sits at a wide 0.55 taka around an approximate median of Tk 124.82. A widening spread beyond 0.75 taka will confirm that commercial banks are facing an intensifying dollar rationing squeeze.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Trade Credit as a Macro Shock Absorber</h3>
+    <div class="prose"><p>When an economy suffers from a shortage of foreign currency, central banks often face a binary choice: either sell scarce official reserves to fund essential imports or allow domestic shortages and price spikes. Deferred payment letters of credit provide a third path known as trade credit. By allowing domestic importers to take delivery of commodities today and defer foreign exchange settlement by 90 to 180 days, the central bank transfers immediate spot foreign exchange demand into the future.</p><p>While this prevents immediate exchange rate spikes and curbs seasonal inflation, it does not erase the liability. It creates an accumulated maturity wall. If export earnings and remittances do not accelerate before those deferred bills mature, the future dollar drain can be even more violent.</p></div>
+    <div class="quiz"><b>Test yourself</b>If Bangladesh Bank allows 90-day deferred payment for $500 million of Ramadan food imports in November, what happens to spot foreign exchange demand today, and what happens to foreign exchange demand in February?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Commercial dollar rates crossed Tk 125 as surging fuel import bills pushed letter of credit settlements to Tk 124.97, according to The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>Banks are charging over 125 taka per dollar to pay for imported fuel, making essential goods more expensive for everyone.</div>
+    <p class="why prose">A letter of credit (LC) is a bank guarantee ensuring an exporter receives payment once goods are shipped. Rising fuel import liabilities are forcing commercial banks to bid aggressively for greenbacks in the interbank market, depleting net open positions and putting structural depreciation pressure on the taka.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#047857">FX</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/dollar-rate-crosses-tk125-fuel-import-payments-rise-1598881" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Bangladesh Bank introduced a 90-day deferred payment facility for essential Ramadan food imports through mid-March 2027 to prevent price surges.</h3>
+    <div class="plain"><b>In plain English</b>The central bank is letting food importers delay paying their foreign bills for three months so holiday food supplies stay cheap.</div>
+    <p class="why prose">Deferred payment terms function as trade credit, where buyers take delivery now and settle foreign exchange obligations up to 90 days later. This eases spot foreign exchange demand in the short term, but it stacks aggregate foreign currency liabilities into early 2027.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/banking/bangladesh-bank-allows-90-day-deferred-payment-ramadan-food-imports-1599461" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>The National Board of Revenue logged a tax collection shortfall exceeding Tk 50,000 crore in the first four months of FY27, according to The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>The government collected far less tax money than planned, leaving a huge hole in the national budget.</div>
+    <p class="why prose">A fiscal deficit occurs when government expenditures exceed tax revenues, forcing the state to borrow from the banking sector or issue treasury bills. With revenue reaching under Tk 1.28 lakh crore against a Tk 1.78 lakh crore target, government bank borrowing risks crowding out private credit and sustaining high yields.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/revenue-shortfall-exceeds-tk50000cr-first-four-months-fy27-1598891" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Garment workers face severe real wage erosion as living costs outpace pay, according to a joint report carried by Reuters and local outlets.</h3>
+    <div class="plain"><b>In plain English</b>Factory workers are skipping meals and healthcare because wages cannot keep up with high food prices.</div>
+    <p class="why prose">Real wages represent nominal earnings adjusted for inflation, reflecting the true purchasing power of workers. When double-digit non-food inflation crushes consumer purchasing power, wage revision pressures rise, threatening export production continuity and squeezing factory gross margins.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, Reuters, Prothom Alo English, The Business Standard</span>
+      <a href="https://www.thedailystar.net/business/news/behind-bangladeshs-garment-boom-workers-cut-food-healthcare-wages-fall-short-4320956" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Bangladesh Bank launched an inquiry into bKash over more than 7,000 suspected fake mobile financial accounts.</h3>
+    <div class="plain"><b>In plain English</b>The central bank asked the country&#x27;s top mobile money app to explain thousands of suspicious user accounts.</div>
+    <p class="why prose">Know Your Customer (KYC) protocols are legal requirements that financial institutions must follow to verify customer identity and prevent money laundering. Unverified accounts expose the payment system to illegal hundi transactions—informal money transfers that bypass official banking channels and siphon away vital remittances.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, Daily Sun</span>
+      <a href="https://www.thedailystar.net/business/economy/news/bb-seeks-explanation-bkash-over-7000-fake-accounts-4320486" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>Square Pharmaceuticals and Square Textiles reported higher quarterly profits on strong revenue growth, according to The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>Two major domestic manufacturing giants grew their earnings despite high raw material costs and expensive utility bills.</div>
+    <p class="why prose">Operating leverage is the degree to which a firm can grow operating income by increasing revenue without expanding fixed costs. Despite high energy tariffs and elevated cotton costs, Square&#x27;s pricing power allowed it to pass input expenses forward to protect net margins.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">SQURPHARMA SQUARETEXT</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/news/square-pharmaceuticals-textiles-post-higher-profits-4320936" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>US consumer prices rose 0.4% in October, exceeding expectations and keeping the benchmark 10-year Treasury yield near 4.98%.</h3>
+    <div class="plain"><b>In plain English</b>American inflation stayed hot last month, keeping global borrowing costs high and making dollars harder for emerging nations to attract.</div>
+    <p class="why prose">The risk-free rate is the theoretical rate of return of an investment with zero risk, represented by US Treasury yields. When US yields hover near 5.0%, the US dollar index strengthens, triggering capital flight from emerging markets and making external debt refinancing much more expensive.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>CNBC, Wall Street Journal</span>
+      <a href="https://www.cnbc.com/2026/11/10/cpi-inflation-report-october-2026.html" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Brent crude futures rebounded 1.36% to $92.73 per barrel after shipping attacks in the Strait of Hormuz dampened truce prospects.</h3>
+    <div class="plain"><b>In plain English</b>Global oil prices climbed back over 92 dollars a barrel because attacks on Persian Gulf tankers threatened world fuel supplies.</div>
+    <p class="why prose">Import parity pricing benchmarks domestic energy costs to international commodity spot rates. Because Bangladesh relies almost entirely on imported fuel and LNG, oil above $92 per barrel expands the balance-of-payments trade deficit and increases state fiscal subsidies.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/news/oil-rebounds-hormuz-shipping-attacks-blunt-hopes-iran-truce-4320881" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>Foreign portfolio investors pulled a net Tk 175 crore from the Dhaka Stock Exchange in October, according to The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>Overseas investors sold 175 crore taka more in local shares than they bought last month as currency risks grew.</div>
+    <p class="why prose">Foreign portfolio investment (FPI) consists of securities and financial assets held by non-residents. Persistent foreign capital outflows drain dollar liquidity from domestic settlement accounts and exacerbate valuation discounts on premier blue-chip equities.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#b45309">DSE</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMinwFBVV95cUxQR2hCRE9TMS1tSWZWckIwNUZpV2NNU1ptb0t4ejM2eFdVc2pmX2FZTmI3UVQzazY3WjVWNGJaRG9aMWlHSUZ4Nm50ZWtzbnF0OHNZM1NnWGMzRVJYZURLdjY1aWgxYlg5R3NXbDhQeFo1QjhNWjNKb3hQME10Ny02Rk40QTVkUWdLM0FlRUtaNDhUOGNFTWxZMy1EZEtRMHc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>The Bangladesh Securities and Exchange Commission approved a single-window review system to speed up initial public offering approvals.</h3>
+    <div class="plain"><b>In plain English</b>Regulators streamlined the rules for companies selling stock to the public to help quality businesses raise funds faster.</div>
+    <p class="why prose">Initial public offerings (IPOs) allow unlisted private companies to raise primary equity capital from retail and institutional investors. A single-window clearance reduces regulatory lag, aiming to attract reputable industrial issuers to a market historically starved of high-quality corporate equity.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, United News of Bangladesh</span>
+      <a href="https://www.thedailystar.net/business/economy/news/bsec-introduces-single-window-ipo-review-system-4320481" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Energy Import Inelasticity and Currency Depreciation</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#8</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Hormuz shipping attacks push Brent crude to $92.73 → Petroleum import bill expands → Commercial banks bid LC settlement dollars past Tk 125 → Spot foreign exchange reserves remain under severe drain.</div>
+  <div class="sowhat prose"><b>So what</b>Higher energy costs directly translate into persistent taka weakness and imported inflation, reducing corporate profit margins across import-dependent sectors.</div>
+</article>
+<article class="card">
+  <h3>Fiscal Shortfall and Government Borrowing Squeeze</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#7</span><span>strong link</span>
+  </div>
+  <div class="chain prose">NBR tax revenue lags target by Tk 50,000 crore → Government turns to domestic banking system for deficit financing → High US Treasury yields (4.98%) constrain external commercial borrowing options → Domestic liquidity tightens as public borrowing crowds out private sector loans.</div>
+  <div class="sowhat prose"><b>So what</b>Private sector borrowers will face elevated bank borrowing rates, depressing capital expenditure and industrial expansion plans.</div>
+</article>
+<article class="card">
+  <h3>Short-Term Trade Relief vs Long-Term FX Liabilities</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#2</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Commercial dollar rate hits Tk 125 on energy demand → Bangladesh Bank introduces 90-day deferred letters of credit for food essentials → Immediate spot FX demand for food items is deferred into Q1 2027 → Accumulated trade credit settlements will coincide with Ramadan demand spikes, creating a delayed FX liquidity wall.</div>
+  <div class="sowhat prose"><b>So what</b>Importers gain temporary working capital breathing room, but the foreign exchange market faces a concentrated repayment overhang in February and March 2027.</div>
+</article>
+<article class="card">
+  <h3>KYC Enforcement and Inward Remittance Channels</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#5</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Central bank flags 7,000 illicit accounts at bKash → Tightened MFS compliance curbs digital hundi clearing networks → Informal remittance arbitrage narrows → More expatriate flows redirect toward official banking channels, supporting interbank dollar supply.</div>
+  <div class="sowhat prose"><b>So what</b>If regulatory enforcement successfully curtails hundi settlement mechanisms, official remittance inflows could expand, helping ease the commercial bank dollar crunch.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Letter of credit (LC)</h4>
+  <p>A formal bank guarantee promising that an overseas seller will be paid on time once goods are shipped.</p>
+  <p>Commercial banks settled import LCs at rates approaching Tk 125 today as fuel import bills arrived.</p><span class="stick">Think of an LC as a financial escrow agent: the bank stands in the middle so strangers across borders can trust each other.</span>
+</div>
+<div class="term">
+  <h4>Trade credit</h4>
+  <p>An arrangement where a buyer takes delivery of goods immediately but pays the supplier weeks or months later.</p>
+  <p>Bangladesh Bank granted 90-day deferred payment terms for Ramadan food imports, effectively forcing suppliers to provide trade credit.</p><span class="stick">Buy now, pay later for international commerce.</span>
+</div>
+<div class="term">
+  <h4>Real wages</h4>
+  <p>Income measured by the actual basket of goods and services it can buy, after stripping out the effect of inflation.</p>
+  <p>Garment workers are experiencing severe real wage cuts because food prices have risen faster than nominal wages.</p><span class="stick">Nominal wage is what is written on your pay slip; real wage is what is inside your grocery bag.</span>
+</div>
+<div class="term">
+  <h4>Operating leverage</h4>
+  <p>How much a company&#x27;s operating profit increases when its sales grow, determined by the proportion of fixed costs it carries.</p>
+  <p>Square Pharmaceuticals posted higher profits because strong sales growth outpaced its fixed operational overhead.</p><span class="stick">High operating leverage is a double-edged sword: profits surge when sales rise, but collapse when sales drop.</span>
+</div>
+<div class="term">
+  <h4>Know Your Customer (KYC)</h4>
+  <p>Mandatory background and identity checks that financial institutions must conduct before opening an account.</p>
+  <p>The central bank investigated bKash after identifying 7,000 accounts that violated identity verification standards.</p><span class="stick">The banking equivalent of checking an ID at the border to prevent illegal financial flows.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 124.82</div>
+  <div style="margin-top:6px"><span class="up">+0.31%</span> <span class="muted">since 2026-11-10</span></div>
+  <p class="muted" style="margin-top:10px">LOW CONFIDENCE · 5 source(s) · spread 0.55 taka<br>currency-api 125.04, er-api 124.61, floatrates 124.49, fxratesapi 124.82, yahoo-live 124.82</p>
+  <p class="muted" style="margin-top:10px">⚠ Providers disagree by 0.55 taka (currency-api 125.04, er-api 124.61, floatrates 124.49, fxratesapi 124.82, yahoo-live 124.82). Report the taka as approximate. Do not quote a precise level and do not make predictions keyed to a threshold this spread could cross.</p>
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">102.52</td>
+<td class="num up">+0.28%</td>
+<td class="num up">+1.00%</td>
+<td class="num down">-0.06%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">93.68</td>
+<td class="num down">-0.28%</td>
+<td class="num down">-1.13%</td>
+<td class="num down">-3.20%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.1138</td>
+<td class="num down">-0.75%</td>
+<td class="num down">-0.61%</td>
+<td class="num down">-0.59%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.983</td>
+<td class="num up">+2.45%</td>
+<td class="num up">+0.63%</td>
+<td class="num down">-4.90%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">82.59</td>
+<td class="num up">+4.96%</td>
+<td class="num up">+5.74%</td>
+<td class="num up">+2.47%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">86.65</td>
+<td class="num up">+0.71%</td>
+<td class="num down">-1.67%</td>
+<td class="num down">-7.56%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">92.73</td>
+<td class="num up">+1.36%</td>
+<td class="num down">-2.00%</td>
+<td class="num down">-13.05%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.331</td>
+<td class="num up">+1.06%</td>
+<td class="num up">+12.57%</td>
+<td class="num up">+5.18%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">591.75</td>
+<td class="num down">-0.17%</td>
+<td class="num down">-1.13%</td>
+<td class="num down">-11.97%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,222.0</td>
+<td class="num down">-0.20%</td>
+<td class="num up">+2.41%</td>
+<td class="num down">-5.11%</td></tr>
+<tr><td>Gold</td>
+<td class="num">4,055.0</td>
+<td class="num up">+0.62%</td>
+<td class="num down">-0.44%</td>
+<td class="num down">-3.24%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,520.93</td>
+<td class="num down">-0.38%</td>
+<td class="num down">-0.63%</td>
+<td class="num down">-3.67%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">25,065.87</td>
+<td class="num down">-0.74%</td>
+<td class="num down">-1.21%</td>
+<td class="num down">-8.00%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">52,231.89</td>
+<td class="num down">-0.30%</td>
+<td class="num up">+0.86%</td>
+<td class="num up">+0.74%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,791.22</td>
+<td class="num up">+0.37%</td>
+<td class="num down">-0.35%</td>
+<td class="num up">+1.27%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">61,248.59</td>
+<td class="num up">+1.31%</td>
+<td class="num down">-1.51%</td>
+<td class="num down">-9.63%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">24,315.92</td>
+<td class="num down">-0.98%</td>
+<td class="num up">+1.66%</td>
+<td class="num up">+0.18%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">81,879.4</td>
+<td class="num up">+0.95%</td>
+<td class="num up">+6.45%</td>
+<td class="num up">+13.84%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">18.62</td>
+<td class="num down">-4.32%</td>
+<td class="num up">+12.10%</td>
+<td class="num up">+22.42%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>The yield on the US 10-Year Treasury note will remain above 4.90% over the next 5 calendar days.</b>
+    <p>Stronger-than-expected October US consumer inflation of 0.4% has reinforced expectations that the Federal Reserve will maintain high policy interest rates.</p>
+    <div class="badge">judged in 5 days · Global Macro</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>Brent crude oil futures will settle above $90.00 per barrel over the next 5 business days.</b>
+    <p>Escalating security threats to shipping in the Strait of Hormuz and diminished hopes of an Iran ceasefire provide a resilient geopolitical risk premium.</p>
+    <div class="badge">judged in 5 days · Commodities</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>Cotton futures will remain above 80.00 cents per pound over the next 7 calendar days.</b>
+    <p>After surging 4.96% in a single session to 82.59 cents per pound amid tightening export supplies, mill restocking demand will prevent a steep near-term reversal.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">66.2%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 90 correct, 46 wrong,
+    0 partial, 10 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Why your groceries may cost more even as food bills get delayed.
+
+Commercial banks are paying over 125 taka per dollar to settle energy import bills.
+To keep food prices from jumping before Ramadan, Bangladesh Bank is letting importers delay paying for essentials for 90 days.
+This buys breathing room today, but those deferred dollar bills will come due all at once in early 2027.
+
+Delaying foreign payment buys temporary price stability, but it creates a foreign exchange debt wall in the spring.
+
+#BangladeshEconomy #Forex #Inflation #Ramadan</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 11 Nov 2026, 18:09 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Letter of credit (LC)", "plain": "A formal bank guarantee promising that an overseas seller will be paid on time once goods are shipped."}, {"term": "Trade credit", "plain": "An arrangement where a buyer takes delivery of goods immediately but pays the supplier weeks or months later."}, {"term": "Real wages", "plain": "Income measured by the actual basket of goods and services it can buy, after stripping out the effect of inflation."}, {"term": "Operating leverage", "plain": "How much a company's operating profit increases when its sales grow, determined by the proportion of fixed costs it carries."}, {"term": "Know Your Customer (KYC)", "plain": "Mandatory background and identity checks that financial institutions must conduct before opening an account."}];
+window.__POST__ = "Why your groceries may cost more even as food bills get delayed.\n\nCommercial banks are paying over 125 taka per dollar to settle energy import bills.\nTo keep food prices from jumping before Ramadan, Bangladesh Bank is letting importers delay paying for essentials for 90 days.\nThis buys breathing room today, but those deferred dollar bills will come due all at once in early 2027.\n\nDelaying foreign payment buys temporary price stability, but it creates a foreign exchange debt wall in the spring.\n\n#BangladeshEconomy #Forex #Inflation #Ramadan\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
