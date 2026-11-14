@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-11-14</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Saturday, 14 November 2026</h1>
+  <div class="meta">194 stories from 29 sources ·
+    85 Bangladesh · 107 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Bangladesh&#x27;s past economic growth was exaggerated by up to 1.3% every year.</p>
+  <ol class="flash"><li>Bangladesh ordered 25% more imported goods in four months, which will require far more US dollars to pay for.</li><li>Official reports exaggerated Bangladesh&#x27;s economic growth for a decade, meaning the real economy is smaller than claimed.</li><li>Strikes and disputes shut 147 clothing factories, risking Bangladesh&#x27;s primary source of foreign cash.</li><li>The government already blew through its yearly gas subsidy cash in just ninety days.</li><li>The tax authority collected Tk 50,000 crore less than planned over the last four months.</li></ol>
+  <div class="stats"><div class="stat"><b>Natural Gas</b><span class="down">-3.29%</span></div><div class="stat"><b>VIX (volatility)</b><span class="up">+3.21%</span></div><div class="stat"><b>Hang Seng</b><span class="down">-1.55%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was defined by the collision between expanding external trade obligations and weakening fiscal foundations. The single dominant force is the 25% surge in import LC openings to $29.78 billion over four months. This demand comes precisely as the NBR logged a Tk 50,000 crore tax collection shortfall, leaving the state short on domestic revenue while dollar obligations rise.</p><p>What changed versus recent sessions is the blow to historical macroeconomic credibility. Yesterday highlighted specific institutional balance sheet holes at BPC and Islami Bank. Today, a forensic audit confirmed that GDP figures were overstated by up to 1.30 percentage points annually for a decade. The economy is fundamentally smaller than official data claimed, elevating debt-to-GDP ratios and altering sovereign solvency math.</p><p>What to watch next is whether the Minimum Wage Board meeting on Monday resolves factory unrest or triggers widespread lockouts across Ashulia. The key number is Tk 124.73: if the corroborated median dollar rate breaks higher despite central bank dollar interventions, administrative import curbs will inevitably intensify.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>The Denominator Effect in Sovereign Solvency</h3>
+    <div class="prose"><p>A sovereign country&#x27;s creditworthiness is rarely judged by debt levels in isolation. Lenders evaluate ratios, primarily public debt divided by gross domestic product (GDP). Debt is the numerator; GDP is the denominator.</p><p>Today&#x27;s forensic audit revealed that Bangladesh overstated annual GDP growth by up to 1.30 percentage points over a decade. Even if nominal debt does not rise by a single taka, recalculating national output downward shrinks the denominator. A smaller denominator automatically increases the debt-to-GDP ratio.</p><p>This makes the country appear more leveraged to credit rating agencies and international bondholders, pushing up future sovereign borrowing costs.</p></div>
+    <div class="quiz"><b>Test yourself</b>If a government&#x27;s total debt stays constant at $100 billion, but an audit reveals actual GDP is $300 billion instead of $400 billion, what happens to the debt-to-GDP ratio?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Merchandise import LC openings surged 25% year-on-year to $29.78 billion in July–October.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh ordered 25% more imported goods in four months, which will require far more US dollars to pay for.</div>
+    <p class="why prose">A letter of credit, or LC, is a bank guarantee ensuring a foreign seller gets paid. Opening $29.78 billion in LCs deepens the balance of payments deficit — the tally of all currency entering and leaving the nation. This mounting dollar commitment puts fresh downward pressure on the taka.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>dhakatribune.com</span>
+      <a href="https://www.dhakatribune.com/business/424612/import-costs-rise-lc-openings-surge-25%25-in-four" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>A government forensic audit revealed national GDP growth was overstated by up to 1.30 percentage points annually since FY15.</h3>
+    <div class="plain"><b>In plain English</b>Official reports exaggerated Bangladesh&#x27;s economic growth for a decade, meaning the real economy is smaller than claimed.</div>
+    <p class="why prose">Gross domestic product, or GDP, measures the monetary value of all finished goods and services produced within a country. An overstated base skews the debt-to-GDP ratio, which measures debt sustainability relative to national output. A smaller denominator automatically makes existing sovereign debt burdens look heavier to external creditors.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>thedailystar.net, Daily Bonik Barta</span>
+      <a href="https://www.thedailystar.net/business/news/gdp-growth-figures-inflated-130-percentage-points-fy15-govt-forensic-audit-4323496" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Factory closures spread as 147 garment units halted output and owners threatened a total wage-talk boycott.</h3>
+    <div class="plain"><b>In plain English</b>Strikes and disputes shut 147 clothing factories, risking Bangladesh&#x27;s primary source of foreign cash.</div>
+    <p class="why prose">Ready-made garments account for over 80% of national export earnings. Protracted factory shutdowns threaten export receipts right when import bills are expanding. The dispute also jeopardises current account balances and bank credit recovery across major apparel conglomerates.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>dhakatribune.com, tbsnews.net</span>
+      <a href="https://www.dhakatribune.com/bangladesh/424609/rmg-owners-warn-to-quit-wage-talks-over-factory" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Bangladesh exhausted its entire fiscal year LNG import subsidy budget within the first three months.</h3>
+    <div class="plain"><b>In plain English</b>The government already blew through its yearly gas subsidy cash in just ninety days.</div>
+    <p class="why prose">Subsidies represent state financial support to keep consumer energy tariffs below market cost. Depleting the liquefied natural gas allocation immediately widens the fiscal deficit — the shortfall when public spending exceeds tax revenue. The state must now choose between raising power tariffs or taking on expensive commercial debt.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>via BD energy / gas / power tariffs</span>
+      <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBsVmZIVTZTX0tpdmZ4RmNJcEJaRC1qOWpHTENaU2pXd2ktbHY5eTdtdlVkdWtIZzBHNWlaLUE0dHpuSjRQekpZQjdmYk1FcGl2eEVhQXlEcm41TjJIMGhlZ3BWODNGYUk?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>The National Board of Revenue logged a tax revenue shortfall exceeding Tk 50,000 crore for July–October.</h3>
+    <div class="plain"><b>In plain English</b>The tax authority collected Tk 50,000 crore less than planned over the last four months.</div>
+    <p class="why prose">Revenue mobilization pays for public operations and sovereign interest obligations. Missing tax targets by Tk 50,000 crore forces the government to accelerate domestic bank borrowing. That borrowing crowds out private sector credit and pushes up domestic yields.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>dhakatribune.com</span>
+      <a href="https://www.dhakatribune.com/business/424605/nbr-s-revenue-shortfall-for-jul-oct%E2%80%99fy27-exceeds" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>Bangladesh Bank resumed direct dollar sales to commercial banks to support the taka despite strong remittances.</h3>
+    <div class="plain"><b>In plain English</b>The central bank is spending its emergency dollar stockpile to keep the taka from sliding.</div>
+    <p class="why prose">Foreign exchange reserves are foreign banknotes and assets held by a central bank to back liabilities and guarantee external payments. Selling reserves directly into the spot market defends the exchange rate temporarily. However, it contracts the reserve money supply and tightens interbank liquidity.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#047857">FX</span>
+      <span>hits Bangladesh directly</span>
+      <span>Daily Bonik Barta</span>
+      <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTFBEVmN5cktsclF2bkFDSC1VcGZaWTdaSzZjRGVQSjdQWDBkUzRINUdZQmxmTlNwbXMzcy1PcjlCc0ZET2JTM0JiOXJBT09mSUN2a1JjXzRvLUNfWGdlWUpFYzFB?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>The government targeted $1.86 billion in budget support from multilateral development partners for FY27.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh is asking global lenders for $1.86 billion in emergency budget cash.</div>
+    <p class="why prose">Budget support provides unearmarked foreign currency directly to the treasury. This financing bridges both the foreign currency gap and the domestic budget deficit. These concessional funds help repay pricier short-term commercial debt.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPSmdJSG90aU5oLXN4MEg0VFR3U0RWVVdoeS0ya2VWNlpxOEVHMFNUWnZLTmpmMkcyYkhVVXFXT05mUHJ5ekxSdkI5NF9SOHlQTkRDUXF2RlhpcVlBa1BXVHB1cHVQeHNaS0dJRnRHS255Q25SRmFYWEs0QUV0bTZkWHNxaVFiOG10bWhWQ0N3cGt3SXEyUWxCTQ?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>The US 10-year Treasury yield rose to 5.154%, raising global borrowing costs across frontier markets.</h3>
+    <div class="plain"><b>In plain English</b>US government borrowing rates climbed higher, pulling foreign investment away from developing countries.</div>
+    <p class="why prose">The yield on benchmark US government debt represents the global risk-free rate, which serves as the discount baseline for global capital. When US yields rise, global investors demand higher risk premia on emerging market sovereign paper. This dynamic intensifies capital flight and raises foreign debt refinancing costs for Bangladesh.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>wsj.com</span>
+      <a href="https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-11-13-2026?mod=rss_markets_main" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>A Square Pharmaceuticals director announced plans to purchase shares worth Tk 38 crore from the open market.</h3>
+    <div class="plain"><b>In plain English</b>A top director at the country&#x27;s largest drugmaker is investing Tk 38 crore of personal money into its stock.</div>
+    <p class="why prose">Insider buying occurs when company directors purchase their own company&#x27;s shares. Market participants view this as a vote of institutional confidence in earnings resilience. For the Dhaka bourse, large insider purchases in index heavyweights can stabilize broader sentiment during sell-offs.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">SQURPHARMA</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxPcUN5YUNsaXdjTHI3QzIxcFVzY0lSWUxRUTllcTloMEJHNWgxWWZfSzRxZ3R6TnBEdW9ELWFCM2xDOXBad1RHSkU4OHAtM09CYkxLS2RKbUZieFRFMmNXcmZJS0dlYjd0VG5TNl9aaTg0cFoxaXdKODBFNkZSaXVhMFZBWGg3X01GVHRPM2FIQXJiWm1MRFhiYXJ1WE1ocHhMd3dnOA?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>The government indicated substantive review progress on its IMF loan programme is expected by January 2027.</h3>
+    <div class="plain"><b>In plain English</b>Bangladesh expects its next major loan review with the IMF in two months.</div>
+    <p class="why prose">Conditionality tied to International Monetary Fund loans dictates national macro policy, including revenue benchmarks and exchange rate flexibility. Meeting IMF performance criteria unlocks subsequent loan tranches. It also acts as a seal of approval for other multilateral lenders.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxPY1NwcUJudTVSbS0tZWxXWE9faVpQaGIydjBsTDJjYmZIQWsxS1RWVFgydE8wRkpjOGR1bWtnMU1aQ2dNNDYtVDBCNURJeFItcWM3cml1eU1VanRUUjhucnRnU2JxMUhLVlpZc0FLWDN1NjJQNXR2dnV6THNiU1lCaWNCX1UxQjM5elNoUnBhLVhIM21hdzkyS0N5RVpFLU5WRWRjajhqaXFVdUJXY1Q3b3hn?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Import Expansion and Reserve Depletion</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#6</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Merchandise LC openings expand 25% to $29.78 billion → Commercial banks require more foreign exchange for trade settlement → Bangladesh Bank sells foreign reserves directly to stabilize spot rates → Central bank reserves shrink and money market liquidity contracts.</div>
+  <div class="sowhat prose"><b>So what</b>Commercial banks will face tight cash conditions, maintaining upward pressure on lending rates.</div>
+</article>
+<article class="card">
+  <h3>Energy Subsidy Exhaustion and Fiscal Borrowing</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#5</span><span class="chip" style="--chip:#475569">#7</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Annual LNG subsidy allocation runs out in three months → Fiscal deficit expands while NBR tax collections miss target by Tk 50,000 crore → Government must accelerate external budget loans of $1.86 billion and tap local banks.</div>
+  <div class="sowhat prose"><b>So what</b>The government faces severe fiscal constraints, increasing the likelihood of utility tariff hikes or higher treasury debt issuance.</div>
+</article>
+<article class="card">
+  <h3>Labor Disruption and Current Account Balance</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#3</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">147 factories halt production amid wage disputes → Garment export shipments slow down → Dollar inflows decline while import LC openings surge 25% → Current account deficit widens rapidly.</div>
+  <div class="sowhat prose"><b>So what</b>The foreign exchange cushion weakens just as import requirements peak.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Letter of credit (LC)</h4>
+  <p>A formal guarantee issued by a bank promising to pay a foreign exporter once goods are shipped.</p>
+  <p>LC openings jumped 25% to $29.78 billion in four months, signalling heavy upcoming dollar payment obligations.</p><span class="stick">An LC is the financial contract that turns a trade order into an unavoidable dollar liability.</span>
+</div>
+<div class="term">
+  <h4>Gross domestic product (GDP)</h4>
+  <p>The total market value of all goods and services produced inside an economy over a year.</p>
+  <p>A forensic audit revealed that Bangladesh&#x27;s reported GDP growth was overstated by 0.7 to 1.3 percentage points annually since FY15.</p><span class="stick">GDP is the country&#x27;s economic top-line; if you inflate it, you underestimate your debt burden.</span>
+</div>
+<div class="term">
+  <h4>Debt-to-GDP ratio</h4>
+  <p>A country&#x27;s total public debt divided by its annual economic output, showing how easily it can pay back borrowings.</p>
+  <p>Downward revisions to past GDP data automatically push Bangladesh&#x27;s debt-to-GDP ratio higher without borrowing another taka.</p><span class="stick">If the national income number shrinks, your existing debt burden instantly looks heavier to creditors.</span>
+</div>
+<div class="term">
+  <h4>Fiscal deficit</h4>
+  <p>The spending gap created when a government spends more cash than it collects in taxes.</p>
+  <p>The NBR ran a Tk 50,000 crore tax shortfall while LNG subsidies ran out in three months, ballooning the deficit.</p><span class="stick">When the fiscal deficit widens, the treasury must borrow from banks or multilateral lenders to clear its bills.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 124.73</div>
+  <div style="margin-top:6px"><span class="up">+0.24%</span> <span class="muted">since 2026-11-10</span></div>
+  <p class="muted" style="margin-top:10px">LOW CONFIDENCE · 5 source(s) · spread 0.83 taka<br>currency-api 124.79, er-api 124.50, floatrates 124.73, fxratesapi 124.69, yahoo-live 125.33</p>
+  <p class="muted" style="margin-top:10px">⚠ Providers disagree by 0.83 taka (currency-api 124.79, er-api 124.50, floatrates 124.73, fxratesapi 124.69, yahoo-live 125.33). Report the taka as approximate. Do not quote a precise level and do not make predictions keyed to a threshold this spread could cross.</p>
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">103.41</td>
+<td class="num up">+0.23%</td>
+<td class="num up">+1.09%</td>
+<td class="num up">+0.84%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">94.24</td>
+<td class="num up">+0.22%</td>
+<td class="num up">+0.36%</td>
+<td class="num down">-1.10%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.105</td>
+<td class="num down">-0.41%</td>
+<td class="num down">-1.59%</td>
+<td class="num down">-1.38%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">5.154</td>
+<td class="num up">+1.00%</td>
+<td class="num up">+6.07%</td>
+<td class="num down">-1.21%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">78.78</td>
+<td class="num up">+0.14%</td>
+<td class="num down">-0.42%</td>
+<td class="num down">-2.33%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">88.56</td>
+<td class="num down">-0.20%</td>
+<td class="num down">-2.50%</td>
+<td class="num down">-6.87%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">95.84</td>
+<td class="num up">+0.02%</td>
+<td class="num down">-2.52%</td>
+<td class="num down">-9.64%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.23</td>
+<td class="num down">-3.29%</td>
+<td class="num up">+7.74%</td>
+<td class="num up">+1.00%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">593.25</td>
+<td class="num up">+1.54%</td>
+<td class="num up">+0.34%</td>
+<td class="num down">-11.88%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,243.0</td>
+<td class="num up">+1.30%</td>
+<td class="num up">+4.54%</td>
+<td class="num down">-2.68%</td></tr>
+<tr><td>Gold</td>
+<td class="num">3,886.3</td>
+<td class="num up">+0.03%</td>
+<td class="num down">-4.63%</td>
+<td class="num down">-5.39%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,561.67</td>
+<td class="num down">-0.40%</td>
+<td class="num up">+2.51%</td>
+<td class="num down">-2.04%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">25,136.27</td>
+<td class="num down">-0.91%</td>
+<td class="num up">+2.27%</td>
+<td class="num down">-5.83%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">52,347.55</td>
+<td class="num up">+0.10%</td>
+<td class="num up">+2.07%</td>
+<td class="num up">+1.41%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,902.6</td>
+<td class="num up">+0.36%</td>
+<td class="num up">+2.14%</td>
+<td class="num up">+2.37%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">61,142.35</td>
+<td class="num up">+0.53%</td>
+<td class="num up">+6.46%</td>
+<td class="num down">-9.79%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">23,637.6</td>
+<td class="num down">-1.55%</td>
+<td class="num down">-3.45%</td>
+<td class="num down">-2.91%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">81,592.45</td>
+<td class="num down">-0.39%</td>
+<td class="num up">+2.88%</td>
+<td class="num up">+11.72%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">19.3</td>
+<td class="num up">+3.21%</td>
+<td class="num down">-24.73%</td>
+<td class="num up">+26.39%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — Cotton futures traded at 78.78 cents per pound on 14 November 2026, falling below the 80.00 cents threshold.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Extrapolated a single 5.5% daily surge into durable support without verifying mill intake volume or global inventory ratios.</p>
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">75%</div>
+  <div class="body">
+    <b>The US 10-Year Treasury yield will remain above 5.00% over the next 7 calendar days.</b>
+    <p>Persistent inflation readings and elevated supply continue to anchor long-term benchmark yields above 5.15%.</p>
+    <div class="badge">judged in 7 days · Global Macro</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>Brent crude futures will settle above $90.00 per barrel over the next 7 calendar days.</b>
+    <p>Spot pricing at $95.84 reflects immediate physical tightness that will offset broader macroeconomic demand concerns.</p>
+    <div class="badge">judged in 7 days · Commodities</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>The Minimum Wage Board will fail to reach a unanimous wage consensus between RMG owners and unions at Monday&#x27;s meeting.</b>
+    <p>With 147 factories shut and owners threatening lockouts under section 13(1), the gap between labor pay demands and owner solvency constraints is too wide for immediate settlement.</p>
+    <div class="badge">judged in 4 days · RMG/Export</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">65.5%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 95 correct, 50 wrong,
+    0 partial, 9 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Bangladesh&#x27;s past economic growth was exaggerated by up to 1.3% every year.
+
+A government audit found GDP data was overstated since 2014.
+Meanwhile, import costs jumped 25% in four months to $29.78B.
+And gas subsidies for the entire fiscal year ran out in ninety days.
+Our real economy is smaller than claimed, just as bills are piling up.
+
+When national output numbers are revised down, external debt burdens instantly become heavier.
+
+#BangladeshEconomy #GDP #Macroeconomics #TradeDeficit #NBR</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 14 Nov 2026, 17:55 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Letter of credit (LC)", "plain": "A formal guarantee issued by a bank promising to pay a foreign exporter once goods are shipped."}, {"term": "Gross domestic product (GDP)", "plain": "The total market value of all goods and services produced inside an economy over a year."}, {"term": "Debt-to-GDP ratio", "plain": "A country's total public debt divided by its annual economic output, showing how easily it can pay back borrowings."}, {"term": "Fiscal deficit", "plain": "The spending gap created when a government spends more cash than it collects in taxes."}];
+window.__POST__ = "Bangladesh's past economic growth was exaggerated by up to 1.3% every year.\n\nA government audit found GDP data was overstated since 2014.\nMeanwhile, import costs jumped 25% in four months to $29.78B.\nAnd gas subsidies for the entire fiscal year ran out in ninety days.\nOur real economy is smaller than claimed, just as bills are piling up.\n\nWhen national output numbers are revised down, external debt burdens instantly become heavier.\n\n#BangladeshEconomy #GDP #Macroeconomics #TradeDeficit #NBR\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
