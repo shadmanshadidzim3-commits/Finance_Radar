@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-11-22</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Sunday, 22 November 2026</h1>
+  <div class="meta">203 stories from 28 sources ·
+    118 Bangladesh · 85 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Garment factory closures have wiped out Tk 5,136 crore in 18 days.</p>
+  <ol class="flash"><li>Strikes and factory closures cost Bangladesh&#x27;s garment industry hundreds of millions of dollars in lost sales and cancelled export orders.</li><li>Banks are charging borrowers far higher loan interest while keeping deposit payouts low, pocketing wider profits at the expense of businesses.</li><li>Global gas prices jumped sharply, which will make electricity and running factories in Bangladesh much more expensive.</li><li>The central bank wants to stop banks from lending too much money to single large business conglomerates.</li><li>Chronically delinquent borrowers who obtained temporary court rulings are being allowed to borrow government-backed relief funds.</li></ol>
+  <div class="stats"><div class="stat"><b>VIX (volatility)</b><span class="up">+26.20%</span></div><div class="stat"><b>Natural Gas</b><span class="up">+14.69%</span></div><div class="stat"><b>Nasdaq Composite</b><span class="down">-5.28%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was characterized by acute operational stress across Bangladesh&#x27;s twin pillars of trade and credit, unfolding against a volatile global backdrop. The dominant force is the compounding economic toll of garment sector unrest, with quantified output losses exceeding Tk 5,136 crore and $254 million in export work orders lost to regional competitors. This severe cash flow disruption hits manufacturers just as global natural gas prices jump nearly 15%, squeezing production margins from both revenue and input sides.</p><p>What changed versus recent sessions is the visible erosion of regulatory credit boundaries. While earlier notes tracked Bangladesh Bank&#x27;s planned transition toward a floating exchange rate and the formal acknowledgment of a 30.6% NPL ratio, today&#x27;s policy reveals defensiveness: commercial banks are openly breaching the 4% interest spread cap, and loan defaulters with court stay orders are being granted access to stimulus liquidity. The median USD/BDT rate held steady at Tk 124.58 across five independent providers, reflecting tight administrative controls rather than genuine balance-of-payments equilibrium.</p><p>What to watch next is whether the Minimum Wage Board and factory owners reach an actionable wage compromise during scheduled negotiations, and whether interbank FX pressure forces the central bank to accelerate its currency float. The critical number to track is the median USD/BDT provider quote: a confirmed break above Tk 125.00 will indicate that RMG export export order cancellations have overwhelmed central bank reserves.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>The interest rate spread and credit rationing</h3>
+    <div class="prose"><p>In an ideal banking market, the interest rate spread reflects the administrative cost of intermediation plus a risk premium for borrower default. When default risks rise across an economy—such as during industrial unrest or widespread corporate delinquency—banks should theoretically raise loan rates to compensate. However, when regulators impose artificial spread caps (like Bangladesh Bank&#x27;s 4% limit), banks cannot price risky loans accurately.</p><p>Instead of lending to smaller, viable enterprises at capped rates, banks either breach the cap outright or engage in credit rationing: they restrict lending exclusively to connected conglomerates and starve SMEs. This widens the informal spread, pushes corporate borrowers into distress, and leaves productive firms without working capital.</p></div>
+    <div class="quiz"><b>Test yourself</b>If the central bank strictly enforces a low interest rate spread cap while default risk rises, why do small enterprises often find it harder—not easier—to borrow?</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Garment sector unrest has caused Tk 5,136 crore in production losses across 317 factories, according to the BGMEA.</h3>
+    <div class="plain"><b>In plain English</b>Strikes and factory closures cost Bangladesh&#x27;s garment industry hundreds of millions of dollars in lost sales and cancelled export orders.</div>
+    <p class="why prose">The export shortfall directly drains foreign exchange reserves, which are the central bank&#x27;s holdings of foreign currency used to pay for vital imports. With Tk 3,096 crore in orders diverted to competing nations, factory operating margins will contract severely. This will elevate non-performing loans — loans where borrowers have stopped making scheduled interest or principal payments — among commercial lenders heavily exposed to garment debt.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, The Daily Star</span>
+      <a href="https://www.tbsnews.net/economy/rmg/garment-unrest-causes-tk5136cr-losses-317-factories-bgmea-1610716" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>Commercial banks are breaching Bangladesh Bank&#x27;s 4% interest rate spread cap, with the industry average gap widening to nearly 6%, according to The Business Standard.</h3>
+    <div class="plain"><b>In plain English</b>Banks are charging borrowers far higher loan interest while keeping deposit payouts low, pocketing wider profits at the expense of businesses.</div>
+    <p class="why prose">The interest rate spread — the percentage difference between the weighted average rate charged on loans and the rate paid on deposits — reached 8.19% at foreign banks and 5.56% at private lenders. Widening spreads raise debt-service costs for industrial borrowers already struggling with power cuts and sluggish demand. This widens net interest margin, which measures a bank&#x27;s net lending income relative to its earning assets, but accelerates default risks across corporate balance sheets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard</span>
+      <a href="https://www.tbsnews.net/economy/banking/banks-defying-4-interest-spread-cap-average-gap-nears-6-1610831" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>International natural gas prices surged 14.69% in one day to $3.748 per MMBtu, compounding domestic supply constraints as $7.7 billion in local gas power projects stall.</h3>
+    <div class="plain"><b>In plain English</b>Global gas prices jumped sharply, which will make electricity and running factories in Bangladesh much more expensive.</div>
+    <p class="why prose">Bangladesh depends on imported liquefied natural gas (LNG) to fuel domestic power plants and industrial boilers. As domestic gas field production declines, surging global prices directly expand the state energy import bill and widen the fiscal deficit — the shortfall when government expenditures exceed tax revenues. Higher industrial gas tariffs will squeeze operating cash flows at manufacturing firms and stoke retail electricity inflation.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>Daily Times Of Bangladesh, The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMilwFBVV95cUxNcGxpeUVJb0JCRTJ1UVdvUFo4Y2x6Q0NPWTU3NHRTeGllR0ZZaXlFSG9DYkgtVjE2bUp4RU1IR3hNZ1o5RU5XNDhraTJBOVdkdDJNQkg1NURNbzlRdmptdEZnYk5aZVhCdk5LQ1V0LS1lWFEzZmxzaElVMGpncVFfZVBlY0trbUpMSVJleFRaVmZ1clJRbnI4?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Bangladesh Bank is preparing single-borrower lending caps to curb corporate loan concentration across the banking sector, reported The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>The central bank wants to stop banks from lending too much money to single large business conglomerates.</div>
+    <p class="why prose">Lending concentration has historically allowed large corporate conglomerates to monopolise domestic bank credit, creating systemic solvency hazards when single groups default. Enforcing single-borrower exposure limits forces commercial lenders to diversify their credit risk, which is the possibility of loss resulting from a borrower failing to repay debts. In the near term, corporate giants face tighter liquidity as they lose access to cheap, concentrated credit lines.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMioAFBVV95cUxNcmRlZWRwWmRBOGJfaUI2Z3hRaFdrWU5naHh2TDNmZHdvdk1xalFnWm9Td2JIbXNuVDlYRFVKa21jRmhmTjkwdHVZX3lWTlh3aTBCMHg1a1ZSaV9fSVM4M3RpdU9BWjNEWjJ0MWFFYVRvZTBTa3hULUFIOHVySTU5UVpiekxhUFd4UFd3ODRlNy1leERqTGJQQlc5WWFzWkFE?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Bangladesh Bank is permitting loan defaulters armed with court stay orders to tap low-cost funds under the Tk 60,000 crore stimulus package.</h3>
+    <div class="plain"><b>In plain English</b>Chronically delinquent borrowers who obtained temporary court rulings are being allowed to borrow government-backed relief funds.</div>
+    <p class="why prose">Opening subsidized emergency credit lines to borrowers with frozen default proceedings generates moral hazard — the risk that economic actors behave imprudently when insulated from negative consequences. Distressed banks will disburse fresh capital to troubled counterparties rather than clearing their loan books. This policy risks trapping commercial bank liquidity in unrecoverable exposures instead of directing scarce working capital to productive exporters.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>Dhaka Tribune, The Daily Star</span>
+      <a href="https://www.dhakatribune.com/business/banks/425416/defaulters-with-court%E2%80%99s-stay-orders-can-avail" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>The Prime Minister set a target for small and medium enterprises to contribute 35% of national GDP by 2031, targeting 2.5 million jobs.</h3>
+    <div class="plain"><b>In plain English</b>The government launched a plan to help small local businesses generate over a third of the country&#x27;s economic output.</div>
+    <p class="why prose">Small and medium enterprises (SMEs) suffer from structural credit rationing as commercial banks prefer allocating balance-sheet capacity to established conglomerates. Meeting this target requires reallocating bank liquidity toward smaller firms, which typically offer higher employment multipliers per unit of debt capital. However, execution will remain constrained unless Bangladesh Bank creates effective credit guarantee schemes to absorb SME default risk.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>United News of Bangladesh, Daily Times Of Bangladesh, The Business Standard</span>
+      <a href="https://news.google.com/rss/articles/CBMizAFBVV95cUxOLWxMbzhxdWN1NDZHcmVDekxiVzhuNGZjVG5BdnEtVW1aQ1A2T25BYTAtZ05FQ3pRZW94MnRjMEwyUmlSZzgtLTRuamhTMGVJeUVtTHlQNmRxb1YxR3lUSUYxWkNPczlCQUFsb1ctTlloTE8yemd4TkxlUm1XbW1uQjZXUkVuZ3c1ZGV2eWg3cWhwRENDN282MVlBbXNYT0pVeGZHX2hnTUxEdG5qX0YtZ0VfVjNncDQ1Xy1EZnQ0d19kd1BPaEhWOWJkQkw?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Bangladesh forgoes tax revenue equivalent to 5.89% of GDP due to policy exemptions and weak compliance, according to a RAPID study.</h3>
+    <div class="plain"><b>In plain English</b>Tax loopholes, exemptions, and poor tax collection cost the government billions of dollars every single year.</div>
+    <p class="why prose">Bangladesh maintains one of the lowest tax-to-GDP ratios in Asia at under 8%, severely restricting public fiscal space — the financial flexibility a government has to spend on infrastructure without destabilizing public debt. Forfeiting nearly 6% of national output in taxes forces the treasury to borrow aggressively via high-yielding treasury bills. This government borrowing crowds out private sector credit and elevates sovereign debt service burdens.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>New Age BD, The New Nation</span>
+      <a href="https://news.google.com/rss/articles/CBMiogFBVV95cUxNbDd6cGFlWUZsQklSMDdtSVdXRG1IZXZONVExanJFMkhDMDBiNThEWFZlZGxRNFBFQlN6WHhXVTBEU3lyVHl3QlZ2cmVJRWN4NXBwbld3SUZLOUtiR1B1bl9fS25BYnR5X1AteTAxTjJaRGRlTFo3enkyc0RhcTRNbUswV3czT0ZEQURtNzk5M1dkTE4wbXNXeVpIclNoVzBuTmc?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Padma Bank is moving into a formal resolution process under Bangladesh Bank oversight as restructuring efforts stall, reported The Daily Star.</h3>
+    <div class="plain"><b>In plain English</b>A deeply troubled commercial bank is entering central bank administration after failing to recover bad debts.</div>
+    <p class="why prose">Bank resolution is the structured restructuring or orderly wind-down of a failing financial institution by regulators to prevent wider contagion. Taking over Padma Bank marks a transition away from state bailouts toward direct regulatory balance-sheet cleaning. State-owned entities holding deposits in the lender face haircuts — reductions in the nominal value of assets — directly impacting public fund balance sheets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://news.google.com/rss/articles/CBMinAFBVV95cUxPanZxVWxxVVdETmhDVlpPRHNJM3Q1R1FoNnp2eDlGQjVKMkxOVUhwekFvT1hLcUNVX3FEcTJuTE9maGc2WUpGRU83dnhCNlNGeG9IX1BWR0Z2dl9JbDI0Q3h1WWdmT0hfRVJadGlpSjJfdzh2TzU3c0JtUUItOXdYVWJIbHg5anpuZDE2WERLRXJpUW5la0l5SXZCMno?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>The BSEC warned of legal action against spreaders of market crash rumours as stock exchanges prepare for T+1 settlement starting January.</h3>
+    <div class="plain"><b>In plain English</b>The stock market watchdog is cracking down on panic-inducing rumors while moving to settle trades in one business day.</div>
+    <p class="why prose">Switching to T+1 settlement — where security transactions legally settle and clear within one business day after execution — reduces counterparty clearing risk across brokerage houses. However, warning against crash rumours signals regulatory anxiety over fragile domestic equity sentiment. Shortening settlement timelines will demand tighter intraday liquidity management from DSE brokers and merchant banks.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#b45309">DSE</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star, The Financial Express</span>
+      <a href="https://www.thedailystar.net/business/economy/news/bsec-warns-legal-action-over-market-crash-rumours-4329806" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>Global equity volatility surged with the VIX jumping 26.20% to 35.89, alongside a 5.28% drop in the Nasdaq Composite.</h3>
+    <div class="plain"><b>In plain English</b>International stock markets sold off sharply as global financial fear spiked, which often triggers capital flight from developing nations.</div>
+    <p class="why prose">The VIX is a real-time volatility index measuring expected 30-day stock market volatility, frequently called the market fear gauge. Spikes above 30 signal intense global risk aversion, which typically drives portfolio capital out of frontier markets into safe-haven dollar assets. This tightening of global financial conditions raises foreign borrowing costs for Bangladeshi private firms attempting to refinance external commercial borrowings.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#4338ca">Global Markets</span><span class="tick">^IXIC ^VIX</span>
+      <span>background context</span>
+      <span>Financial Times</span>
+      <a href="https://www.ft.com/content/d501198c-14a4-4b96-8880-c3997545902e" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Industrial Unrest and Credit Contagion</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#5</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Garment factory closures destroy Tk 5,136 crore in turnover → RMG operating cash flows collapse → commercial banks widen lending spreads to price credit risk → delinquent borrowers rely on court stay orders to tap stimulus credit → asset quality degrades across exposed commercial banks.</div>
+  <div class="sowhat prose"><b>So what</b>Investors should expect rising loan-loss provisioning across private commercial banks, which will depress banking sector return on equity throughout early 2027.</div>
+</article>
+<article class="card">
+  <h3>Energy Bill Squeeze on Fiscal and External Balances</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#7</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Global natural gas prices jump 14.69% → LNG import purchase costs rise → government subsidy liabilities expand → domestic tax collection gap of 5.89% of GDP leaves no fiscal buffer → treasury increases short-term bill auction yields to finance energy gaps.</div>
+  <div class="sowhat prose"><b>So what</b>Higher sovereign borrowing will sustain benchmark treasury yields near double digits, raising the hurdle rate for domestic corporate investment.</div>
+</article>
+<article class="card">
+  <h3>Banking Sector Disciplinary Shift</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#8</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Central bank places insolvent Padma Bank into formal resolution → regulatory focus pivots from forbearance to structural cleanup → Bangladesh Bank prepares single-borrower caps → concentrated corporate borrowers lose rollover flexibility.</div>
+  <div class="sowhat prose"><b>So what</b>Large conglomerates that built expansions on concentrated credit must either divest non-core assets or accept higher external financing costs.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Interest rate spread</h4>
+  <p>The percentage difference between the loan interest rate a bank charges its borrowers and the deposit interest rate it pays its savers.</p>
+  <p>Commercial banks in Bangladesh widened this gap toward 6%, defying the central bank&#x27;s official 4% regulatory cap.</p><span class="stick">It is the bank&#x27;s mark-up on money: the higher the spread, the more expensive borrowing is relative to saving.</span>
+</div>
+<div class="term">
+  <h4>Bank resolution</h4>
+  <p>A formal regulatory intervention to restructure, recapitalize, or wind down an insolvent bank without causing a systemic panic.</p>
+  <p>Bangladesh Bank initiated a resolution framework for Padma Bank after years of unmanageable default loans.</p><span class="stick">It is the financial ICU where failing lenders are either operated on or liquidated to protect everyday depositors.</span>
+</div>
+<div class="term">
+  <h4>Single-borrower exposure limit</h4>
+  <p>A regulatory cap that prevents a bank from lending more than a fixed percentage of its capital to any single company or business group.</p>
+  <p>Bangladesh Bank is tightening corporate lending limits to stop large conglomerates from monopolising bank balance sheets.</p><span class="stick">The golden rule of credit risk: never allow one corporate borrower to be big enough to break a bank.</span>
+</div>
+<div class="term">
+  <h4>Moral hazard</h4>
+  <p>The tendency for people or firms to take excessive risks when they know someone else will absorb their losses.</p>
+  <p>Allowing defaulted borrowers with court stay orders to access subsidized government stimulus creates a strong incentive to never repay.</p><span class="stick">When the government buys the insurance, borrowers drive with their eyes closed.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 124.58</div>
+  <div style="margin-top:6px"><span class="up">+0.10%</span> <span class="muted">since 2026-11-20</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.49 taka<br>currency-api 124.88, er-api 124.39, floatrates 124.68, fxratesapi 124.58, yahoo-live 124.45</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">103.81</td>
+<td class="num down">-0.09%</td>
+<td class="num up">+0.39%</td>
+<td class="num up">+2.17%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">92.66</td>
+<td class="num down">-0.68%</td>
+<td class="num down">-1.67%</td>
+<td class="num down">-2.17%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.097</td>
+<td class="num down">-0.02%</td>
+<td class="num down">-0.73%</td>
+<td class="num down">-2.29%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.912</td>
+<td class="num down">-2.77%</td>
+<td class="num down">-4.70%</td>
+<td class="num down">-4.01%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">75.47</td>
+<td class="num down">-0.63%</td>
+<td class="num down">-4.20%</td>
+<td class="num down">-6.58%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">83.41</td>
+<td class="num up">+0.24%</td>
+<td class="num down">-5.82%</td>
+<td class="num down">-16.15%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">89.95</td>
+<td class="num down">-2.21%</td>
+<td class="num down">-6.15%</td>
+<td class="num down">-20.52%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.748</td>
+<td class="num up">+14.69%</td>
+<td class="num up">+16.04%</td>
+<td class="num up">+34.05%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">592.0</td>
+<td class="num up">+2.38%</td>
+<td class="num down">-0.21%</td>
+<td class="num down">-5.24%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,220.75</td>
+<td class="num up">+1.10%</td>
+<td class="num down">-1.79%</td>
+<td class="num down">-2.57%</td></tr>
+<tr><td>Gold</td>
+<td class="num">3,515.4</td>
+<td class="num down">-4.62%</td>
+<td class="num down">-9.54%</td>
+<td class="num down">-13.42%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">22,617.73</td>
+<td class="num down">-5.28%</td>
+<td class="num down">-10.02%</td>
+<td class="num down">-15.30%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">48,147.33</td>
+<td class="num down">-1.93%</td>
+<td class="num down">-8.02%</td>
+<td class="num down">-8.91%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,346.3</td>
+<td class="num down">-1.02%</td>
+<td class="num down">-5.10%</td>
+<td class="num down">-3.60%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">56,436.65</td>
+<td class="num down">-5.06%</td>
+<td class="num down">-7.70%</td>
+<td class="num down">-11.92%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">22,410.8</td>
+<td class="num down">-1.89%</td>
+<td class="num down">-5.19%</td>
+<td class="num down">-6.10%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">83,919.71</td>
+<td class="num up">+1.08%</td>
+<td class="num up">+2.85%</td>
+<td class="num up">+13.85%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">35.89</td>
+<td class="num up">+26.20%</td>
+<td class="num up">+85.96%</td>
+<td class="num up">+107.34%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — International cotton futures traded at 75.47 cents per pound on 2026-11-22, falling well below the 80.00 cents per pound threshold prior to the November 25 horizon.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Extrapolated a single-day 4.8% price surge as persistent momentum, underestimating how rapidly soft commodity rallies unwind amid weakening global consumer demand and garment factory shutdowns.</p>
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>The median USD/BDT exchange rate across corroborated providers will remain below Tk 125.20 through November 29, 2026.</b>
+    <p>Bangladesh Bank will maintain tight administrative controls and foreign exchange liquidity rationing ahead of the wage board review, resisting market-clearing pressure.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>International natural gas futures will trade below $4.00 per MMBtu over the next 5 trading sessions.</b>
+    <p>Today&#x27;s 14.69% jump to $3.748 is a sharp technical spike that will face immediate resistance given softening crude benchmarks and elevated US storage.</p>
+    <div class="badge">judged in 5 days · Commodities</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">67.1%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 108 correct, 53 wrong,
+    0 partial, 10 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Garment factory closures have wiped out Tk 5,136 crore in 18 days.
+
+Over 300 garment factories have faced strikes and shut doors, according to factory owners.
+International fashion brands have already shifted Tk 3,096 crore in export orders to other countries.
+Meanwhile, banks are charging borrowers nearly 6% over deposit rates to protect their own profits.
+When export cash dries up, ordinary jobs and the value of our currency take the hit.
+
+Lost garment orders directly threaten Bangladesh&#x27;s foreign currency reserves and factory jobs.
+
+#BangladeshEconomy #RMG #BankingCrisis #Dhaka #MacroEconomics</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 22 Nov 2026, 21:39 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Interest rate spread", "plain": "The percentage difference between the loan interest rate a bank charges its borrowers and the deposit interest rate it pays its savers."}, {"term": "Bank resolution", "plain": "A formal regulatory intervention to restructure, recapitalize, or wind down an insolvent bank without causing a systemic panic."}, {"term": "Single-borrower exposure limit", "plain": "A regulatory cap that prevents a bank from lending more than a fixed percentage of its capital to any single company or business group."}, {"term": "Moral hazard", "plain": "The tendency for people or firms to take excessive risks when they know someone else will absorb their losses."}];
+window.__POST__ = "Garment factory closures have wiped out Tk 5,136 crore in 18 days.\n\nOver 300 garment factories have faced strikes and shut doors, according to factory owners.\nInternational fashion brands have already shifted Tk 3,096 crore in export orders to other countries.\nMeanwhile, banks are charging borrowers nearly 6% over deposit rates to protect their own profits.\nWhen export cash dries up, ordinary jobs and the value of our currency take the hit.\n\nLost garment orders directly threaten Bangladesh's foreign currency reserves and factory jobs.\n\n#BangladeshEconomy #RMG #BankingCrisis #Dhaka #MacroEconomics\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
