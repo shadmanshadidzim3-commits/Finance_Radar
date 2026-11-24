@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-11-23</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Monday, 23 November 2026</h1>
+  <div class="meta">203 stories from 28 sources ·
+    102 Bangladesh · 99 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">One in three bank loans is now in default.</p>
+  <ol class="flash"><li>One out of every three taka lent by banks is now in default. This makes it harder for banks to survive.</li><li>Factory owners and workers still cannot agree on a new salary. They will try again tomorrow.</li><li>Protests and shutdowns have cost the clothing industry over 5,000 crore taka in lost business.</li><li>The main material for making clothes just got much more expensive. This will lower profits for garment factories.</li><li>Energy costs are climbing fast. This makes electricity and factory operations more expensive for everyone.</li></ol>
+  <div class="stats"><div class="stat"><b>VIX (volatility)</b><span class="down">-25.83%</span></div><div class="stat"><b>Cotton</b><span class="up">+7.61%</span></div><div class="stat"><b>Nasdaq Composite</b><span class="up">+6.51%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>The dominant force today is the formal recognition of a solvency crisis in the banking sector. Non-performing loans have reached Tk 6.27 lakh crore, representing 33.8% of total lending. This means one out of every three taka lent by banks is now in default, a level that threatens the stability of the entire financial system.</p><p>What changed today is the quantification of the RMG sector&#x27;s pain alongside a sharp spike in input costs. Unrest has cost the industry $428 million in lost orders, while cotton prices jumped 7.61% in a single day. This creates a severe squeeze where revenue is falling just as raw material costs are rising, leaving manufacturers with little room to absorb the higher wages currently being debated.</p><p>Watch the RMG wage board meeting tomorrow for a potential breakthrough or further deadlock. The one number to track is the 124.46 Taka exchange rate. If it breaks 125.00, the cost of importing gas and cotton will accelerate, further straining the country&#x27;s foreign exchange reserves.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>Credit Risk</h3>
+    <div class="prose"><p>Credit risk is the possibility that a borrower will fail to repay a loan. When a bank lends money, it expects to get the principal back plus interest. If the borrower defaults, the bank loses that cash flow.</p><p>Today&#x27;s news shows that 33.8% of loans in Bangladesh are now classified as non-performing. This high level of credit risk threatens the solvency of banks. Solvency means having enough assets to cover all debts.</p><p>If too many loans go bad, a bank may not have enough money to pay back its depositors.</p></div>
+    <div class="quiz"><b>Test yourself</b>If a bank has Tk 100 in total loans and Tk 34 of those are non-performing, what is its NPL ratio? (Answer: 34%).</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Defaulted loans in the banking sector surged to Tk 6.27 lakh crore, reaching 33.8% of total lending.</h3>
+    <div class="plain"><b>In plain English</b>One out of every three taka lent by banks is now in default. This makes it harder for banks to survive.</div>
+    <p class="why prose">The non-performing loan (NPL) ratio—the percentage of loans that borrowers have stopped repaying—has hit a critical level. This erodes bank capital and forces lenders to use forbearance, which is a temporary delay in payment requirements that often masks the true depth of the crisis.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net, dhakatribune.com</span>
+      <a href="https://www.tbsnews.net/economy/banking/defaulted-loans-rise-tk627-lakh-crore-nearly-34-total-loans-1611196" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>The RMG wage board meeting adjourned today without reaching a consensus on the new minimum wage.</h3>
+    <div class="plain"><b>In plain English</b>Factory owners and workers still cannot agree on a new salary. They will try again tomorrow.</div>
+    <p class="why prose">A failure to reach a consensus—a general agreement among all parties—prolongs industrial uncertainty. This delays the stabilization of the garment sector, which provides over 80% of the country&#x27;s export earnings.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>thedailystar.net</span>
+      <a href="https://www.thedailystar.net/business/economy/rmg/news/rmg-wage-board-meeting-adjourned-until-tomorrow-4331246" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Garment sector unrest has caused $428 million in production losses across 317 factories.</h3>
+    <div class="plain"><b>In plain English</b>Protests and shutdowns have cost the clothing industry over 5,000 crore taka in lost business.</div>
+    <p class="why prose">These losses directly hit the current account, which tracks the country&#x27;s trade balance. Reduced export revenue weakens foreign exchange reserves and limits the central bank&#x27;s ability to support the taka.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>CNBC TV18</span>
+      <a href="https://news.google.com/rss/articles/CBMisgFBVV95cUxOcWFRRkNHR1pPREt2eG9CMG9UTkJVR2t2TVRkR3Z0STZUM19nY1BQS002clQ3TkJiZG15emtiVnBtUzFGYThHUnhuUEtTVGlsRFRsWVd3VFpDU09jSFFuZTlrTnBnZFFvQjkwNEIzVVQwdEVuLW1ibk83ZnNPeWhmdTE0ank4aWZ6M0QzTnZTOG5zVHpyYWVaa0JkUy1HT0dBRkdzWDFxa2VUZHhIczBnTWxB0gG3AUFVX3lxTE1Ld2trUlI5azdzQWlRdmNueW5EMl9US3pqQUgtTERwR09ua2lwbkhuZk1pYjlFcF9jMDZQMDNJeDNUZmZoaDV3YllSckFTQm5ObUhlWFptcEIzLWQwS3drQ3BObC1KRnd2QllfSFBXQmJtbUItRUw3Nk5RNmNZM0FsWHVoU1d2UnlvZE5jeUxoLUtnZHh4LVJxWURZbDVqWWVnTGRLMGhINmpFQkRlSXljOUttSDdOOA?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>International cotton futures jumped 7.61% in a single day to 81.21 cents per pound.</h3>
+    <div class="plain"><b>In plain English</b>The main material for making clothes just got much more expensive. This will lower profits for garment factories.</div>
+    <p class="why prose">Cotton is the primary raw material for Bangladesh&#x27;s textile industry. This spike causes input cost inflation—an increase in the price of materials—which squeezes the profit margins of exporters who cannot easily raise their prices.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>hits Bangladesh directly</span>
+      <span>Global Market Data</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Natural gas prices rose 3.64% today, bringing the one-month surge to 33.9%.</h3>
+    <div class="plain"><b>In plain English</b>Energy costs are climbing fast. This makes electricity and factory operations more expensive for everyone.</div>
+    <p class="why prose">Bangladesh relies heavily on imported Liquefied Natural Gas (LNG). Rising global prices increase the government&#x27;s subsidy bill and put pressure on the fiscal deficit, which is the gap between government spending and revenue.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>Global Market Data</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>New policy bars government secretaries from serving on commercial bank boards.</h3>
+    <div class="plain"><b>In plain English</b>Top government officials can no longer sit on bank boards. This aims to reduce political influence in lending.</div>
+    <p class="why prose">This is a governance reform intended to reduce conflict of interest. By removing bureaucrats from boards, the regulator hopes to improve credit appraisal and reduce the culture of politically motivated lending that leads to bad loans.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/banking/govt-secretaries-barred-bank-board-appointments-under-new-policy-1611846" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Coal&#x27;s share of power generation rose to 26.7% as gas supply faltered.</h3>
+    <div class="plain"><b>In plain English</b>The country is burning more coal for electricity because gas is scarce and expensive.</div>
+    <p class="why prose">This shift in the energy mix reflects the high cost of LNG. While coal provides a cheaper alternative, it increases the environmental footprint and relies on a different set of import logistics and foreign exchange requirements.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/energy/coal-emerges-leading-power-source-gas-supply-falters-1611071" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Fortune Shoes declared no dividend for FY26 after slipping into a loss.</h3>
+    <div class="plain"><b>In plain English</b>A listed shoe company is not paying investors any profit this year because it lost money.</div>
+    <p class="why prose">A dividend is a share of profit paid to stockholders. When a company skips a dividend, it signals poor cash flow and often leads to a drop in share price as investors seek better returns elsewhere.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">FORTUNE</span>
+      <span>hits Bangladesh directly</span>
+      <span>tbsnews.net</span>
+      <a href="https://www.tbsnews.net/economy/stocks/fortune-shoes-declares-no-dividend-fy26-it-slips-loss-1612001" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>The World Bank-funded tax reform project underwent a major overhaul to improve revenue collection.</h3>
+    <div class="plain"><b>In plain English</b>The government is changing how it fixes the tax system to collect more money from citizens.</div>
+    <p class="why prose">Bangladesh has one of the lowest tax-to-GDP ratios in the world. Improving revenue collection is essential to fund public services and reduce the government&#x27;s reliance on high-interest bank borrowing.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Financial Express</span>
+      <a href="https://news.google.com/rss/articles/CBMitgFBVV95cUxOWkNSNXJiRUUzWUlVdXF3TU1DUjI4eXAtMVAwS1Z5U0lmS190UVkyRUx3eFUwQ2JGbHdBMW5fRHRqM0dCc3JUeVU3UWJQMzRlNEljVFM5X0ZwT3I2cVlJQ0ZoUDBNSjNmQUtDcVpvUk1jZlZrdmhaeGREd1YzenVURERiMmpvLTB6MTFCY01aTzlqVVFham96NWFJaGJhRTNfRGlOaktaejVSYjNONWM5VVQ4OUlyZ9IBwgFBVV95cUxPZ3lQX3ExaEFSWGtydF9FMnViNUoyRDBrWjlPQ2R2ZlZCS1hiR1pvTUpFRnU0WFMxR1kzUUZreURBTTc0NnVzeWdHUTdPcS1GWWtGZVpiNEV6SHpkbVB5MmpqTVNFRXFzeml1OTEyYTJKY3dPdDFWVGszUmZ2OFhTUW8ycFhNUlRITWozbVZ6dVdnV3BvUS1nMVROblVwM2lPVWtYMTZsb3NhNjNkZVdfRzE4TGtVYktmaXpQODZIQ2FsZw?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>Everest Port Services replaced Saif Powertec as the interim operator of Chittagong Container Terminal.</h3>
+    <div class="plain"><b>In plain English</b>A new company has taken over the management of the country&#x27;s busiest shipping terminal.</div>
+    <p class="why prose">Port efficiency is critical for RMG exports. Any change in terminal operators can impact turnaround times for ships, which affects the overall speed and cost of the national supply chain.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">SAIFPOWER</span>
+      <span>hits Bangladesh directly</span>
+      <span>thedailystar.net</span>
+      <a href="https://www.thedailystar.net/business/economy/news/everest-replaces-saif-powertec-interim-cct-operator-4331546" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>Banking Solvency Crisis</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#6</span><span>strong link</span>
+  </div>
+  <div class="chain prose">NPLs hit 33.8% → systemic risk rises → regulator bars bureaucrats from boards → attempt to improve credit governance.</div>
+  <div class="sowhat prose"><b>So what</b>The banking system is technically fragile; governance changes are the first step toward a long-term cleanup.</div>
+</article>
+<article class="card">
+  <h3>RMG Margin Squeeze</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#4</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Labor unrest causes output loss → cotton prices jump 7.61% → wage board deadlocked → manufacturers face higher costs and lower revenue.</div>
+  <div class="sowhat prose"><b>So what</b>Garment factories are facing a &#x27;scissors effect&#x27; where costs rise as revenue falls, threatening factory solvency.</div>
+</article>
+<article class="card">
+  <h3>Energy Mix Shift</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#5</span><span class="chip" style="--chip:#475569">#7</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">Global gas prices surge 33% in a month → LNG imports become unaffordable → coal power share rises to 26.7% → shift in national energy strategy.</div>
+  <div class="sowhat prose"><b>So what</b>Energy security is being prioritized over environmental goals as the government manages a dollar shortage.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Non-performing loan (NPL)</h4>
+  <p>A loan where the borrower has stopped making payments for a specific period.</p>
+  <p>NPLs hit a record 33.8% of all bank loans today.</p><span class="stick">It is money the bank lent out but might never get back.</span>
+</div>
+<div class="term">
+  <h4>Forbearance</h4>
+  <p>A temporary delay in loan payment requirements granted by a lender.</p>
+  <p>Banks have used forbearance to hide the true scale of bad loans for years.</p><span class="stick">It is a &#x27;wait and see&#x27; approach to debt that often delays a crisis rather than fixing it.</span>
+</div>
+<div class="term">
+  <h4>Input cost inflation</h4>
+  <p>An increase in the price of raw materials used to make a product.</p>
+  <p>Cotton prices jumped 7.61%, making it more expensive to produce garments.</p><span class="stick">When the ingredients cost more, the chef makes less profit.</span>
+</div>
+<div class="term">
+  <h4>Consensus</h4>
+  <p>General agreement among a group of people.</p>
+  <p>The RMG wage board failed to reach a consensus on new salaries today.</p><span class="stick">In finance, a lack of consensus usually means more volatility and delay.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 124.46</div>
+  <div style="margin-top:6px"><span class="down">-0.10%</span> <span class="muted">since 2026-11-22</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.41 taka<br>currency-api 124.31, er-api 124.46, floatrates 124.72, fxratesapi 124.58, yahoo-live 124.45</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">104.32</td>
+<td class="num up">+0.49%</td>
+<td class="num up">+0.74%</td>
+<td class="num up">+2.46%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.0911</td>
+<td class="num down">-0.55%</td>
+<td class="num down">-0.79%</td>
+<td class="num down">-2.73%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.918</td>
+<td class="num up">+0.12%</td>
+<td class="num down">-3.96%</td>
+<td class="num down">-1.40%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">81.21</td>
+<td class="num up">+7.61%</td>
+<td class="num up">+5.47%</td>
+<td class="num up">+1.26%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">80.45</td>
+<td class="num down">-4.20%</td>
+<td class="num down">-6.15%</td>
+<td class="num down">-22.10%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">86.81</td>
+<td class="num down">-6.22%</td>
+<td class="num down">-6.09%</td>
+<td class="num down">-25.63%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.535</td>
+<td class="num up">+3.64%</td>
+<td class="num up">+13.23%</td>
+<td class="num up">+33.90%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">594.5</td>
+<td class="num up">+3.53%</td>
+<td class="num up">+1.28%</td>
+<td class="num down">-4.88%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,227.5</td>
+<td class="num up">+0.55%</td>
+<td class="num down">-0.12%</td>
+<td class="num down">-2.31%</td></tr>
+<tr><td>Gold</td>
+<td class="num">3,629.0</td>
+<td class="num up">+3.23%</td>
+<td class="num down">-5.81%</td>
+<td class="num down">-9.45%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,237.17</td>
+<td class="num up">+4.73%</td>
+<td class="num down">-2.42%</td>
+<td class="num down">-5.73%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">24,089.56</td>
+<td class="num up">+6.51%</td>
+<td class="num down">-1.71%</td>
+<td class="num down">-7.95%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">49,595.31</td>
+<td class="num up">+3.01%</td>
+<td class="num down">-3.90%</td>
+<td class="num down">-5.28%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,346.3</td>
+<td class="num down">-1.02%</td>
+<td class="num down">-5.10%</td>
+<td class="num down">-3.22%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">56,436.65</td>
+<td class="num down">-5.06%</td>
+<td class="num down">-7.70%</td>
+<td class="num down">-9.25%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">22,410.8</td>
+<td class="num down">-1.89%</td>
+<td class="num down">-5.19%</td>
+<td class="num down">-2.96%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">83,919.71</td>
+<td class="num up">+1.08%</td>
+<td class="num up">+2.85%</td>
+<td class="num up">+14.76%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">26.62</td>
+<td class="num down">-25.83%</td>
+<td class="num up">+16.19%</td>
+<td class="num up">+36.86%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — The RMG wage board meeting on November 23 adjourned without a consensus, as reported by The Daily Star.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — International cotton futures closed at 81.21 cents per pound on November 23, well above the 78.00 threshold.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Natural gas prices closed at $3.535 per MMBtu on November 23, remaining above the $3.50 threshold.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — Natural gas prices traded at $3.535 on November 23, which is below the $4.00 resistance level.
+
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — The median USD/BDT rate was Tk 124.46 on November 23, remaining below the Tk 125.20 threshold.
+
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>The RMG wage board will reach a final agreement on a new minimum wage by November 30, 2026.</b>
+    <p>Mounting export losses and pressure from international buyers will force a compromise between owners and workers to restore stability.</p>
+    <div class="badge">judged in 7 days · RMG/Export</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>The median USD/BDT exchange rate will cross Tk 125.00 within the next 7 calendar days.</b>
+    <p>Massive RMG export losses are reducing dollar inflows just as cotton and gas import costs spike, increasing pressure on the taka.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">68.1%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 113 correct, 53 wrong,
+    0 partial, 7 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">One in three bank loans is now in default.
+
+Banking sector bad loans hit a record 33.8% today.
+RMG wage talks are deadlocked as factories lose $428 million.
+Cotton prices jumped 7%, making exports even more expensive.
+
+Financial stability and our main export industry are under extreme pressure.
+
+#BangladeshEconomy #BankingCrisis #RMG</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 24 Nov 2026, 06:10 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Non-performing loan (NPL)", "plain": "A loan where the borrower has stopped making payments for a specific period."}, {"term": "Forbearance", "plain": "A temporary delay in loan payment requirements granted by a lender."}, {"term": "Input cost inflation", "plain": "An increase in the price of raw materials used to make a product."}, {"term": "Consensus", "plain": "General agreement among a group of people."}];
+window.__POST__ = "One in three bank loans is now in default.\n\nBanking sector bad loans hit a record 33.8% today.\nRMG wage talks are deadlocked as factories lose $428 million.\nCotton prices jumped 7%, making exports even more expensive.\n\nFinancial stability and our main export industry are under extreme pressure.\n\n#BangladeshEconomy #BankingCrisis #RMG\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
