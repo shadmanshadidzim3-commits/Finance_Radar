@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finance Radar — 2026-11-25</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --bg:#fbfbfa; --surface:#fff; --ink:#12161f; --soft:#5b6577; --faint:#8b94a6;
+  --line:#e6e8ec; --accent:#0f766e; --accent-soft:#f0fdfa;
+  --up:#047857; --down:#be2d32; --hi:#fef9c3;
+  --radius:14px;
+  --sans:"Segoe UI Variable Text","Segoe UI",-apple-system,system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1116; --surface:#161b23; --ink:#e8ecf2; --soft:#9aa4b5; --faint:#6c7789;
+    --line:#252c37; --accent:#2dd4bf; --accent-soft:#0d2b2a;
+    --up:#34d399; --down:#f87171; --hi:#3f3a1a;
+  }
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:17px; line-height:1.65; letter-spacing:-0.003em;
+}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 96px}
+
+/* ---------- header ---------- */
+header{margin-bottom:28px}
+.brand{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:31px;line-height:1.2;margin:6px 0 8px;letter-spacing:-0.02em}
+.meta{font-size:13.5px;color:var(--faint)}
+
+/* ---------- generic blocks ---------- */
+section{margin:38px 0}
+h2{
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--faint);margin:0 0 16px;padding-bottom:9px;border-bottom:1px solid var(--line)
+}
+h3{font-size:18.5px;line-height:1.35;margin:0 0 8px;letter-spacing:-0.01em}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;margin-bottom:14px
+}
+
+/* ---------- hero / 60-second read ---------- */
+.hero{
+  background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--radius);
+  padding:24px 24px 20px;margin-bottom:14px
+}
+.hero .hook{font-size:22px;font-weight:700;line-height:1.32;margin:0 0 16px;letter-spacing:-0.02em}
+.flash{list-style:none;margin:0;padding:0;counter-reset:f}
+.flash li{
+  counter-increment:f;position:relative;padding:7px 0 7px 34px;
+  border-top:1px solid color-mix(in srgb,var(--accent) 22%,transparent);font-size:15.5px;line-height:1.5
+}
+.flash li::before{
+  content:counter(f);position:absolute;left:0;top:9px;width:22px;height:22px;
+  background:var(--accent);color:#fff;border-radius:50%;font-size:12px;font-weight:700;
+  display:grid;place-items:center
+}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.stat{
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;font-size:13.5px
+}
+.stat b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);font-weight:700}
+
+/* ---------- stories ---------- */
+.story{display:grid;grid-template-columns:34px 1fr;gap:14px}
+.rank{
+  font-size:15px;font-weight:700;color:var(--faint);border:1px solid var(--line);
+  border-radius:8px;height:30px;display:grid;place-items:center
+}
+.plain{
+  background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+  padding:10px 14px;margin:0 0 12px;font-size:15.5px;line-height:1.55
+}
+.plain b{
+  display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:3px
+}
+.why{color:var(--soft);font-size:16px}
+.foot{
+  margin-top:12px;padding-top:10px;border-top:1px solid var(--line);
+  font-size:12.5px;color:var(--faint);display:flex;flex-wrap:wrap;gap:8px;align-items:center
+}
+.chip{
+  background:color-mix(in srgb,var(--chip) 13%,transparent);color:var(--chip);
+  border:1px solid color-mix(in srgb,var(--chip) 30%,transparent);
+  border-radius:20px;padding:2px 10px;font-size:11.5px;font-weight:600;white-space:nowrap
+}
+.tick{font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--soft)}
+
+/* ---------- connections ---------- */
+.chain{
+  font-size:15.5px;line-height:1.7;background:var(--bg);border:1px dashed var(--line);
+  border-radius:10px;padding:14px 16px;margin:10px 0
+}
+.sowhat{border-left:3px solid var(--accent);padding-left:14px;margin-top:12px}
+.sowhat b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:3px}
+
+/* ---------- teaching ---------- */
+.lesson{background:linear-gradient(180deg,var(--accent-soft),transparent 70%);border:1px solid var(--accent)}
+.lesson .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.quiz{
+  margin-top:14px;padding:12px 14px;background:var(--surface);
+  border:1px solid var(--line);border-radius:10px;font-size:15px
+}
+.quiz b{color:var(--accent);font-size:11px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:4px}
+
+/* ---------- jargon ---------- */
+.terms{display:grid;gap:12px}
+@media(min-width:620px){.terms{grid-template-columns:1fr 1fr}}
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.term h4{margin:0 0 6px;font-size:16px;color:var(--accent)}
+.term p{font-size:14.5px;line-height:1.55;color:var(--soft);margin:0 0 8px}
+.term .stick{
+  font-size:13.5px;background:var(--hi);color:var(--ink);
+  border-radius:7px;padding:7px 10px;display:block
+}
+.jargon{
+  border-bottom:2px dotted var(--accent);cursor:help;position:relative;
+  background:color-mix(in srgb,var(--accent) 7%,transparent)
+}
+.jargon:hover::after{
+  content:attr(data-def);position:absolute;left:0;bottom:calc(100% + 8px);z-index:20;
+  width:min(320px,78vw);background:var(--ink);color:var(--bg);font-size:13.5px;
+  line-height:1.5;font-weight:400;padding:10px 12px;border-radius:9px;
+  box-shadow:0 8px 26px rgba(0,0,0,.28);letter-spacing:0
+}
+
+/* ---------- tables ---------- */
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{
+  text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--faint);padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap
+}
+td{padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.up{color:var(--up);font-weight:600}
+.down{color:var(--down);font-weight:600}
+.flat{color:var(--faint)}
+
+/* ---------- predictions ---------- */
+.pred{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid var(--line)}
+.pred:last-child{border-bottom:none}
+.conf{
+  flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:13px;font-weight:700;background:var(--accent-soft);color:var(--accent);
+  border:2px solid var(--accent)
+}
+.pred .body{flex:1;min-width:0}
+.pred .body p{margin:4px 0 0;font-size:14.5px;color:var(--soft)}
+.badge{font-size:11.5px;color:var(--faint)}
+.res{display:flex;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.res:last-child{border-bottom:none}
+
+/* ---------- post ---------- */
+.post{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;white-space:pre-wrap;font-size:16px;line-height:1.7
+}
+.copy{
+  margin-top:12px;background:var(--accent);color:#fff;border:none;border-radius:9px;
+  padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit
+}
+.copy:active{transform:translateY(1px)}
+
+details{margin-top:12px}
+summary{cursor:pointer;color:var(--accent);font-size:14.5px;font-weight:600;padding:6px 0}
+footer{margin-top:56px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint)}
+@media print{
+  body{background:#fff;font-size:11pt}
+  .card,.hero,.term{break-inside:avoid}
+  .copy{display:none}
+}
+</style>
+</head><body><div class="wrap">
+
+<header>
+  <div class="brand">60 SECOND FINANCE</div>
+  <h1>Wednesday, 25 November 2026</h1>
+  <div class="meta">231 stories from 30 sources ·
+    124 Bangladesh · 104 global ·
+    analysed by gemini_api</div>
+</header>
+
+<div class="hero">
+  <p class="hook">Garment wages are up, but a new energy crisis is looming.</p>
+  <ol class="flash"><li>Garment workers will now earn at least 17,000 taka a month, which helps settle strikes but raises costs for factory owners.</li><li>The US might add new taxes on goods from Bangladesh, making our exports more expensive for American buyers.</li><li>The government is taking much more money from local banks to pay its bills because tax collection is low.</li><li>A major power plant in India is closing half its capacity for nearly a month, which will likely cause more power cuts.</li><li>State-owned banks have massive amounts of money trapped in court battles with people who haven&#x27;t paid back loans.</li></ol>
+  <div class="stats"><div class="stat"><b>VIX (volatility)</b><span class="up">+12.56%</span></div><div class="stat"><b>Natural Gas</b><span class="up">+11.04%</span></div><div class="stat"><b>Nikkei 225</b><span class="up">+3.91%</span></div></div>
+</div>
+
+<section>
+  <h2>The day in one read</h2>
+  <div class="card"><div class="prose"><p>Today was defined by a fragile resolution in the labor market overshadowed by a deepening energy and fiscal crisis. The dominant force is the RMG wage hike to Tk 17,000, which provides a necessary social floor but arrives exactly when global gas prices are spiking and power supply from India is being halved. This creates a severe cost-push environment for the nation&#x27;s primary export engine.</p><p>What changed today is the quantification of the fiscal strain. The 72% jump in government bank borrowing confirms that revenue shortfalls are now directly competing with the private sector for credit. This explains why we are seeing distressed large-cap corporates like GPH Ispat attempting to convert massive bank debts into bonds—the banks simply do not have the liquidity to keep rolling over traditional loans.</p><p>What to watch next is the central bank&#x27;s reaction to the Adani power cut. If Bangladesh Bank does not prioritize dollar payments for energy imports, the resulting load-shedding will cripple factory productivity just as the new, higher wages take effect. The one number to watch is the USD/BDT median; if it stays anchored below 125.00, it suggests the central bank is still using moral suasion to prevent a breakout despite these mounting pressures.</p></div></div>
+</section>
+
+
+<section>
+  <h2>Today's lesson</h2>
+  <article class="card lesson">
+    <div class="tag">Concept</div>
+    <h3>The Wage-Price Spiral</h3>
+    <div class="prose"><p>The wage-price spiral is a macroeconomic theory explaining a cause-and-effect relationship between rising wages and rising prices (inflation). When workers receive a significant wage hike—like the RMG sector&#x27;s move to Tk 17,000—businesses face higher production costs. To maintain their profit margins, they raise the prices of their goods.</p><p>This leads to higher overall inflation in the economy. Workers then find that their new, higher wages don&#x27;t buy as much as they expected, leading them to demand even higher wages. In Bangladesh&#x27;s case, because we export garments, we can&#x27;t easily raise prices for global buyers, so the &#x27;spiral&#x27; instead leads to factory closures or reduced hiring.</p></div>
+    <div class="quiz"><b>Test yourself</b>If RMG workers get a raise but global buyers refuse to pay more for shirts, what happens to the factory&#x27;s profit margin? (Answer: It compresses/shrinks).</div>
+  </article>
+</section>
+
+<section>
+  <h2>The ten stories that mattered</h2>
+  
+<article class="card story">
+  <div class="rank">1</div>
+  <div>
+    <h3>Bangladesh raises garment workers&#x27; minimum wage to Tk 17,000 after weeks of protests.</h3>
+    <div class="plain"><b>In plain English</b>Garment workers will now earn at least 17,000 taka a month, which helps settle strikes but raises costs for factory owners.</div>
+    <p class="why prose">This settlement aims to end labor unrest that has cost the industry $428 million in lost orders. However, it increases the cost of goods sold for manufacturers who are already facing margin compression—the reduction in profit per unit—due to rising global input prices.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Taiwan Times, The Daily Star, WION</span>
+      <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxQLU1pS0Q4UU1zNllmZzRESlViY1B4SVpMY182cGFLZmQwd1lZaUsxaHh5SDBCTFVmdXp2X0R1WmVkZEZvZG95LU5uTzdLYS13X3BITzQwSzR5TmU1X1dUMkhFakEwdVV3M0VDM3B0QVZLQ2hXTkczdV9IOG0zVkJIb2VCNDV3ZWJ0eFYwYWR1QU5iUWFYYk9XbU5Uck9CSGRJQzlZb0EzYUtDUjlF?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">2</div>
+  <div>
+    <h3>US proposes new tariffs on 14 trade partners including Bangladesh.</h3>
+    <div class="plain"><b>In plain English</b>The US might add new taxes on goods from Bangladesh, making our exports more expensive for American buyers.</div>
+    <p class="why prose">As the US is a primary export destination for readymade garments, new tariffs would act as a trade barrier. This threatens export competitiveness against regional rivals like India, who are also included in the proposal.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0e7490">Global Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Business Standard, Banglanews24</span>
+      <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9MUnZCUzFRR3k4dXJJUXBUQzJma3ZZa0J6dDJwNXpkd2ZiajRGcXV4MGVwZkk4QTFxcmhPYlh2WmNPTEhmaENnZzJFaXJUUTBLOGFhMUljeG1pSlFpNlNkaUJfVlptN2FMQzk0?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">3</div>
+  <div>
+    <h3>Government bank borrowing surged 72% in Jul-Sept as revenue collection missed targets.</h3>
+    <div class="plain"><b>In plain English</b>The government is taking much more money from local banks to pay its bills because tax collection is low.</div>
+    <p class="why prose">High public sector borrowing causes crowding out—a situation where the government uses up available bank credit, leaving less for private businesses. This typically leads to higher interest rates for corporate and retail borrowers.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#0f766e">BD Macro</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/govts-bank-borrowing-surges-72-jul-sept-revenue-falls-short-4333356" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">4</div>
+  <div>
+    <h3>Adani&#x27;s Godda plant to shut one unit for 25 days, halving power supply to Bangladesh.</h3>
+    <div class="plain"><b>In plain English</b>A major power plant in India is closing half its capacity for nearly a month, which will likely cause more power cuts.</div>
+    <p class="why prose">A 50% reduction in supply from a major dedicated source increases the reliance on expensive liquid fuel-based domestic plants. This worsens the energy deficit and increases the fiscal subsidy burden for the government.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#c2410c">Energy</span>
+      <span>hits Bangladesh directly</span>
+      <span>India Today</span>
+      <a href="https://news.google.com/rss/articles/CBMi3AFBVV95cUxPU1B1SW02ZF84MkQyYkhZZWtyQkQ3MDd5YmwtTHdob0dfaF9GOUZyM2plazhFdW9xTVJsc001a2pSYmduZWhvdVlYSk13RHROUFhYb2xTNmxDMXBLVTZ0b01aVUZYWXJtQ0dYekhMRDgwMGxNUllaYU9HREIwOHVpMG1XX1c2MHpGeWJVNE1xOUFtSHJIM0t0QlVpTTVxVHhYNVEyeDZFUVlIeExUVzJZdlBXeGFaM0xuM3owMVhCWndnUklScEF4TzNzUnloZEI2VFR2X08yNW9YeGhn0gHiAUFVX3lxTFBsVUFKblF4Q0syNlZSdUNIQWtmTEpGTjl4eUNMc3Eya0pkbEJOTTlRUnZkdnJ2Um02Tm5ObjBTMXdydUk1YTllaWF2VTRBVGFQQ1BrNG1PYkg1YVBtdkZwbHU0REhYd3hWZkNvcmg1YTlsaW1HcU1aalNLMTJRYU1JdWNxMnhYY0ljRHJFQ1RTUE5XODc4SnBjMG5KSUpuanhIM29XbjlIdkFYVTdYbmlVc1NmUGlqdnVaWDVmbzVFdGY5c2lmZ05VWkRiWmFLcm00WEtreGNiWF9OTkpEZi1fVVE?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">5</div>
+  <div>
+    <h3>Tk 1.73 lakh crore in unpaid loans stuck in 47,500 legal cases at six state banks.</h3>
+    <div class="plain"><b>In plain English</b>State-owned banks have massive amounts of money trapped in court battles with people who haven&#x27;t paid back loans.</div>
+    <p class="why prose">This represents a massive stock of non-performing loans (NPLs) that are not generating interest income. The legal gridlock prevents banks from recycling this capital into new, productive loans, severely weakening their balance sheets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#1d4ed8">Banking</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/tk-173-lakh-crore-stuck-47500-cases-six-state-banks-4333331" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">6</div>
+  <div>
+    <h3>Global natural gas prices jumped 11.04% in a single day to $3.69 per MMBtu.</h3>
+    <div class="plain"><b>In plain English</b>The cost of gas on the world market is spiking, which will make electricity and factory fuel more expensive.</div>
+    <p class="why prose">Bangladesh is a net importer of Liquefied Natural Gas (LNG). A double-digit daily spike increases the import bill and puts immediate pressure on foreign exchange reserves and domestic power tariffs.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#a16207">Commodities</span>
+      <span>reaches Bangladesh indirectly</span>
+      <span>Global Market Data</span>
+      
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">7</div>
+  <div>
+    <h3>Banks consider converting Tk 12,000 crore in GPH Ispat liabilities into bonds.</h3>
+    <div class="plain"><b>In plain English</b>Banks might turn a steel company&#x27;s massive debt into tradable bonds to help the company survive.</div>
+    <p class="why prose">This is a form of debt securitisation—turning a bank loan into a tradable security. It helps the bank clean its books of a large exposure while giving the company more time to repay, but it shifts the risk to bondholders.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#475569">Corporate</span><span class="tick">GPHISPAT</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/banks-consider-turning-gph-ispat-loans-bonds-4333341" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">8</div>
+  <div>
+    <h3>Bangladesh&#x27;s foreign exchange reserves reported at $34.35 billion.</h3>
+    <div class="plain"><b>In plain English</b>The country&#x27;s dollar savings have risen to over $34 billion.</div>
+    <p class="why prose">Higher reserves provide a buffer against external shocks and support the taka&#x27;s value. This figure is critical for maintaining the country&#x27;s credit rating and ensuring it can pay for essential imports like fuel and food.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>Banglanews24</span>
+      <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5SYlNtZ1RNMDBzcGh5R0pWbmlyYm5GRU9QNXlLSWQ4bW91VXpqdDRCdU1JLUVBaS1kY0E1ZzhxRG5nSDhxNGlBTjJsalNFX2NwOE0tRnlVTVNEQ2hsOUpVRlUxV0FtWU1HTVdz?oc=5" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">9</div>
+  <div>
+    <h3>Turkish Sanko Holding plans $300 million denim factory in Moulvibazar.</h3>
+    <div class="plain"><b>In plain English</b>A large Turkish company is investing $300 million to build a new jeans material factory in Bangladesh.</div>
+    <p class="why prose">This is a significant Foreign Direct Investment (FDI) signal. It suggests that despite labor unrest, long-term investors still see value in Bangladesh&#x27;s textile supply chain and its proximity to global markets.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#be185d">RMG/Export</span>
+      <span>hits Bangladesh directly</span>
+      <span>The Daily Star</span>
+      <a href="https://www.thedailystar.net/business/economy/news/turkish-group-sanko-plans-300m-denim-factory-4333326" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+<article class="card story">
+  <div class="rank">10</div>
+  <div>
+    <h3>NBR cuts import duties on dates, apples, and oranges ahead of Ramadan.</h3>
+    <div class="plain"><b>In plain English</b>The government is lowering taxes on some fruits to keep food prices down during the upcoming fasting month.</div>
+    <p class="why prose">This is a fiscal measure to combat food inflation. By reducing the import duty—the tax paid at the border—the government hopes to lower the final retail price for consumers during a period of high seasonal demand.</p>
+    <div class="foot">
+      <span class="chip" style="--chip:#7c3aed">BD Policy</span>
+      <span>hits Bangladesh directly</span>
+      <span>Dhaka Tribune</span>
+      <a href="https://www.dhakatribune.com/business/425743/nbr-cuts-import-duties-on-dates-apples-and" target="_blank" rel="noopener">read the story →</a>
+    </div>
+  </div>
+</article>
+</section>
+
+<section>
+  <h2>How they connect</h2>
+  
+<article class="card">
+  <h3>The RMG Margin Squeeze</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#1</span><span class="chip" style="--chip:#475569">#4</span><span class="chip" style="--chip:#475569">#6</span><span>strong link</span>
+  </div>
+  <div class="chain prose">Wage hike (Tk 17k) + Global gas spike (+11%) + Adani power cut → Higher production costs + More expensive backup fuel → Compressed profit margins for exporters.</div>
+  <div class="sowhat prose"><b>So what</b>Exporters may struggle to fulfill orders profitably unless they can negotiate higher prices from global buyers.</div>
+</article>
+<article class="card">
+  <h3>Credit Availability Crisis</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#3</span><span class="chip" style="--chip:#475569">#5</span><span class="chip" style="--chip:#475569">#7</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">72% surge in govt borrowing + Tk 1.73tn stuck in NPL cases → Banks have less liquidity for new loans → Large corporates (like GPH Ispat) forced to restructure debt into bonds.</div>
+  <div class="sowhat prose"><b>So what</b>Private sector growth will likely slow as businesses find it harder and more expensive to get bank loans.</div>
+</article>
+<article class="card">
+  <h3>External Trade Headwinds</h3>
+  <div class="foot" style="margin:0 0 10px;padding:0;border:none">
+    <span class="chip" style="--chip:#475569">#2</span><span class="chip" style="--chip:#475569">#40</span><span>plausible link</span>
+  </div>
+  <div class="chain prose">US inflation at 3.8% → Fed likely to stay tight → US consumer demand softens + New US tariff proposals → Lower export volumes for Bangladesh.</div>
+  <div class="sowhat prose"><b>So what</b>The RMG sector faces a &#x27;double whammy&#x27; of rising domestic costs and falling external demand.</div>
+</article>
+</section>
+
+
+<section>
+  <h2>Jargon decoder</h2>
+  <p style="font-size:14.5px;color:var(--faint);margin:-4px 0 16px">
+    These terms appear in today's brief. Hover any dotted word above to see its
+    meaning without scrolling back.
+  </p>
+  <div class="terms">
+<div class="term">
+  <h4>Margin compression</h4>
+  <p>When the costs of making a product rise faster than the price you can sell it for, leaving you with less profit.</p>
+  <p>RMG factories are facing higher wages and gas costs but global buyers are offering low prices.</p><span class="stick">It&#x27;s like having a bigger appetite but a smaller plate.</span>
+</div>
+<div class="term">
+  <h4>Crowding out</h4>
+  <p>When the government borrows so much money from banks that there isn&#x27;t enough left for private businesses to borrow.</p>
+  <p>Govt borrowing from banks surged 72% because tax revenue fell short.</p><span class="stick">If the government takes the last seat on the bus, the businessman has to walk.</span>
+</div>
+<div class="term">
+  <h4>Debt securitisation</h4>
+  <p>Turning a bundle of loans into a bond that can be bought and sold like a stock.</p>
+  <p>GPH Ispat is looking to turn Tk 12,000 crore of bank debt into bonds to manage its liabilities.</p><span class="stick">It&#x27;s turning a private IOU into a public ticket.</span>
+</div>
+<div class="term">
+  <h4>Import duty</h4>
+  <p>A tax the government collects on goods coming into the country from abroad.</p>
+  <p>The NBR cut duties on fruits to keep prices lower during Ramadan.</p><span class="stick">It&#x27;s the &#x27;entry fee&#x27; for foreign goods.</span>
+</div></div>
+</section>
+
+<section>
+  <h2>The numbers</h2>
+  <div class="card"><p>DSE data was unavailable today: HTTPError: 410 Client Error: Gone for url: https://www.dsebd.org/latest_share_price_scroll_by_ltp.php</p></div>
+  
+<div class="card">
+  <h3 style="margin-bottom:8px">USD/BDT — the taka</h3>
+  <div style="font-size:2rem;font-weight:650;line-height:1.1">Tk 124.68</div>
+  <div style="margin-top:6px"><span class="up">+0.06%</span> <span class="muted">since 2026-11-24</span></div>
+  <p class="muted" style="margin-top:10px">verified across 5 sources · spread 0.34 taka<br>currency-api 124.73, er-api 124.68, floatrates 124.82, fxratesapi 124.61, yahoo-live 124.48</p>
+  
+</div>
+  
+<div class="card">
+  <h3 style="margin-bottom:14px">Global markets</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Instrument</th><th class="num">Last</th><th class="num">1 day</th>
+    <th class="num">1 week</th><th class="num">1 month</th></tr></thead>
+    <tbody>
+<tr><td>US Dollar Index</td>
+<td class="num">103.61</td>
+<td class="num down">-0.19%</td>
+<td class="num down">-0.24%</td>
+<td class="num up">+1.62%</td></tr>
+<tr><td>USD/INR</td>
+<td class="num">92.22</td>
+<td class="num down">-0.75%</td>
+<td class="num down">-1.34%</td>
+<td class="num down">-2.86%</td></tr>
+<tr><td>EUR/USD</td>
+<td class="num">1.0988</td>
+<td class="num up">+0.73%</td>
+<td class="num down">-0.05%</td>
+<td class="num down">-2.05%</td></tr>
+<tr><td>US 10Y Treasury</td>
+<td class="num">4.836</td>
+<td class="num down">-1.39%</td>
+<td class="num down">-4.54%</td>
+<td class="num down">-3.01%</td></tr>
+<tr><td>Cotton</td>
+<td class="num">81.97</td>
+<td class="num up">+3.60%</td>
+<td class="num up">+9.34%</td>
+<td class="num up">+3.68%</td></tr>
+<tr><td>WTI Crude</td>
+<td class="num">83.65</td>
+<td class="num up">+1.95%</td>
+<td class="num up">+0.47%</td>
+<td class="num down">-17.80%</td></tr>
+<tr><td>Brent Crude</td>
+<td class="num">90.29</td>
+<td class="num down">-1.21%</td>
+<td class="num down">-1.81%</td>
+<td class="num down">-22.04%</td></tr>
+<tr><td>Natural Gas</td>
+<td class="num">3.69</td>
+<td class="num up">+11.04%</td>
+<td class="num up">+9.43%</td>
+<td class="num up">+41.81%</td></tr>
+<tr><td>Wheat</td>
+<td class="num">587.5</td>
+<td class="num up">+3.12%</td>
+<td class="num up">+3.07%</td>
+<td class="num down">-4.63%</td></tr>
+<tr><td>Soybeans</td>
+<td class="num">1,244.75</td>
+<td class="num up">+0.87%</td>
+<td class="num up">+2.30%</td>
+<td class="num up">+0.28%</td></tr>
+<tr><td>Gold</td>
+<td class="num">3,539.7</td>
+<td class="num down">-0.62%</td>
+<td class="num down">-5.40%</td>
+<td class="num down">-12.35%</td></tr>
+<tr><td>S&amp;P 500</td>
+<td class="num">7,132.13</td>
+<td class="num down">-0.96%</td>
+<td class="num down">-2.61%</td>
+<td class="num down">-7.09%</td></tr>
+<tr><td>Nasdaq Composite</td>
+<td class="num">23,303.28</td>
+<td class="num down">-1.81%</td>
+<td class="num down">-4.61%</td>
+<td class="num down">-10.95%</td></tr>
+<tr><td>Dow Jones</td>
+<td class="num">50,037.75</td>
+<td class="num up">+0.04%</td>
+<td class="num down">-0.32%</td>
+<td class="num down">-4.44%</td></tr>
+<tr><td>FTSE 100</td>
+<td class="num">10,426.94</td>
+<td class="num down">-0.38%</td>
+<td class="num down">-1.18%</td>
+<td class="num down">-3.16%</td></tr>
+<tr><td>Nikkei 225</td>
+<td class="num">58,644.63</td>
+<td class="num up">+3.91%</td>
+<td class="num down">-1.71%</td>
+<td class="num down">-5.70%</td></tr>
+<tr><td>Hang Seng</td>
+<td class="num">22,219.65</td>
+<td class="num down">-0.73%</td>
+<td class="num down">-5.48%</td>
+<td class="num down">-4.27%</td></tr>
+<tr><td>BSE Sensex</td>
+<td class="num">83,938.28</td>
+<td class="num up">+1.82%</td>
+<td class="num up">+1.70%</td>
+<td class="num up">+14.04%</td></tr>
+<tr><td>VIX (volatility)</td>
+<td class="num">29.67</td>
+<td class="num up">+12.56%</td>
+<td class="num up">+20.81%</td>
+<td class="num up">+61.34%</td></tr></tbody>
+  </table></div>
+</div>
+</section>
+
+<section>
+  <h2>Predictions</h2>
+  <div class="card"><h3>How yesterday's calls turned out</h3>
+<div class="res"><div>❌</div>
+<div><b>WRONG</b> — The median USD/BDT rate was Tk 124.68 on 25 Nov, failing to cross the Tk 125.00 threshold within the predicted 5 business days.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: I overestimated the speed of depreciation; central bank moral suasion and dollar sales are keeping the rate more stable than trade fundamentals suggest.</p>
+</div></div>
+<div class="res"><div>✅</div>
+<div><b>CORRECT</b> — The RMG wage board reached a final agreement of Tk 17,000 on 25 Nov, ahead of the 30 Nov deadline.
+<p style="margin:5px 0 0;font-size:14px;color:var(--soft)">Lesson: Correctly identified that mounting export losses would force a compromise between owners and workers.</p>
+</div></div></div><div class="card"><h3>Calls made today</h3>
+<div class="pred">
+  <div class="conf">70%</div>
+  <div class="body">
+    <b>The median USD/BDT exchange rate will remain below Tk 125.10 for the next 5 business sessions.</b>
+    <p>Bangladesh Bank is explicitly urging banks to avoid &#x27;unnecessary&#x27; dollar purchases to keep the rate anchored.</p>
+    <div class="badge">judged in 7 days · FX</div>
+  </div>
+</div>
+<div class="pred">
+  <div class="conf">65%</div>
+  <div class="body">
+    <b>BSEC will provide in-principle approval for the GPH Ispat bond conversion within 14 days.</b>
+    <p>The banking sector&#x27;s liquidity crunch makes debt-to-bond swaps a preferred regulatory solution to prevent major defaults.</p>
+    <div class="badge">judged in 14 days · Corporate</div>
+  </div>
+</div></div>
+<div class="card" style="text-align:center">
+  <div style="font-size:34px;font-weight:700;color:var(--accent)">67.9%</div>
+  <div style="font-size:13.5px;color:var(--faint)">
+    hit rate · 114 correct, 54 wrong,
+    0 partial, 10 still open
+  </div>
+</div>
+</section>
+
+
+<section>
+  <h2>Ready to post</h2>
+  <div class="post">Garment wages are up, but a new energy crisis is looming.
+
+Bangladesh just raised the minimum wage for garment workers to 17,000 taka.
+While this helps workers, factories are being hit by a 50% cut in power from a major Indian plant.
+At the same time, global gas prices just spiked 11%.
+Our biggest industry is caught in a massive cost squeeze.
+
+Higher wages are a win for workers, but energy shortages could threaten their jobs.
+
+#Bangladesh #Economy #RMG</div>
+  <button class="copy" id="copyPost">Copy post</button>
+</section>
+
+<footer>
+  Finance Radar · generated 26 Nov 2026, 00:05 ·
+  Not investment advice. Every figure should be checked against the original
+  source before you act on it.
+</footer>
+
+</div>
+<script>
+window.__JARGON__ = [{"term": "Margin compression", "plain": "When the costs of making a product rise faster than the price you can sell it for, leaving you with less profit."}, {"term": "Crowding out", "plain": "When the government borrows so much money from banks that there isn't enough left for private businesses to borrow."}, {"term": "Debt securitisation", "plain": "Turning a bundle of loans into a bond that can be bought and sold like a stock."}, {"term": "Import duty", "plain": "A tax the government collects on goods coming into the country from abroad."}];
+window.__POST__ = "Garment wages are up, but a new energy crisis is looming.\n\nBangladesh just raised the minimum wage for garment workers to 17,000 taka.\nWhile this helps workers, factories are being hit by a 50% cut in power from a major Indian plant.\nAt the same time, global gas prices just spiked 11%.\nOur biggest industry is caught in a massive cost squeeze.\n\nHigher wages are a win for workers, but energy shortages could threaten their jobs.\n\n#Bangladesh #Economy #RMG\n";
+
+// Turn every term in the decoder into a hoverable definition wherever it
+// appears in the prose. Walks text nodes so we never break existing markup.
+(function(){
+  var terms = window.__JARGON__ || [];
+  if(!terms.length) return;
+  terms.sort(function(a,b){return b.term.length - a.term.length;});
+  var used = {};
+  terms.forEach(function(t){ used[t.term.toLowerCase()] = 0; });
+
+  function esc(s){ return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+  document.querySelectorAll('.prose').forEach(function(root){
+    terms.forEach(function(t){
+      var key = t.term.toLowerCase();
+      if(used[key] >= 2) return;                     // avoid peppering the page
+      var re = new RegExp('\\b(' + esc(t.term) + ')\\b','i');
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+      var nodes = [], n;
+      while((n = walker.nextNode())) nodes.push(n);
+      for(var i=0;i<nodes.length;i++){
+        var node = nodes[i];
+        if(node.parentNode.closest('.jargon')) continue;
+        var m = node.nodeValue.match(re);
+        if(!m) continue;
+        var idx = m.index;
+        var after = node.splitText(idx);
+        after.nodeValue = after.nodeValue.substring(m[0].length);
+        var span = document.createElement('span');
+        span.className = 'jargon';
+        span.setAttribute('data-def', t.plain);
+        span.textContent = m[0];
+        node.parentNode.insertBefore(span, after);
+        used[key]++;
+        break;
+      }
+    });
+  });
+
+  var btn = document.getElementById('copyPost');
+  if(btn){
+    btn.addEventListener('click', function(){
+      navigator.clipboard.writeText(window.__POST__ || '').then(function(){
+        var old = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = old; }, 1600);
+      });
+    });
+  }
+})();
+
+</script>
+</body></html>
